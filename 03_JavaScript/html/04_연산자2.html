@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04_연산자 2</title>
+  <link rel="stylesheet" href="../css/04_연산자2.css">
+</head>
+
+<body>
+  <h3>비교 연산자</h3>
+  <pre>
+  [자료형 관계 없이 비교 가능한 연산자]
+    같다      : == (동등, 자료형 관계 없이 값이 같음), === (동일, 자료형과 값이 모두 같음)
+    같지 않다 : != (자료형 관계 없이 값이 같지 않음) , !== (자료형 또는 값이 같지 않음)
+
+  [숫자(number)만 비교 가능한 연산자]
+    A >  B    : A가 B보다 크다        (A가 B 초과)
+    A <  B    : A가 B보다 작다        (A가 B 미만)
+    A >= B    : A가 B보다 크거나 같다 (A가 B 이하)
+    A <= B    : A가 B보다 작거나 같다 (A가 B 미만)
+  
+    - 좌변, 우변을 ==> 같다, 같지않다, 초과, 미만, 이상, 이하 를 비교해서 맞을경우 true, 아닐 경우 false를 반환한다!!
+      (boolean == 논리형 == true/false)
+  </pre>
+  <button onclick="check1()">비교 연산자 확인</button>
+
+  <hr>
+
+  <h3>%(나머지), 비교 연산자를 이용해서 짝수 / 홀수, 배수 확인하기</h3>
+  <h4>홀 / 짝 판별기</h4>
+  숫자 입력 : <input type="number" id="input1">
+  <button onclick="oddEvenCheck()">홀 / 짝 확인</button>
+  <h4>배수 판별기</h4>
+  <input type="number" id="input2">
+  은(는)
+  <input type="number" id="input3">
+  의 배수가 맞는가?
+  <span id="result2" style="font-style: italic; font-weight: bolder; color: red;"></span><br><br>
+  <button onclick="multipleCheck()">배수 확인</button>
+
+  <span id="result2_1"></span>
+  <span>의 약수 목록 : </span>
+  <span id="result2_2" style="font-style: italic; font-weight: bolder; color: red;"></span>
+
+  <hr>
+
+  <h3>복합 대입 연산자(+=, -=, *=, /=, %=) (Assignment Operators)</h3>
+  <pre>
+    - 기존 변수에 저장되어 있는 값에 새롭게 대입되는 값의 산술 연산 결과를 대입하는 연산자
+    - 코드가 짧고, 속도가 우위를 가지고 있음
+    ex) let temp = 10;
+        temp += 5; // temp = temp + 5;
+  </pre>
+  <button onclick="assignmentCheck()">복합 대입 확인</button>
+
+  <hr>
+
+  <h1>논리 연산자( &&, ||, ! )</h1>
+  <!-- 
+    & : 앰퍼센트
+    | : 버티칼 바
+    ! : Not(낫)
+  -->
+  <pre>
+    && (AND) 연산자 ==> A && B
+    - A 와 B 모두 true 일 경우에만 A && B 결과가 true인 연산자 (나머진 false)
+    - 글 / 말 / 문장 에서 ~와, 그리고(이고), 이면서(면서), ~까지, ~부터, ~사이 라는 글귀가 있으면 AND 연산을 작성
+
+    ex) 104는 100 이상의 숫자 이면서 짝수인가?
+    ->   (104 >= 100)  &&  (104 % 2 == 0)  -> true
+    
+    <pre></pre>
+  || (OR) 연산자 ==> A || B
+  - A 와 B 모두 true 일 경우에만 A && B 결과가 true인 연산자 (나머진 false)
+
+
+  </pre>
+
+  <script src="../javascript/04_연산자2.js"></script>
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04_연산자 2</title>
+  <link rel="stylesheet" href="../css/04_연산자2.css">
+</head>
+
+<body>
+  <h3>비교 연산자</h3>
+  <pre>
+  [자료형 관계 없이 비교 가능한 연산자]
+    같다      : == (동등, 자료형 관계 없이 값이 같음), === (동일, 자료형과 값이 모두 같음)
+    같지 않다 : != (자료형 관계 없이 값이 같지 않음) , !== (자료형 또는 값이 같지 않음)
+
+  [숫자(number)만 비교 가능한 연산자]
+    A >  B    : A가 B보다 크다        (A가 B 초과)
+    A <  B    : A가 B보다 작다        (A가 B 미만)
+    A >= B    : A가 B보다 크거나 같다 (A가 B 이하)
+    A <= B    : A가 B보다 작거나 같다 (A가 B 미만)
+  
+    - 좌변, 우변을 ==> 같다, 같지않다, 초과, 미만, 이상, 이하 를 비교해서 맞을경우 true, 아닐 경우 false를 반환한다!!
+      (boolean == 논리형 == true/false)
+  </pre>
+  <button onclick="check1()">비교 연산자 확인</button>
+
+  <hr>
+
+  <h3>%(나머지), 비교 연산자를 이용해서 짝수 / 홀수, 배수 확인하기</h3>
+  <h4>홀 / 짝 판별기</h4>
+  숫자 입력 : <input type="number" id="input1">
+  <button onclick="oddEvenCheck()">홀 / 짝 확인</button>
+  <h4>배수 판별기</h4>
+  <input type="number" id="input2">
+  은(는)
+  <input type="number" id="input3">
+  의 배수가 맞는가?
+  <span id="result2" style="font-style: italic; font-weight: bolder; color: red;"></span><br><br>
+  <button onclick="multipleCheck()">배수 확인</button>
+
+  <span id="result2_1"></span>
+  <span>의 약수 목록 : </span>
+  <span id="result2_2" style="font-style: italic; font-weight: bolder; color: red;"></span>
+
+  <hr>
+
+  <h3>복합 대입 연산자(+=, -=, *=, /=, %=) (Assignment Operators)</h3>
+  <pre>
+    - 기존 변수에 저장되어 있는 값에 새롭게 대입되는 값의 산술 연산 결과를 대입하는 연산자
+    - 코드가 짧고, 속도가 우위를 가지고 있음
+    ex) let temp = 10;
+        temp += 5; // temp = temp + 5;
+  </pre>
+  <button onclick="assignmentCheck()">복합 대입 확인</button>
+
+  <hr>
+
+  <h1>논리 연산자( &&, ||, ! )</h1>
+  <!-- 
+    & : 앰퍼센트
+    | : 버티칼 바
+    ! : Not(낫)
+  -->
+  <pre>
+    <h3>&& (AND) 연산자 ==> A && B</h3>
+    - A 와 B 모두 true 일 경우에만 A && B 결과가 true인 연산자 (나머진 false)
+    - 글 / 말 / 문장 에서 ~와, 그리고(이고), 이면서(면서), ~까지, ~부터, ~사이 라는 글귀가 있으면 AND 연산을 작성
+
+    ex) 104는 100 이상의 숫자 이면서 짝수인가?
+    ->   (104 >= 100)  &&  (104 % 2 == 0)  -> true
+  </pre>
+  <button onclick="andCheck()">&&(AND) 연산자 확인</button>
+  
+  <hr>
+  
+  <pre>
+  <h3>|| (OR) 연산자 ==> A || B</h3>
+    - A 와 B 모두 false 일 경우에만 A || B 결과가 false 연산자 (나머진 true)
+    - 글 / 말 / 문장 에서 ~또는, 이거나(거나), 하나라도 라는 글귀가 있으면 OR 연산을 작성
+
+    ex) 4는 10을 초과하거나 짝수인가?
+        ==> ( 4 > 10 ) || ( 4 % 2 === 0 );
+              false    ||       true      ==> true
+  </pre>
+  <button onclick="orCheck()">||(OR) 연산자 확인</button>
+  
+  <hr>
+
+  <pre>
+  <h3>!(NOT) 연산자 ==> !A</h3>
+  - 논리 값을 반대로 바꾸는 연산자
+
+  !true   ==>  false
+  !false  ==>  true
+
+  ex)
+  !(true && false) ==> true
+
+  (10 > 5) || !(10 % 2 === 0) ==> true
+  (10 < 5) || !(10 % 2 === 0) ==> false
+
+  !!!true ==> false
+  </pre>
+  <button onclick="notCheck()">!(NOT) 연산자 확인</button>
+
+
+  <script src="../javascript/04_연산자2.js"></script>
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+
+</html>

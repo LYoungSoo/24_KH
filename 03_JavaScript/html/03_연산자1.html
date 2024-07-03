@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03_연산자 1</title>
+  <link rel="stylesheet" href="../css/03_연산자1.css">
+</head>
+
+<body>
+  <h1>연산자(Operator)</h1>
+  <h3>산술 연산자</h3>
+  <pre>
+    +, -, *(곱하기), /(나누기), %(modulo, mod : 나머지를 구하는 연산)
+  </pre>
+  <h4>두 값에 대한 산술 연산 계산기</h4>
+
+  <div class="calculator">
+    <div class="row">
+      <label for="input1">첫 번째 값</label>
+      <input type="number" id="input1"></input>
+    </div>
+    <div class="row">
+      <label for="input2">두 번째 값</label>
+      <input type="number" id="input2"></input>
+    </div>
+
+    <div class="row btn-row">
+      <button onclick="plusFn()">+</button>
+      <button onclick="minusFn()">-</button>
+      <button onclick="multiFn()">*</button>
+      <button onclick="divFn()">/</button>
+      <button onclick="modFn()">%</button>
+    </div>
+
+    <div class="row">
+      <h2>
+        결과 : <span id="calcResult1"></span>
+      </h2>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>산술 연산 응용하기</h3>
+  <div class="calculator">
+    <div class="row">
+      <label for="input3">첫 번째 값</label>
+      <input type="number" id="input3">
+    </div>
+    <div class="row">
+      <label for="input4">두 번째 값</label>
+      <input type="number" id="input4">
+    </div>
+    <div class="row btn-row btn2">
+      <button onclick="doubleFn()">첫 번째 값 X 2</button>
+      <button onclick="squareFn()">두 번째 값 제곱</button>
+      <button onclick="allOperationsFn()">전체 산술 연산 결과 출력</button>
+    </div>
+    <div class="row">
+      <h2>
+        결과 : <span id="calcResult2"></span>
+      </h2>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>증가/감소 연산자(++, --)</h3>
+  <pre>
+    - 1씩 값을 증가 / 감소 시키는 연산자
+    - 합펴서 "증감 연산자" 라고 부르기도 함
+    - 단항 연산자 중 한 종류
+      (산술 연산자는 2항 연산자)
+    * 전위 연산(제일 먼저 1을 증가/감소 시키기) ==> ++변수명 / --변수명
+    * 후위 연산(제일 나중에 1을 증가/감소 시키기) ==> 변수명++ / 변수명++
+  </pre>
+  <div>
+    <button onclick="decrease()">-1</button>
+    <span id="result">0</span>
+    <button onclick="increase()">+1</button>
+  </div>
+  <h3>전위/후위 연산 확인하기</h3>
+  <button onclick="checkFn()">console에서 확인하기</button>
+
+
+  
+<hr>
+
+<h3>멍청이 복구하기</h3>
+<div class="calculator">
+  <div class="row">
+    <label for="input5">첫 번째 값</label>
+    <input type="number" id="input5">
+  </div>
+  <div class="row">
+    <label for="input6">두 번째 값</label>
+    <input type="number" id="input6">
+  </div>
+  <div class="row btn-row btn2">
+    <button id="btn1">X2</button>
+    <button id="btn2">제곱</button>
+    <button id="btn3">값 0으로 바꾸기</button>
+  </div>
+  <div class="row">
+    <h2>
+      결과 : <span id="calcResult3"></span>
+    </h2>
+  </div>
+</div>
+
+
+
+  <script src="../javascript/03_연산자1.js"></script>
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+
+</html>
