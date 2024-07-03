@@ -1,0 +1,127 @@
+/* 일반 구조 선택자(위치 기준) */
+
+/* 
+  A선택자 > B선택자:first-child
+
+  - A 자식 중 B를 모두 선택하여 그 중 첫째만 선택해라 (X)
+  - A 자식 중 첫번째 자식이 B가 맞으면 선택           (O)
+*/
+#test1 > p:first-child {    /* if("p&&first-child" == true) 같은 느낌으로? */
+  background-color: red;
+  color: white;
+}
+
+/* 
+  A선택자 > B선택자:last-child  
+
+  - A 자식 중 
+    마지막 자식이 B가 맞으면 선택
+*/
+#test1 > p:last-child{
+  background-color: blue;
+  color : white;
+}
+
+/* 
+  A선택자 > B선택자:nth-child(n)
+  - A의 자식 중 n번째 자식이 B가 맞으면 선택
+*/
+#test1 > p:nth-child(3) {
+  background-color: yellow;
+}
+
+/* 
+  A선택자 > B선택자:nth-child(수열)
+  - A의 자식 중 수열번째 자식이 B가 맞으면 선택
+*/
+
+  /* 짝수 번째 사직이 p가 맞으면 선택 */
+#test1 > p:nth-child(2n) {
+  background-color: pink;
+}
+
+/* 
+  A선택자 > B선택자:nth-last-child(n)
+  - A의 자식 중 뒤에서부터 n번째 자식이 B가 맞으면 선택
+*/
+
+  /* 뒤에서 부터 4번째 자식이 p가 맞으면 선택 */
+#test1 > p:nth-last-child(4) {
+  font-size: 24;
+}
+
+
+
+
+
+
+/* ***************************************** */
+
+/* 형태 구조 선택자 */
+
+/* 
+  A선택자 > B선택자:first-of-type
+  - A의 자식 중 모든 B를 선택한 후, 그 중 첫번째 자식만 선택 (첫째가 아님!!! 주의!!!)
+    if ("B && first-of-type" == true)   //B에 해당하며, first type 속성이 있는놈만 적용되는. 그냥 첫째가 아니라! B를 만족하는 애들 중!!
+*/
+#test2 > p:first-of-type {
+  background-color: salmon;
+}
+
+#test2 > pre:first-of-type {
+  background-color: black;
+  color: white;
+}
+
+/* 
+  A선택자 > B선택자:last-of-type
+  - A의 자식 중 모든 B를 선택한 후 그 중 마지막 자식만 선택
+*/
+#test2 > p:last-of-type {
+  background-color: gold;
+}
+
+/* 
+  A선택자 > B선택자:nth-of-type(n)
+  - A의 자식 중 모든 B를 선택한 후 n번째 자식만 선택
+*/
+#test2 > p:nth-of-type(4) {
+  background-color: lightcoral;
+  color: brown;
+}
+
+/*
+  A선택자 > B선택자:nth-of-type(수열)
+  - A의 자식 중 모든 B를 선택한 후 수열번째 자식만 선택
+  * n >= 0
+*/
+#test2 > p:nth-of-type(2n+1) {
+  font-family: '궁서';
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/*
+  A선택자 > B선택자:nth-last-of-type(n)
+  - A의 자식 중 모든 B를 선택한 후, 뒤에서 n번째 자식만 선택
+*/
+#test2 > p:nth-last-of-type(4) {
+  cursor: pointer;
+  border: 3px solid black;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 1000ms;
+}
+
+#test2 > p:nth-last-of-type(4):hover {
+  background-color: lightpink;
+  rotate: 360deg;
+}
+
+/* 부정 선택자( :not() ) */
+#test3 > li:not(:nth-of-type(3n)) {
+  background-color: pink;
+}

@@ -1,0 +1,52 @@
+.flex-container {
+  height: 700px;
+  background-color: ivory;
+
+  /* flex container로 지정 == item을 유연하게 배치(표시) */
+  display: flex;
+
+  /* flex-direction : 중심축 방향 지정==> item이 중심축 방향으로 배치된다!! */
+  /* 기본값 */
+  /* flex-direction: row; */
+  /* flex-direction: row-reverse; */
+  /* flex-direction: column; */
+  /* flex-direction: column-reverse; */
+
+  /* justify-content: 중심축 방향으로 item 정렬; */
+  /* 기본값 */
+  /* justify-content: flex-start; */
+  /* justify-content: flex-end; */
+  /* justify-content: center; */
+  /* justify-content: space-around; */    /* 남은 공간을 box 갯수의 두배로 쪼개서 박스의 양 옆에 하나씩. 양끝은 한개씩만 붙고 요소 사이는 두개씩 붙으니 간격이 조금 다름 */
+  /* justify-content: space-evenly;    /* 남은 공간을 box + 1 개 만큼 쪼개어 박스의 옆에 하나씩. 간격이 동일해짐 */
+  /* justify-content: space-between; */   /* 최외각 요소를 양끝에 공백없이 붙여버림 */
+
+  /* 기본 값 */
+  /* 교차 축 방향으로 크기가 지정되어 있으면 늘어나지 않음 */
+  /* flex-style.css의 .item { width: 75px; height: 75px; } 로 인해 늘어나지 못함 */
+  /* align-items: stretch; */
+  /* align-items: flex-start; */
+  /* align-items: flex-end; */
+  /* align-items: center; */
+
+  /* 아래의 item$ 속성들의 item$ 글자를 한 줄로 배치함 ==> 글자가 계단모양이 아닌 box가 계단모양이 됨 */
+  /* align-items: baseline; */
+  /* align-items: last baseline; */
+  
+}
+
+.item2 {
+  padding: 5px;
+}
+
+.item3 {
+  padding: 10px;
+}
+
+.item4 {
+  padding: 15px;
+}
+
+.item5 {
+  padding: 20px;
+}

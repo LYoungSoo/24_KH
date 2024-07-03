@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10_폼 관련 태그</title>
+</head>
+
+<body>
+  <h1>form 태그</h1>
+  <pre>
+    - 입력 양식을 작성하는 판
+
+    - 내부에 작성된 입력 값을 지정된 경로로 제출하는 역할
+
+    [속성]
+    1) action : 제출될 곳을 지정하는 속성(주소를 작성)
+    2) method(방식) : 설정된 곳으로 데이터를 전달하는 방식
+    3) name : 이름 지정하는 속성(JS 사용)
+    4) target : 제출된 페이지를 현재/새 탭으로 열기
+  </pre>
+
+  <hr>
+
+  <h3>form 테스트</h3>
+
+  <!-- method="get"   : 주소에 제출한 값을 담아서 전달 --> 
+  <form action="result.html" method="GET">
+    <h4>method="GET"</h4>
+    ID : <input type="text" name="id"><br>
+    PW : <input type="password" name="pw">
+
+    <button type="submit">제출하기</button>
+  </form>
+  
+  <!-- method="post"  : 제출한 값을 보이지 않게 HTTP Body에 담아서 전달 -->
+   <!--오류!(승인거부) 개발자도구 -> Network -> Name -> result.html -> Payload에 값이 있음 -->
+  <form action="result.html" method="POST">
+    <h4>method="POST"</h4>
+    ID : <input type="text" name="id"><br>
+    PW : <input type="password" name="pw">
+
+    <button type="submit">제출하기</button>
+  </form>
+
+  <hr>
+
+  <h3>fieldset / legend 태그</h3>
+  
+  <pre>
+    fieldset  : 테두리를 만들어 영역을 나누는 용도의 태그
+                주로 form 태그 내부에서 입력 값을 구분하는 용도로 사용
+    legend(제목)  : fieldset의 제목 역할을 하는 태그
+  </pre>
+
+  <form action="result.html" method="GET">
+    <h3>회원가입</h3>
+
+    <fieldset>
+      <legend>필수 입력 사항</legend>
+      아이디  : <input type="text" name="id"><br>
+      비밀번호: <input type="password" name="pw">
+    </fieldset>
+
+    <fieldset>
+      <legend>선택 입력 사항</legend>
+      나이  : <input type="number" name="age"><br>
+      주소  : <input type="text" name="address" size="50">
+    </fieldset>
+
+    <button type="submit">회원가입</button>
+    <button type="reset">초기화</button>
+    <button type="button" onclick="alert('버튼 클릭됨')">JS 기능 버튼</button>
+  </form>
+
+  <hr>
+
+  <h3>button 태그</h3>
+
+  <pre>
+    - 버튼을 만드는 태그
+
+    - type 속성 값에 따라서 동작이 달라짐
+
+    type="submit" : 제출 버튼을 만들 때 사용
+                    (button 태그의 기본 값 == type 속성을 작성하지 않으면 자동으로 submit 지정)
+
+  </pre>	
+  
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* class 기반 CSS(스타일) */
+/*  - CSS 파일에 미리 class 선택자를 이용해 특정 클래스를 지니고 있는 요소에 적용할 스타일을 작성해둠 */
+
+.area1{ background-color: red; }
+.area2{ background-color: orange; }
+.area3{ background-color: yellow; }
+.area4{ background-color: green; }
+.area5{ background-color: blue; }
+
+.box { 
+  width: 150px;
+  height: 150px;
+  color: white;
+  border: 1px solid black;
+}
+
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+
+.none { display: none; }          /* 존재는 하지만 표시 X (화면 내 자리를 차지하지 않음) */
+.hidden { visibility: hidden; }   /* visibility : 요소를 보이게/투명하게 만드는 속성 (자리를 차지함) */

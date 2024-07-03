@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06_이미지 관련 태그</title>
+</head>
+<body>
+  <h1>img 태그</h1>
+
+  <pre>
+    - 웹 문서에서 사진이나 그림 같은 이미지를 삽입하는 용도의 태그
+
+    [속성]
+    (속성 : 시작 태그에 작성하는 내용)
+
+    1. src : 삽입할 이미지의 경로를 작성하는 속성
+        (파일 위치, 인터넷 주소)
+    
+    2. width / height : 너비 / 높이를 지정하는 속성
+
+    3. alt (대안) : 이미지 설명을 작성하는 속성
+        -> 이미지가 출력되지 않은 경우 화면에 출력됨
+        + 웹 접근성(스크린 리더가 이미지 설명을 읽어줌)
+  </pre>
+
+  <hr>
+
+  <h3>img 태그 예시</h3>
+
+  <!-- 라이브 서버(확장프로그램) 이용 시 컴퓨터 절대경로 사용 불가  --> <!-- 절대경로 상대경로 공부다시 -->
+  <img src="images/dogs/dog1.jpg" alt="강아지 1번 이미지">
+
+  <hr>
+
+  <h4>웹 이미지 불러와 출력하기</h4>
+  <img src="https://cdn.pixabay.com/animation/2022/10/11/09/05/09-05-26-529_512.gif" alt="테스트">
+
+  <hr>
+
+  <h4>이미지 크기 지정</h4>
+
+  <img src="images/cats/cat1.jpg" alt="고양이 1번 이미지" width="400">  <!-- 가로/세로 속성 하나만 사용시 자동조정-->
+  
+  <hr><hr><hr>
+
+  <h1>단위에 따른 크기 변화</h1>
+  
+  <h2>고정 크기 단위(px) : 화면 크기가 변해도 항상 고정된 크기를 지님(고정 크기 단위)</h2>
+
+  <img src="images/dogs/dog1.jpg" alt="강아지 1번 이미지" width="300px" height="240px">
+  <img src="images/dogs/dog2.jpg" alt="강아지 2번 이미지" width="300px" height="240px">
+  <img src="images/dogs/dog3.jpg" alt="강아지 3번 이미지" width="300px" height="240px">
+  <img src="images/dogs/dog4.jpg" alt="강아지 4번 이미지" width="300px" height="240px">
+  <img src="images/dogs/dog5.jpg" alt="강아지 5번 이미지" width="300px" height="240px">
+
+  <hr>
+
+  <h2>가변 크기 단위(%) : 화면 또는 영역에 대한 상대적인 크기 단위(가변 크기 단위)</h2>
+
+  <!-- width="15%" == 화면 너비의 15% --> <!-- 화면 전체 너비의 %만큼 차지하기 떄문에 윈도우 크기의 영향을 받음 -->
+  <img src="images/cats/cat1.jpg" width="15%" height="200px">
+  <img src="images/cats/cat2.jpg" width="15%" height="220px">
+  <img src="images/cats/cat3.jpg" width="15%" height="240px">
+  <img src="images/cats/cat4.jpg" width="15%" height="260px">
+  <img src="images/cats/cat5.jpg" width="15%" height="280px">
+
+  <hr>
+
+  <h2>고정 크기 + 가변 크기</h2>
+  
+  <pre>
+    고정 크기로 설정된 요소(태그) 내부에서 일정한 크기의 이미지 또는 요소를 출력하고 싶을 때 
+    가변 크기 단위(%)를 이용하여 지정한다
+  </pre>
+
+  <div style="border: 1px solid black; width:900px; height:200px; display:flex;"> <!--Division-->
+
+    <!-- 꽃 이미지 4장을 똑같은 너비로 배치하기 --> <!-- height 100% == 200px -->
+     <img src="images/flowers/flower1.jpg" alt="꽃 1번 이미지" width="25%" height="100%">
+     <img src="images/flowers/flower2.jpg" alt="꽃 1번 이미지" width="25%" height="100%">
+     <img src="images/flowers/flower3.jpg" alt="꽃 1번 이미지" width="25%" height="100%">
+     <img src="images/flowers/flower4.jpg" alt="꽃 1번 이미지" width="25%" height="100%">
+
+  </div>
+	
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+</html>

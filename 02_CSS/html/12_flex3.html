@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12_flex 3</title>
+  <link rel="stylesheet" href="../css/flex-style.css">
+  <link rel="stylesheet" href="../css/12_flex3.css">
+</head>
+<body style="background-color: lightgray;">
+  <h1>item 전용 속성</h1>
+  <h3>order : item의 순서를 지정하는 속성</h3>
+  <pre>
+    - item이 중심축(main axis)에 배치되는 순서를 지정
+    - 모든 otem의 order 기본 값은 0
+    - 작성할 수 있는 값은 정수 형태 (+, 0, -)
+    - 값이 클 수록 중심축 끝 쪽에 배치됨 (작을수록 시작부분에)
+    - 동일한 order 값을 갖는 경우 html 배치 순서를 따름
+
+  </pre>
+
+  <!-- div.flex-container>div.item.item${item$}*4 -->
+  <div class="flex-container">
+    <div class="item item1 order1">item1</div>
+    <div class="item item2 order4">item2</div>
+    <div class="item item3 order3">item3</div>
+    <div class="item item4 order1">item4</div>
+    <div class="item item5 order2">item5</div>
+  </div>
+  
+  <hr>
+
+  <h3>flex-grow : item 팽창</h3>
+  <pre>
+    item이 flex container 내부에서 중심축 방향 비어있는 공간을 팽창하여 메꾸는 정도를 지정하는 속성
+    - item의 flex-grow 기본 값 : 0 (팽창 X)
+    - item 중 flex-grow 값이 1 이상인 요소가 1개인 경우 ==> 해당 item이 빈 공간을 모두 메꿈(혼자만 팽창)
+    - item 중 flex-grow 값이 1 이상인 요소가 n개인 경우 ==> 지정된 값 만큼의 비율로 나눠서 팽창
+  </pre>
+
+  <div class="flex-container">
+    <div class="item item1 grow3">item1</div>
+    <div class="item item2 grow1">item2</div>
+    <div class="item item3 grow2">item3</div>
+    <div class="item item4 grow0">item4</div>
+    <div class="item item5">item5</div>
+  </div>
+
+  <hr>
+
+  <h3>flex-shrink</h3>
+  <pre>
+    - item이 수축되는 정도를 지정
+    - flex-shrink 기본 값 :  1
+    - 0 으로 설정 ==> item 수축 X
+    - n개의 item에 flex-shrink 값이 1 이상으로 설정되어 있는 경우 ==> 지정된 값 만큼의 비율로 나눠서 수축
+  </pre>
+  
+  
+  <div class="flex-container shrink-container">
+    <div class="item item1">item1</div>
+    <div class="item item2 shrink1">item2</div>
+    <div class="item item3 shrink3">item3</div>
+    <div class="item item4 shrink2">item4</div>
+    <div class="item item5 shrink0">item5</div>
+  </div>
+
+  <hr>
+
+  <h3>flex-basis : 중심축 방향 크기 지정</h3>
+  <pre>
+    - flex-container의 설정된 중심축 방향으로 item의 기본 점유율(크기)를 지정하는 속성
+
+    - 각종 크기 단위 사용 가능 (px, %, vh, vw, em, rem 등)
+  </pre>
+
+  
+  <div class="flex-container basis-container">
+    <div class="item item1 fb-150px">item1</div>
+    <div class="item item2 fb-10">item2</div>
+    <div class="item item3 fb-25">item3</div>
+    <div class="item item4 fb-50">item4</div>
+  </div>
+
+  <hr>
+
+  <h3>flex 속성 : flex-grow + flex-shrink + flex-basis (flex- 한번에 작성하는 속성)</h3>
+  <div class="flex-container flex-gsb">
+    <item class="item item1">item1</item>
+    <item class="item item2">item2</item>
+    <item class="item item3">item3</item>
+    <item class="item item4">item4</item>
+  </div>
+
+  <hr>
+
+  <h3>align-self : 각 item별로 교차축 방향 정렬을 지정하는 속성</h3>
+  <pre>
+    - align-items == 교차축 방향으로 모든 item 정렬
+    - align-self  == 교차축 방향으로 지정된 item만 정렬
+  </pre>
+
+  <div class="flex-container">
+    <item class="item item1 self-end">item1</item>
+    <item class="item item2 self-center">item2</item>
+    <item class="item item3 self-start">item3</item>
+    <item class="item item4 self-center">item4</item>
+  </div>
+
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03_CSS 선택자 3</title>
+  <link rel="stylesheet" href="../css/03_CSS선택자3.css">
+</head>
+
+<body>
+  <h1>일반 구조 선택자(위치 기준)</h1>
+  <pre>
+    -형제 관계에 있는 요소 중에서 특정 요소만을 선택하는 선택자
+
+    * 중요 *    -> 위치를 기준으로 구분함
+
+    (A : 선택된 요소)
+    A:first-child   :형제들 중 첫 번째가 A가 맞다면 선택
+
+    A:last-child    :형제들 중 막내가 A가 맞다면 선택
+
+    A:nth-child(숫자 또는 수열)   : 형제들 중 n번째가 A가 맞다면 선택
+
+    A:nth-last-child(숫자 또는 수열)  : 형제들 중 뒤에서부터 n번째가 A가 맞다면 선택
+  </pre>
+
+  <div id="test1">
+    <!-- <pre>테스트0(pre)</pre) -->
+      
+    <pre>테스트0 (pre)</pre>
+    <p>테스트1</p>
+    <p>테스트2</p>
+    <p>테스트3</p>
+    <p>테스트4</p>
+    <p>테스트5</p>
+    <pre>테스트6 (pre)</pre>
+  </div>
+
+  <hr>
+
+  <h1>형태 구조 선택자</h1>
+  <pre>
+    선택된 형제 관계 요소 중 특정 요소를 선택하는 선택자.
+
+    (선택된 요소들을 기준으로 구분)
+
+    :first-of-type : 같이 선택된 형제들 중에서 첫 번째 요소
+    :nth-of-type(수열) : 같이 선택된 형제들 중에서 수열 번째 모든 요소
+    :nth-last-of-type(수열) : 같이 선택된 형제들 중에서 뒤에서 수열 번째 모든 요소
+  </pre>
+
+  <div id="test2">
+    <pre>테스트0 (pre)</pre>
+    <p>테스트1</p>
+    <p>테스트2</p>
+    <p>테스트3</p>
+    <p>테스트4</p>
+    <p>테스트5</p>
+    <pre>테스트6 (pre)</pre>
+  </div>
+  
+  <hr>
+
+  <h1>부정 선택자 ( :not() )</h1>
+  <pre>
+    <code>
+      A:not(B)
+      - 선택된 모든 A중 B만 빼고 (B가 없는, 차집합)
+    </code>
+  </pre>
+
+  <ul id="test3">
+    <!-- li*10>{item$} -->
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+    <li>item4</li>
+    <li>item5</li>
+    <li>item6</li>
+    <li>item7</li>
+    <li>item8</li>
+    <li>item9</li>
+    <li>item10</li>
+  </ul>
+
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+/* ~= (Tilde(틸드) : 여러 속성 값 중 하나라도 일치하면 선택 */
+div[name ~= 'aaa'] {  /* 틸드 미사용시 name=='aaa'일때, 즉 aaa만 존재할때만 적용됨 */
+  background-color: greenyellow;
+}
+
+/* |= (shift + '\') : "-"(하이픈) 기호 앞쪽 단어가 일치하면 선택 */
+div[class |= 'str'] {
+  color: red;
+  font-weight: bold;
+}
+
+/* ^= : 특정 값으로 시작하면 선택 */
+div[class ^= 'class'] {
+  font-style: italic;
+  font-size: 20px;
+}
+
+/* $= : 특정 값으로 끝나면 선택 */
+div[class $= '2'] {
+  border : 3px solid blue;
+}
+
+/* *= : 특정 값을 포함하면(가지고 있기만 하면) 선택 */
+div[name *= '2'] {
+  border: 3px dotted magenta;
+}

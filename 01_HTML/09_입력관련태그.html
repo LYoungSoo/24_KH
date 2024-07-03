@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09_입력 관련 태그</title>
+</head>
+
+<body>
+  <h1>input 태그</h1>
+  <pre>
+    - 웹 문서에서 사용자(클라이언트)가 입력할 수 있는 양식을 제공하는 태그
+
+    - 다수의 type이 존재하고, input이 변형된 태그도 존재
+    
+    * input 태그에는 name이라는 속성을 작성 할 수 있다!
+      (작성된 값에 이름을 부여 -> 서버/다른 페이지 제출 시 사용)
+  </pre>
+
+  <hr>
+
+  <h3>text 관련 input 태그</h3>
+
+  <pre>
+    type="text" : 한 줄 텍스트 입력 상자 (기본값)
+    type="password" : 비밀번호 입력 상자 (모자이크 처리)
+    type="url"
+    type="search"
+    type="tel"
+    type="email"
+      -> 모양은 text와 동일, 용도 구분용 (+유효성 검사)
+  </pre>
+
+  <div>
+    아이디 : <input type="text"><br>
+    비밀번호 : <input type="password" id="pw"><br>
+
+    주소 : <input type="url"><br>
+    검색 : <input type="search"><br>
+    전화번호 : <input type="tel"><br>
+    이메일 : <input type="email"><br>
+  </div>
+
+  <hr>
+
+  <h3>숫자 관련 input 태그</h3>
+
+  <pre>
+    type="number" : 숫자만 입력 가능한 입력 상자
+    type="range"  : 슬라이드바를 이용해서 숫자를 지정
+                    (단독 사용 X, JS와 혼용)
+
+    [속성]
+    1. min : 최소값
+    2. max : 최대값
+    3. step : 숫자가 증가/감소하는 간격(단계)
+    4. value : 초기 값(기본 값) 지정  
+  </pre>
+
+  <div>
+    숫자 입력 : <input type="number" min="0" max="100" step="10" value="50"><br>
+    숫자 입력 : <input type="range" min="0" max="100" step="10" value="50" id="rangeTest"><br>
+
+    <input type="text" id="result" readonly>
+
+    <script>
+      document.getElementById("rangeTest").addEventListener("input", e => {
+        document.getElementById("result").value = e.target.value;
+      })
+    </script>
+
+  </div>
+
+  <hr>
+
+  <h3>날짜/시간 관련 태그</h3>
+  <ol>
+    <li><input type="date"></li>
+    <li><input type="month"></li>
+    <li><input type="week"></li>
+    <li><input type="time"></li>
+    <li><input type="datetime-local"></li>
+  </ol>
+
+  <hr>
+
+  <h3 style="color:red;">radio, checkbox</h3>
+
+  <pre>
+    - 여러 연관된 값을 묶어서 선택하는 경우에 사용하는 type
+    
+    - radio     : 여러 값 중 하나만 선택
+    
+    - checkbox  : 여러 값 중 원하는 값 모두 선택
+
+    * radio/checkbox 는 하나의 input으로 값을 결정하는 것이 아닌
+      여러 input으로 값을 결정하기 때문에 여러 input이 하나의 그룹임을 명시하여야 함
+        -> name 속성 값을 이용! (name이 같으면 같은 그룹)
+    
+    * radio/checkbox는 값을 별도로 입력할 수 없기 때문에 value 속성을 이용해 기본 값을 지정해놓아야 한다!
+  </pre>
+
+  <div>
+    <h5>팀 선택</h5> <!-- 개발자도구 console에 입력 -> document.querySelector("[name=team]:checked").value -->
+    A 팀 <input type="radio" name="team" value="AA"><br>
+    B 팀 <input type="radio" name="team" value="BB"><br>
+    C 팀 <input type="radio" name="team" value="CC"><br>
+
+    <hr>
+
+    <h5>좋아하는 색 모두 선택</h5> <!-- document.querySelectorAll("[name=colors]:checked").forEach(item => {
+                                          console.log("선택한 색 : " + item.value);}) -->
+
+    RED <input type="checkbox" name="colors" value="red"><br>
+    GREEN <input type="checkbox" name="colors" value="green"><br>
+    BLUE <input type="checkbox" name="colors" value="blue"><br>
+  </div>
+
+  <hr>
+
+  <h3>label 태그</h3>
+
+  <pre>
+    - 입력 관련 태그(input)의 제목을 나타내는 태그
+
+    - 사용법 1: label 태그 내부에 입력 관련 태그를 하나 작성하면 label 태그를 클릭했을 때
+      입력 관련 태그를 클릭한 효과를 볼 수 있다
+
+    - 사용법 2: 입력 관련 태그의 id 속성 값을 label 태그의 for 속성에 똑같이 작성하면
+      label - input 연결됨
+  </pre>
+
+  <h4>사용법 1</h4>
+
+  <label>
+    남 <input type="radio" name="gender" value="M">
+  </label><br>
+  <label>
+    여 <input type="radio" name="gender" value="W">
+  </label><br>
+
+  <hr>
+
+  <h4>사용법 2</h4>
+  1번 <input type="checkbox" name="numbers" value="1" id="check1">
+  2번 <input type="checkbox" name="numbers" value="2" id="check2">
+  3번 <input type="checkbox" name="numbers" value="3" id="check3">
+  4번 <input type="text" id="check4">
+  <br>
+  <img src="images/flowers/flower1.jpg" width="400px" height="240px">
+  <br>
+
+  <label for="check1">1번 선택</label><br>
+  <label for="check2">2번 선택</label><br>
+  <label for="check3">3번 선택</label><br>
+  <label for="check4">4번 선택</label><br>
+
+  <hr>
+  <hr>
+
+  <h2>변형된 input</h2>
+
+  <h3>select / option 태그</h3>
+
+  <pre>
+    - select : 클릭하면 밑으로 메뉴가 내려오는 입력 태그(드롭 다운)
+
+    - option : select 클릭 시 보여지는 메뉴(값)를 작성하는 태그
+
+    * select는 input의 name 역할
+      option은 input의 value 역할
+  </pre>
+
+  <h4>점심 메뉴 선택 : <!-- document.querySelector("[name=menu]").value -->
+    <select name="menu">
+      <option>국밥</option>
+      <option>포케</option>
+      <option>샌드위치</option>
+      <option>라면</option>
+    </select>
+  </h4>
+
+  <hr>
+
+  <h3>textarea</h3>
+
+  <pre>
+    - text 타입의 input과 다르게 한 줄이 아닌 여러 줄을 입력할 수 있는 input의 변형 형태
+
+    [속성]
+    - name : 제출되는 곳에서 데이터를 읽을 때 필요한 이름
+    - rows : textarea의 행 크기를 지정 (rows="5" -> 5행)
+    - cols : textarea의 열 크기를 지정 (cols="50" -> 50열)
+    - style="resize:none" : 크기 변경 불가
+
+    * textarea는 pre 태그처럼 작성된 모양 그대로 출력하는 성질을 지님
+  </pre>
+
+  input : <input type="text"><br>
+  textarea : <textarea name="contents" rows="5" cols="50" style="resize: none">
+              중간에 기본 값 작성</textarea>  <!-- 줄바꿈을 하고 들여쓰기가 된 것도 글자로 적용됨 -->
+
+  <hr>
+
+  <h3>기타 입력 관련 태그</h3>
+  
+  <pre>
+    type="color"  : 색을 선택해서 입력할 수 있는 타입
+    type="file"   : 파일을 선택할 수 있는 버튼 추가 타입
+    type="hidden" : 존재는 하지만 화면에 보이지 않는 타입
+  </pre>
+
+  <input type="color"><br>
+  <input type="file"><br>
+  <input type="hidden" value="숨겨진 값"> 숨겨진 무언가 존재하는 위치
+
+
+  <hr>
+  
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+</html>

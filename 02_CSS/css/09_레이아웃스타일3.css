@@ -1,0 +1,124 @@
+* {
+  /* content + padding + border = width / height */
+  box-sizing: border-box;
+
+  /* html 요소는 각각 고유한 padding, margin을 가지고 있는데 이를 모두 제거 (배치하기 편함) */
+  /* 안드로이드 constraint는 신이었어 개쩌는거였어 진짜 멋진거였어 */
+
+  padding: 0;
+  margin: 0;
+}
+
+div {
+  border: 1px solid black;
+}
+
+/* position : relative + absolute 확인하기 */
+.container-1 {
+  width: 304px;
+  height: 304px;
+  border: 2px solid darkred;
+  margin: 30px;
+
+  /* 현재 요소를 기준으로 삼음
+     ==> 현재 요소 내부에 존재하는 요소들을 position:absolute;
+         + top / bottom / left / right 를 이용하여 원하는 위치에 배치할 수 있다 */
+  position: relative;
+}
+
+.first {
+  width: 300px;
+  height: 300px;
+  background-color: green;
+  position: absolute;
+}
+
+.second {
+  width: 200px;
+  height: 200px;
+  background-color: greenyellow;
+  position: absolute;
+
+  top: 50px; /* 기준 요소 top 기준으로 50px 만큼 떨어진 곳에 배치 */
+  left: 50px; /* 기준 요소 left 기준으로 50px 만큼 떨어진 곳에 배치 */
+}
+
+.third {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+
+  position: absolute;
+  top: 100px; /* 기준 요소 top 기준으로 0px 만큼 떨어진 곳에 배치 */
+  left: 100px;
+}
+
+/* 요소 정가운데 배치하기 */
+.container-2 {
+  width: 473px;
+  height: 493px;
+  margin: 20px;
+  position: relative; /* 기준 */
+}
+
+.center {
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  border-radius:50%; /*원 모양으로 만들기*/
+
+  position: absolute;
+  /*
+    다른 요소와의 간격을 자동으로 설정
+    ==> 보통은 가로 가운데 정렬만 가능
+    ==> absolute인 요소는 세로 가운데 정렬하는 방법도 존재
+  */
+  margin: auto;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* fixed */
+.fixed-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: lightcyan;
+
+  position: fixed;
+
+  bottom: 30px;
+  right: 30px;
+}
+
+.fixed-container > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+  text-decoration:none; /* 밑줄 삭제 */
+  color: black;
+  font-weight: bold;
+  line-height: 38px;    /* 장평 */
+  user-select: none;    /* 블럭 금지 */
+  border-radius: 50%;
+}
+
+html { /*<html> 말하는거 맞다*/
+  /* 화면 점프 시 스크롤을 부드럽게 해라 (버튼 누르면 맨위로) */
+  scroll-behavior: smooth;
+}
+
+/* sticky */
+.sticky {
+  background-color: skyblue;
+  padding: 100px 20px 30px;
+  position: sticky;  /* 화면을 벗어났을 때, 어디에 붙을지 위치를 지정하여야 한다! */
+  
+  top: -70px; /* 위에 30px 남기고 나머지는 위로 올라가는 */
+  z-index: 1; /* 높이 레벨. 무한으로 설정하면 맨위인가? */
+}

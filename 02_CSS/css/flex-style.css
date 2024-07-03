@@ -1,0 +1,41 @@
+/* flex 예제에서 공통적으로 사용할 스타일 지정(class 기반 css) */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+div {
+  border: 1px solid black;
+}
+
+pre {
+  font-family: '고딕';  /* 글꼴 */
+  font-size: 1rem;      /* 1rem == 16px */
+  margin: 30px 10px;
+}
+
+pre > b {
+  color: red;
+  font-size: 1.5em;     /* em == 감싸는 요소의 폰트 크기에 비례 */
+}
+
+pre > i {
+  font-size: 1.5em;
+}
+
+.item {  /* align-items: stretch; 를 무효화함. 크기를 고정시켜버림 */
+  width: 75px;
+  height: 75px;
+}
+
+.item1{background-color: red;}
+.item2{background-color: orangered;}
+.item3{background-color: orange;}
+.item4{background-color: yellow;}
+.item5{background-color: yellowgreen;}
+.item6{background-color: green;}
+.item7{background-color: lightblue;}
+.item8{background-color: blue;}
+.item9{background-color: violet;}

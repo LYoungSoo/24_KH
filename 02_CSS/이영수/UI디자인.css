@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+  /* m0 , p0 하면됨 */
+  margin: 0;
+  padding: 0;
+  font-family: 'D2Coding';
+}
+
+/* body * { border: 0.5px solid black; } */
+
+/* body 태그에 flex 설정 == 화면을 나누는 큰 영역을 유연하게 배치 */
+body {
+  display: flex;
+  flex-direction: column;
+  /* 최소 높이 : 화면높이 100% */
+  min-height: 100vh;
+}
+
+header {
+  height: 60px;
+  background-color: ivory;
+  display: flex;
+  padding: 6px;
+  justify-content: center;
+  align-items: center;
+}
+
+.header:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====================================== */
+ 
+.content-1 {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.content-1 > div {
+  width: 60%;
+  padding: 20px 50px;
+  border: 5px solid burlywood;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.content-1 > div > input {
+  font-size: 40px;
+  flex-grow: 1; 
+  font-family: 'MaplestoryOTFBold';
+}
+  
+.content-1 > div > a {
+  display: flex;
+  text-decoration: none;
+  user-select: none;    /* 블럭 금지 */
+}
+
+.content-1 > div > a > img {
+    /* 배경 이미지를 요소 크기에 맞춤 */
+    width: 84px;
+    height: 84px;
+}
+
+/* ============================================ */
+.content-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-6 {
+  width: 60%;
+  height: 300px;
+  margin: 50px;
+  display: flex;
+}
+.container-2 {
+  width: 300px;
+  height: 200px;
+  margin: 50px;
+}
+
+.container-1 {
+  width: 10%;
+  height: 300px;
+  margin: 50px
+}
+
+.container-grow {
+  flex-grow: 1; 
+}
+
+.row-50 {
+  height: 100%;
+  width: 50%;
+}
+  
+.col-50 {
+  height: 50%;
+  width: 100%;
+}
+
+/* ============ */
+
+.content-3 {
+  flex-grow: 1; 
+}
+
+/* ============ */
+
+
+
+/* ============================================================== */
+
+/* 맨아래 공백 다 먹기 */
+.content-4 { flex-grow: 1; }
+
+/* 푸터 부분 */
+footer {
+  background-color: burlywood;
+  height: 100px;
+}
+
+/* 웹 폰트 적용 */
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'D2Coding';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* input-search 의 X 없에기 */
+input::-ms-clear,
+input::-ms-reveal{
+	display:none;width:0;height:0;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+	display:none;
+}

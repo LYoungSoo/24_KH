@@ -1,0 +1,159 @@
+strong {
+  font-size: 18px;
+  color: steelblue;
+  text-decoration: underline;
+  font-family: '맑은 고딕';
+}
+
+code {
+  background-color: aquamarine;
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* 기본 속성 선택자 */
+/* 선택자[속성명='속성값'] { CSS 코드; } */
+
+/* 모든 div 중 name 값이 'name1'인 요소만 선택 */
+div[name='name1'] { background-color: yellowgreen; }  /* ''(홑따옴표) */
+div[name="name2"] { background-color: coral; }        /* ""(쌍따옴표) */
+
+/* p태그 중 qwer 속성(임의로 이름지은 속성) 값이 'test1'인 요소만 선택 */
+p[qwer='test1'] {background-color: pink; }
+p[qwer=test2] {background-color: skyblue; }           /* 따옴표 사용안함 */
+p[qwer] {color: darkgreen; }           /* 따옴표 사용안함 */
+
+/* 자식 선택자 (A > B) */
+
+/* class가 parent-1 요소의 한 단계 아래 존재하는 모든 li 태그를 선택 */
+.parent-1 > li {
+  font-size: 24px;
+}
+
+/* class가 parent-1 요소의 자식 중 class가 child-1 요소만 선택 */
+.parent-1 > .child-1 {
+  background-color: yellow;
+}
+
+/* class가 parent-1 요소의 자식 li 의 자식 span 요소를 선택 */
+.parent-1 > li > span {
+  background-color: royalblue;
+}
+
+/* 후손 선택자 */
+/* A B (공백) */
+/* class가 parent-2 인 요소의 후손 중 모든 p태그 선택 */
+.parent-2 p { background-color: lightcoral; }
+
+.parent-2 div p {
+  font-size: 20px;
+  font-weight: bold;
+  color: gray;
+}
+/* 
+  parent-2 > div > p
+  parent-2 > div p
+  parent-2 div > p
+*/
+
+/* .parent-2의 자식 중 div 선택 */
+.parent-2 > div {
+  background-color: blue;
+  padding: 10px;
+}
+
+/* .parent-2의 자식 중 div의 모든 자식/후손 선택 */
+.parent-2 > div * {
+  background-color: yellow;
+}
+
+/* 상태 선택자 :focus */
+/* 공백넣으면 후손선택자로 잘못 들어갈수 있으니 아주아주 주의할것! */
+.input-1:focus {
+  /* border   : 요소의 테두리 */
+  /* outline  : input에 초점이 맞춰졌을 때 나타나는 바깥선 */
+  outline-color: green;
+  background-color: lightgreen;
+}
+
+/* 상태 선택자 :checked */
+.input-2:checked {  /* .input-2가 체크되었을 때 */
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  color: red;
+  /* 체크 시 보여지는 표시는 이미지이기 때문에 색상 관련 CSS가 적용되지 않는다! (최근 변경 가능한 CSS 속성이 추가됨 (24.06.26 수업일 기준) */
+}
+
+/* 상태 선택자 :enabled / :disabled */
+.input-3:enabled { background-color: yellow; }
+.input-3:disabled { background-color: darkslateblue; }
+
+/* 반응 선택자 */
+.test-box {
+  width: 50px;
+  height: 50px;
+  border: 10px solid darkolivegreen;
+  cursor: pointer;  /* 마우스 포인터 화살표에서 손가락 모양으로 */
+}
+
+/* 마우스 커서가 올라갔을 때 */
+.test-box:hover {
+  background-color: yellow;
+}
+
+/* 요소를 클릭하고 있을 때(키다운 상태) */
+.test-box:active {
+  background-color: green;
+  border-style: inset;  /* 음각(글자를 파내는것) */
+  scale: 0.9;           /* 요소 크기를 0.9배로 변경 */
+}
+  
+/* 동위 선택자 */
+/* A + B : A 바로 뒤에 있는 형제요소 B 하나 선택 */
+/* #div1 요소 바로 뒤에있는 div 선택하기 */
+#div1 + div {
+  background-color: #AF47D2;
+}
+
+#div4 + p {
+  background-color: #ccc;
+}
+
+/* A ~ B : A 뒤에 존재하는 모든 B 선택 */
+
+#div1 ~ div {
+  font-style: italic;
+  font-weight: bold;
+}
+
+#div3 ~ div {
+  color: gray;
+}
+
+/* 체크박스 꾸미기 */
+
+/* 1. label 요소를 checkbox 모양으로 만들기 */
+#check1 + label {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ccc;  /* 테두리 */
+  display: inline-block;      /* inline-block : 가로로 배치 + 크기 지정 */
+  cursor: pointer; /*커서를 손가락으로 변경 */
+
+  border-radius: 7px;         /*모서리 곡률 지정 */
+
+  user-select: none; /* 사용자가 블럭을 못하게 함 */
+}
+
+/* 2. #check1 이 체크 되었을 때 label의배경 이미지를 변경 */
+#check1:checked + label {
+  background-image: url('../images/checkbox.png');
+  
+  /* 배경 이미지를 요소 크기에 맞춤 */
+  background-size: cover;
+}
+
+/* 3. checkbox를 존재는 하지만 보이지 않게 처리 */
+#check1 { display: none; }

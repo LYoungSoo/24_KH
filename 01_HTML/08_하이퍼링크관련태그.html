@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08_하이퍼 링크 관련 태그</title>
+</head>
+
+<body id="top" style="margin: 0; padding: 0;">
+  <!--
+    Hyper : 초월
+    Link  : 연결
+    Hyper Link  : HTML 문서를 넘어서 다른 HTML 문서와 연결
+
+    Hyper Text  : 클릭하면 다른 문서와 연결되는 글자(문자열)
+
+    HTML(Hyper Text Markup Language)
+      : 다른 문서와 연결될 수 있는 글자를 작성할 수 있고 <> 태그 형태를 해석하는 문서
+
+    HTTP(Hyper Text Transfer Protocol)
+      : 인터넷으로 HTML 문서를 전송(주고 받는) 할 때의 규약
+  -->
+
+  <h1>a(Anchor : 연결) 태그</h1>
+
+  <pre>
+    - 현재 HTML 문서와 다른 HTML 문서를 연결시켜 클릭 시 이동할 수 있게 만드는 태그
+
+    - a 태그로 감싸진 글/내용 == 하이퍼 텍스트
+
+    - 하이퍼 텍스트는 다른 문서와 구분되는 HTML 만의 핵심 기능(이었다가 word를 시작으로 다 따라함...)
+  </pre>
+
+  <hr>
+
+  <h2>a 태그 테스트</h2>
+
+  <pre>
+    - 속성 2가지
+      1) href(Hypertext REFerence) : 연결할 주소를 작성하는 속성
+      2) target = "_blank" : 새 탭으로 열기 ((구)새 창으로 열기)
+  </pre>
+
+  <ol>
+    <li><a href="01_글자관련태그.html">글자 관련 태그</a></li>
+    <li><a href="02_목록관련태그.html">목록 관련 태그</a></li>
+    <li><a href="03_연습문제1.html" target="_blank">연습 문제 1</a></li>
+  </ol>
+
+  <hr>
+  <hr>
+  <hr>
+
+  <h1>페이지 내부에서 점프하기</h1>
+
+  <pre>
+    - 한 페이지 내에서 지정된 id 속성 값을 가진 요소로 이동
+    
+    * id(식별자) 속성: 요소를 구분하는 용도의 속성으로 한 HTML 문서 내에 중복되는 id가 존재하면 안된다!!!
+  </pre>
+
+  <ul id="list">
+    <!-- # == id 속성값을 나타내는 기호 -->
+    <li><a href="#image1">1번 이미지</a></li>
+    <li><a href="#image2">2번 이미지</a></li>
+    <li><a href="#image3">3번 이미지</a></li>
+    <li><a href="#image4">4번 이미지</a></li>
+    <li><a href="#image5">5번 이미지</a></li>
+  </ul>
+
+  <hr>
+  <h3 id="image1">1번 이미지</h3>
+  <img src="images/dogs/dog1.jpg" height="300px">
+  <br>
+  <a href="#list">목록으로</a>
+
+  <hr>
+  <h3 id="image2">2번 이미지</h3>
+  <img src="images/dogs/dog2.jpg" height="300px">
+  <br>
+  <a href="#list">목록으로</a>
+
+  <hr>
+  <h3 id="image3">3번 이미지</h3>
+  <img src="images/dogs/dog3.jpg" height="300px">
+  <br>
+  <a href="#list">목록으로</a>
+
+  <hr>
+  <h3 id="image4">4번 이미지</h3>
+  <img src="images/dogs/dog4.jpg" height="300px">
+  <br>
+  <a href="#list">목록으로</a>
+
+  <hr>
+  <h3 id="image5">5번 이미지</h3>
+  <img src="images/dogs/dog5.jpg" height="300px">
+  <br>
+  <a href="#list">목록으로</a>
+
+  <hr>
+
+  <h3>
+    <a href="#top">맨 위로</a>
+  </h3>
+
+  <hr>
+
+  <h3>이미지 클릭 시 페이지 이동(a + img)</h3>
+
+  <a href="https://www.naver.com">  <!-- 이미지 클릭 시 네이버로 이동 -->
+    <img src="images/flowers/flower5.jpg" width="200px" height="100px">
+  </a>
+
+	
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI 디자인</title>
+  <link rel="stylesheet" href="./UI디자인.css">
+</head>
+
+<body>
+
+  <header>
+    <section class="header"><s>집에가고싶어요</s></section>
+  </header>
+
+  <main>
+    <section class="content-1">
+      <div>
+        <a href="https://www.daum.net">
+          <img src="./images/logo_daum.png"></img>
+        </a> <!--//src가 없으면 테두리가 무조건 생김-->
+        <input type="search" id="searchBox1" maxlength="30" value="30글자 제한">
+        <a href="https://www.google.com">
+          <img src="./images/search.png" style="width: 84px; height: 84px;"></img>
+        </a>
+      </div>
+    </section>
+
+    <section class="content-2">
+
+      <div class="container-6">
+        <div style="background-color: lightcyan; height: 100%; width: 20%;">
+          <a href="https://www.weather.go.kr/w/index.do">
+            <img src="./images/rain.png" style="width: 100%; height: 100%; object-fit: contain;"></img>
+          </a>
+        </div>
+        <div style="background-color: lightcyan; height: 100%; width: 40%;">
+          <div
+            style="background-color: white;height: 60%; width:100%; font-weight: bold; font-size: 80px; display: flex; align-items: center; justify-content: center;">
+            22.1<sup>°c</sup>
+          </div>
+          <div
+            style="background-color: lightblue;height: 40%; width:100%; font-weight: bold; font-size: 80px; display: flex; align-items: center; justify-content: center;">
+            비
+          </div>
+        </div>
+        <div style="background-color: lightcyan; height: 100%; width: 40%;">
+          <div
+            style="background-color: darkgray;height: 60%; width:100%; font-size: 40px; display: flex; align-items: center; justify-content: center;">
+            <span style="color:white;">미세먼지 : </span><span style="color:lightblue;">좋음</span>
+          </div>
+          <div
+            style="background-color: gray;height: 40%; width:100%; font-size: 40px; display: flex; align-items: center; justify-content: center;">
+            <span style="color:white;">초미세먼지 : </span><span style="color:greenyellow;">보통</span>
+          </div>
+        </div>
+      </div>
+      <div class="container-grow"></div>
+
+      <div class="container-2">
+        <div style="height: 50%; display: flex; align-items: center; justify-content: center;">
+          <div style="font-size: 40px; display: flex;">
+            ID : <input type="text" name="id">
+          </div>
+        </div>
+
+        <div style="height: 50%; display: flex; align-items: center; justify-content: center;">
+          <div style="font-size: 40px; display: flex;">
+            PW : <input type="password" name="pw">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-3"></section>
+    <div class="content-4">
+      <div style="display: flex;">
+        <table border="1" style="width: 1000px; height: 400px;">
+          <thead>
+            <tr>
+              <th colspan="4" style="background-color: lightskyblue;">이번주 날씨</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th rowspan="2" style="background-color: #fff;">요일</th>
+              <th colspan="2">기온</th>
+              <th rowspan="2" style="background-color: yellowgreen;">날씨</th>
+            </tr>
+            <tr>
+              <td style="background-color: lightskyblue;">최저</td>
+              <td style="background-color: orange;">최고</td>
+            </tr>
+            <tr>
+              <td>오늘</td>
+              <td>22°C</td>
+              <td>25°C</td>
+              <td>비</td>
+            </tr>
+            <tr>
+              <td>수</td>
+              <td>22°C</td>
+              <td>27°C</td>
+              <td>비</td>
+            </tr>
+            <tr>
+              <td>목</td>
+              <td>21°C</td>
+              <td>26°C</td>
+              <td>흐림</td>
+            </tr>
+            <tr>
+              <td>금</td>
+              <td>21°C</td>
+              <td>27°C</td>
+              <td>흐림</td>
+            </tr>
+            <tr>
+              <td>토</td>
+              <td>22°C</td>
+              <td>28°C</td>
+              <td>비</td>
+            </tr>
+            <tr>
+              <td>일</td>
+              <td>22°C</td>
+              <td>27°C</td>
+              <td>비</td>
+            </tr>
+          </tbody>
+
+        </table>
+        <iframe width="480" height="270" src="https://www.youtube.com/watch?v=FtlgkBqq96I"
+          title="기상청 &#39;TodayWeather&#39; News" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- 발 부분(제일 아래) 태그  -->
+  <footer>
+    <section style="padding: 15px 30px;"></section>
+  </footer>
+</body>
+
+</html>

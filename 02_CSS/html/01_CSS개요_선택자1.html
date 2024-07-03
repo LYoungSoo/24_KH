@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01_CSS 개요, 선택자 1</title> <!-- HTML 주석 형식 -->
+
+  <!--
+    link 태그 : 현재 HTML과 외부 파일 연결
+    
+    rel="stylesheet" : 연결할 파일이 무슨 관계인지 지정 -> CSS는 stylesheet(화면 꾸미는 시트지)
+
+    href 속성 : 연결할 파일의 위치(경로/주소)
+  -->
+
+  <link rel="stylesheet" href="../css/01_CSS개요_선택자1.CSS">
+  <!--
+    ..  : 상위폴더
+    /   : 해당 폴더 내부(하위)
+  -->
+  <style>
+    /* CSS 주석 형식 */
+    #title {
+      /* 아이디가 title인 요소 선택 */
+      /* #은 id를 뜻함. title이라는 이름의 id를 만들고, 그 id를 사용한 html 코드에게 스타일을 입힘 */
+      font-family: '궁서체';
+    }
+  </style>
+</head>
+
+<>
+  <h1>CSS(Cascading Style Sheets)</h1>
+
+  <pre>
+    마크업 언어(HTML)가 실제 화면에 표시되는 방법을 기술하는 언어
+    
+    하나의 요소에 여러 CSS 코드를 겹쳐서 원하는 스타일을 만들어냄
+
+    W3C(the World Wide Web Consortium)에서 CSS를 웹 표준으로 지정함
+  </pre>
+
+  <hr>
+
+  <!-- id(식별자) : 중복되면 안되는 값, 요소를 쉽게 구분 가능 -->
+  <h1 id="title">CSS 선택자 (CSS Selector)</h1>
+  - &lt;head&gt; &lt;style&gt; #title { font-family: '궁서체'; } &lt;/style&gt;
+
+  <hr>
+
+  <h3>CSS 코드를 작성하는 방법</h3>
+
+  <ol>
+    <li>
+      head 태그에 style태그를 작성한 후 내부에 CSS 코드 작성<br>
+      - &lt;head&gt; &lt;style&gt; &lt;/style&gt; &lt;/head&gt;
+    </li>
+    <li style="color: orangered;">
+      CSS가 적용되길 원하는 요소에 직접 CSS 코드를 작성하는 방법(inline-style)<br>
+      - &lt;li style="color: orangered;"&gt;
+      <!-- { &lt; } / { &gt; } 를 사용하면 꺽쇠를 화면에 표시 가능-->
+    </li>
+    <li id="test1">
+      외부에 .css 파일을 생성하여 link 태그를 이용해 연결하는 방법<br>
+      - &lt;/title&gt; &lt;link rel="stylesheet" href="../css/01_CSS개요_선택자1.CSS"&gt; &lt;style&gt; /
+      &lt;li id="test1"&gt;<br>
+      해당 CSS 파일(01_CSS개요_선택자1.CSS) 내부<br>
+      - #test1 {color: hotpink; font-weight: bold; font-size: 20sp;}
+    </li>
+  </ol>
+
+  <hr>
+
+  <h3>id(#)선택자</h3>
+  <pre>
+    HTML 문서 내에서 id 속성 값이 일치하는 요소를 선택하는 선택자
+
+    <strong>[작성법]</strong>
+    <code>
+      #id속성값 { CSS 코드; }
+    </code>
+  </pre>
+
+  <ul> <!-- ul>li#li$*3   '$'써서 번호 매기기 적용가능-->
+    <li id="li1">id 선택자 테스트1</li>
+    <li id="li2">id 선택자 테스트2</li>
+    <li id="li3">id 선택자 테스트3</li>
+  </ul>
+
+  <hr>
+
+  <h3>태그(태그명) 선택자</h3>
+  <pre>
+    HTML 문서 내에서 태그명이 일치하는 모든 요소를 찾아 선택하는 선택자
+    
+    <strong>[작성법]</strong>
+    <code>
+      #태그명 { CSS 코드; }
+    </code>
+  </pre>
+
+  <hr>
+
+  <h3>class(.) 선택자</h3>
+  <pre>
+    HTML 문서 내에서 class 속성 값이 일치하는 모든 요소를 선택하는 선택자
+
+    * 하나의 요소가 여러 class를 가질 수 있다!
+
+    <strong>[작성법]</strong>
+    <code>
+      .class 속성값 { CSS 코드; }
+    </code>
+    
+    <pre style="color: red;">
+      요소에 CSS 적용을 위해 사용하는 선택자는 보통 class 선택자를 가장 많이 이용한다!!
+
+      (id 속성은 주로 JS 용도로 많이 사용)
+    </pre>
+  </pre>
+
+  <p class="class-test1">class 선택자 테스트1</p>
+  <p class="class-test2">class 선택자 테스트2</p>
+  <p class="class-test1">class 선택자 테스트3</p>
+  <p class="class-test2">class 선택자 테스트4</p>
+  <p class="class-test1">class 선택자 테스트5</p>
+
+  <h4>한 요소에 여러 클래스 작성하기</h4>
+  <ul>
+    <!-- li{class 선택자 테스트}*3 -->
+    <li class="bg-green">class 선택자 테스트</li>
+    <li class="font-pink">class 선택자 테스트</li>
+    <li class="bg-green font-pink">class 선택자 테스트</li>
+  </ul>
+
+  <hr>
+
+  <h3>모든 요소(*, asterisk) 선택자</h3>
+  <pre>
+    단독 사용 : 문서에 존재하는 모든 요소 선택
+    <code>
+      * { CSS코드; }
+    </code>
+
+    다른 선택자와 혼용 : 선택된 요소의 모든 자식/후손/형제 선택
+    <code>
+      A선택자 * { CSS 코드; }
+    </code>
+  </pre>
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+
+</html>

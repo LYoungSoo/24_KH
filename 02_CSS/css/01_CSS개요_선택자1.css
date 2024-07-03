@@ -1,0 +1,55 @@
+/* CSS 파일은 <style> 태그 내부라고 생각 */
+
+/* id가 test1인 요소를 선택 */
+#test1 {
+  color: hotpink;   /* 글자 색 */
+  font-weight: bold;  /* 글자 굵기  : 굵게 */
+  font-size: 20px;    /* 글자 크기  : 20px */
+}
+
+/* id(#) 선택자 */
+#li1 { background-color: #00ff00; }
+#li2 { background-color: #9494e9; }
+#li3 { background-color: #ffff00;}
+
+/* 태그 선택자 */
+strong {
+  font-size: 18px;
+  font-family: '고딕';
+  color : #193ea5;  /* 글자색 */
+}
+
+code {
+  background-color: #e9df53; /* 배경색 */
+  display: block;              /* 요소를 block 형식으로 변경 */
+  font-weight: bold;
+}
+
+/* class(.) 선택자 */
+.class-test1 {
+  background-color: black;
+  color: white;
+}
+
+.class-test2 {
+  background-color: yellow;
+  color:red;
+}
+
+/* 한 요소에 여러 클래스 작성하기 */
+.bg-green { background-color: green; }
+.font-pink { color: pink; }
+
+/* 웹 폰트 적용 */
+@font-face {
+  font-family: 'MaplestoryOTFBold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 모든 요소(*) 선택자 */
+* {
+  /* 모든 요소 글꼴 변경 */
+  font-family: 'MaplestoryOTFBold';
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09_레이아웃 스타일 3</title>
+  <link rel="stylesheet" href="../css/09_레이아웃스타일3.css">
+</head>
+
+<body id="top"> <!-- body는 기본적으로 position : relative -->
+  <h1 class="sticky">요소 배치(위치) 관련 스타일(position 속성)</h1>
+  <pre>
+    position은 요소의 위치를 지정하는 속성
+
+    position : relative;  (상대적인) 
+    - 지정된 요소 내부에 다른 요소가 상대적인 위치를 지정할 수 있도록 기준이 되게 만드는 속성.
+
+    - 내부에 작성되는 요소에 위치 지정 시
+      top, bottom, left, right 속성을 사용할 수 있음.
+
+    position : absolute; (절대적인)
+    - 기본 요소의 배치 순서를 무시하고 지정된 절대 위치에 요소를 배치함.
+
+    position : fixed; (고정된)
+    - 항상 고정된 위치에 요소를 배치함. (화면이 움직이든 말든 항상 같은 위치)
+
+    position : sticky 
+    - 원래 요소가 보여지는 화면이라면 position X
+    - 요소가 보여지는 화면을 벗어나면 fixed  
+
+    z-index : 정수
+    - position : absolute 상태의 요소의 z축 방향으로 올라와 있는 정도를 지정하는 속성
+      (같은 기준 요소(relative) 를 가진 요소만 설정 가능) / (기본값 0, 수치가 같으면 마지막 해석된 요소가 제일 위)
+  </pre>
+
+  <hr>
+
+  <h3>position : relative + absolute 확인하기</h3>
+  <div class="container-1">
+    <div class="first">first</div>
+    <div class="second">second</div>
+    <div class="third">third</div>
+  </div>
+
+  <hr>
+
+  <h3>position + margin:auto 를 이용해 정가운데 배치하기</h3>
+  <div class="container-2">
+    <div class="center"></div>
+  </div>
+
+  <hr>
+
+  <h3>position : fixed; (고정)</h3>
+  <div class="fixed-container">
+    <a href="#top">TOP</a> <!-- body에 id="top"을 지정하였음. 누르면 body의 시작점으로 가는 링크라고 보면됨. -->
+  </div>
+
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+
+</html>

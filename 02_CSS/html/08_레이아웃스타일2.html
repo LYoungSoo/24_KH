@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08_레이아웃 스타일 2</title>
+  <link rel="stylesheet" href="../css/08_레이아웃스타일2.css">
+</head>
+
+<body>
+  <h1>요소의 영역(여백) 관련 스타일</h1>
+  <pre>
+    HTML 요소는 총 4가지의 영역으로 구성되어 있음
+
+    1. content(내용) 영역
+       - 요소의 내용이 작성 되어지는 영역 (시작태그와 종료태그 사이에 작성되는 내용을 생각하면 된다)
+
+    2. padding
+       - content와 border 사이의 공간
+
+    3. border(테두리) 영역
+       - 요소의 테두리가 지정되는 영역
+       - content 보다 바깥쪽에서 content를 감싸고 있음
+    
+    4. margin(여백, 간격)
+       - 다른 요소와의 간격을 나타내는 영역
+    <hr>
+    box-sizing      - width / height 크기 조정 속성의 범위를 지정하는 css 속성
+
+    1) content-box
+       - width / height 지정 시 content 영역의 크기만 조정 (기본값)
+
+    2) border-box
+       - width / height 지정 시 content + padding + border의 크기를 합산한 결과가
+         작성된 width / height와 같아지도록 content 영역의 크기를 자동으로 조정
+  </pre>
+
+  <hr>
+
+  <h3>기준</h3>
+  <div class="box">content</div>
+
+  <hr>
+
+  <h3>border(테두리) 영역</h3>
+  <div class="box border">content</div>
+  
+  <hr>
+  
+  <h3>content(내용) 영역</h3>
+  <div class="box border content-1 inline-block">content-box</div>
+  <div class="box border content-2 inline-block">border-box</div>
+  
+  <hr>
+  
+  <h3>padding(채우기) 영역</h3>
+  <div class="box border content-1 padding inline-block">padding<br>content-box</div>
+  <div class="box border content-2 padding inline-block">padding<br>border-box</div>
+  <div class="box border content-1 inline-block">content-box<br>한줄만쓰면 정렬시 가라앉음?</div>
+  <!-- 이거 왜자꾸 박스 아래로 내려가냐 -->
+
+  <hr>
+
+  <h3>margin(여백, 다른 요소와의 간격) 영역</h3>
+  <pre>
+    margin 영역은 다른 요소의 margin과 겹칠 수 있다!
+    ==> 더 큰 값을 가진 margin이 적용된다
+  </pre>
+
+  <div class="box border margin-1">content</div>
+  <div class="box border margin-2">content</div>
+
+  <hr>
+
+  <h1>padding, border, margin의 방향성</h1>
+  <pre>
+    OOO-top    : 크기   ==> 위쪽   방향 크기 지정
+    OOO-bottom : 크기   ==> 아랫쪽 방향 크기 지정
+    OOO-left   : 크기   ==> 왼쪽   방향 크기 지정
+    OOO-right  : 크기   ==> 오른쪽 방향 크기 지정
+
+    단, OOO이 border인 경우 [크기 모양 색상] 형식으로 값을 작성
+  </pre>
+
+  <div class="box test1">content</div>
+
+  <hr>
+
+  <h1>padding, border-width, margin 크기 한 번에 지정하기</h1>
+  <pre>
+    padding | border-width | margin : 크기 속성 값; ( | : or )
+
+    크기 속성 값 1개 : 상하좌우          적용
+    크기 속성 값 2개 : 상하 / 좌우       적용 
+    크기 속성 값 3개 : 상 / 좌우 / 하    적용 (위, 가운데, 아래)
+    크기 속성 값 4개 : 상 / 우 / 하 / 좌 적용 (시계 방향)
+  </pre>
+
+  <div style="width: 200px; height: 200px;"  class="box border test2">content</div>
+
+  <hr>
+  <h2>margin : auto;</h2>
+  <pre>
+    다른 요소와의 간격을 자동으로 지정하여 가운데 정렬하게 만드는 속성 값
+    - 간격만 자동으로 지정 (기본적으로 위 / 아래는 적용 X)
+    - 해당 옵션이 지정되는 대상은 display가 inline, inline-block 이면 안된다!
+      ==> inline, inline-block은 글자로 취급되기 때문에 글자 정렬 속성인 text-align을 이용하여야 한다!
+  </pre>
+
+  <div class="container">
+    <div class="box test3">
+      <span>test</span>
+    </div>
+  </div>
+
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+
+</html>

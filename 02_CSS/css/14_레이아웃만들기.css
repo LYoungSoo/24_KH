@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+  /* m0 , p0 하면됨 */
+  margin: 0;
+  padding: 0;
+}
+
+div { border: 1px solid black; }
+
+/* body 태그에 flex 설정 == 화면을 나누는 큰 영역을 유연하게 배치 */
+body {
+  display: flex;
+  flex-direction: column;
+  /* 최소 높이 : 화면높이 100% */
+  min-height: 100vh;
+}
+
+header {
+  height: 60px;
+  display: flex;
+  padding: 6px;
+}
+
+/* 교차축(세로) 방향 align-items : stretch;(기본값) 설정되어있기 때문에 height:100% 작성 안해도됨 */
+.header-1 {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-2 {
+  width: 50px;
+}
+.header-3 {
+  flex-grow: 1;
+}
+
+/* 메인 부분 */
+main {
+
+  /* 팽창 (기본 값 : 0) */
+  /* 나머지 item이 0, main 혼자 1 ==> 혼자 늘어나서 남은 화면 다 채움 */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-1 {
+  height: 290px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content-1 > img {
+  width: 272px;
+  height: 92px;
+  background-image: url('../images/checkbox.png');
+}
+
+.content-2 {
+  height: 160px;
+  padding: 20px;
+}
+
+.content-3 { flex-grow: 1; }
+
+/* 푸터 부분 */
+footer {
+  background-color: #ccc;
+
+  height: 100px;
+}
+footer > section { height: 50%; }
+
+
+/* 이하 내맘대로 작성중 */
+/* header */
+
+
+
+
+/* main */
+
+
+
+
+/* footer */

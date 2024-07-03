@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07_레이아웃 스타일 1</title>
+  <link rel="stylesheet" href="../css/07_레이아웃스타일1.css">
+</head>
+<body>
+  
+  <h1>레이아웃(layout)</h1>
+  <pre>
+    사전적 의미 : 배치, 정리
+    
+    기술적 의미 : 구성 요소를 제한된 공간에 효율적으로 배치하는 것
+  </pre>
+
+  <hr>
+
+  <h1>화면 배치(표시, 형식) 지정: display 속성</h1>
+  <pre>
+    요소가 화면에 어떻게 표시될지(배치될지) 형식을 지정하는 속성
+
+    - block   : 화면을 수직 분할 (세로 화면을 가로로 잘라서 분할, 레고 쌓기) ==> 행이 나뉘어 짐
+                + 한 행을 전부 차지하는 성질
+                + width / height 크기 지정 속성 사용 가능
+
+    - inline  : 화면을 수평 분할 (가로 화면을 세로로 잘라서 분할, 김밥 자르기) ==> 한 행의 열의 나뉘어 짐
+                + 작성된 내용(content) 만큼의 크기를 차지 // wrap-content랑 비슷한건가?
+                + width / height 크기 지정 속성 사용 X
+
+    - inline-block  : 화면 수평 분할 + 크기 지정가능
+
+    - none    : 화면에 표시 X (화면에 보이지만 않을 뿐, 존재는 하고있음)
+
+    - flex    : 요소가 정렬되는 방향, 요소와의 간격을 유연하게 처리하여 표시 (브라우저가 간격, 크기를 알아서 계산해서 적용)
+
+    - grid    : 격자 무늬 형식으로 화면을 쉽게 분할하는 형식
+  </pre>
+  
+  <hr>
+
+  <h3 class = "area3">클래스 기반 css 테스트</h3>
+
+  <hr>
+  <div class="box">영역</div>
+  
+  <h3>block 형식의 요소(div)를 inline 형식으로 변경</h3>
+  <!-- emmet : div.box.area${$번 영역}*5 -->
+  <div class="box area1 inline">1번 영역</div>
+  <div class="box area2 inline">2번 영역</div>
+  <div class="box area3 inline">3번 영역</div>
+  <div class="box area4 inline">4번 영역</div>
+  <div class="box area5 inline">5번 영역</div>
+  &lt;div class="box area1 inline">1번 영역&lt;/div&gt;
+
+  <hr>
+
+  <h3>inline 형식의 요소(span)를 block 형식으로 변경</h3>
+
+  <span class="box area1 block">1번 영역</span>
+  <span class="box area2 block">2번 영역</span>
+  <span class="box area3 block">3번 영역</span>
+  <span class="box area4 block">4번 영역</span>
+  <span class="box area5 block">5번 영역</span>
+  &lt;span&gt; class="box area1">1번 영역&lt/span&gt;
+
+  <hr>
+
+  <h3>inline-block, none 확인하기</h3>
+  <!--   div.box.area$.inline-block{$번 영역}*5 -->
+  <div class="box area1 inline-block">1번 영역</div>
+  <div class="box area2 inline-block hidden">2번 영역</div> <!-- visibility : hidden; 추가 -->
+  <div class="box area3 inline-block">3번 영역</div>
+  <div class="box area4 inline-block none">4번 영역</div>   <!-- display : none; 추가 -->
+  <div class="box area5 inline-block">5번 영역</div>
+  <br>2번 영역 : hidden   /   4번 영역 : none   /  gone, invisibility 는 안드로이드꺼
+  <br>&lt;div class="box area1 inline-block">1번 영역&lt;/div&gt;
+
+  <br><br><a href=".">실습폴더 목록</a>
+</body>
+</html>

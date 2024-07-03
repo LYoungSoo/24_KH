@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05_CSS 선택자 5</title>
+  <link rel="stylesheet" href="../css/05_CSS선택자5.css">
+</head>
+<body>
+  <h3>:only-child</h3>
+  <p>
+    특정 요소의 자식 요소가 하나 밖에 없을 때 선택
+  </p>
+
+  <div id="test1">
+    <p>test1 자식1 - &lt;p&gt;</p>
+  </div>
+
+  <div id="test2">
+    <p>test2 자식1 - &lt;p&gt;</p>
+    <pre>test2 자식2 - &lt;pre&gt;</pre>
+  </div>
+
+  <hr>
+
+  <h3>:only-of-type</h3>
+  <p>
+    특정 요소의 자식 중
+    지정된 자식 요소가 딱 하나만 있을 때 선택
+  </p>
+
+  <div id="test3">
+    <p>자식1</p>
+    <pre>자식2</pre>
+  </div>
+
+  <hr>
+
+  <h3>:empty</h3>
+  <p>
+    자식 노드가 없는 요소인 경우 선택자
+    <br>
+
+    노드란? HTML에 작성되어지는 모든 것들<br>
+    ex) 태그, 글자, 띄어쓰기, 엔터, 주석 등 모두 다 <br>
+
+    * 시작 태그, 종료 태그 사이에 아무것도 존재하면 안된다!
+  </p>
+
+  <div id="test4">
+
+    <p></p>
+
+    <p>글자</p>
+
+    <p>         </p>
+
+    <p><b>b 태그 작성</b></p>
+
+  </div>
+
+  <hr><hr>
+
+  <h1>여러 선택자 동시 작성하기</h1>
+  
+  <pre>
+    같은 스타일(css코드)을 지정하고 싶은 요소가 있으나
+    선택자 하나로 모두 선택할 수 없을 때 사용
+
+    <strong>작성법</strong>
+
+    <code>
+      선택자1, 선택자2, 선택자3, .... { CSS 코드; }
+    </code>
+
+  </pre>
+
+  <div id="test5-1">테스트1</div>
+  <p class="test5-2">테스트2</p>
+  <pre name="test5-3">테스트3</pre>
+
+
+  <hr>
+
+  <h1>여러 클래스가 작성된 요소만 선택하기</h1>
+
+  <ul>
+    <li class="test6">테스트</li>
+    <li class="test6 aaa">테스트</li>
+    <li class="aaa">테스트</li>
+
+    <li class="test6">
+      <strong class="aaa">주의!!</strong>
+    </li>
+  </ul>
+
+  <!-- 선택자 연습 게임    https://flukeout.github.io/ -->
+   <a href="https://flukeout.github.io/">선택자 연습 게임</a>
+   <a href="선택자연습게임답.html">답지</a>
+
+   <br><br><a href=".">실습폴더 목록</a>
+</body>
+</html>

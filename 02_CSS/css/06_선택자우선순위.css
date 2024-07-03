@@ -1,0 +1,54 @@
+/* 1순위 : !important */
+  /* 최우선 적용되기 때문에 5순위에 !important 사용되면 2순위를 덮어쓸 수 있음 */
+#test1 {
+  /* 5순위 tag 선택자보다 3순위 id선택자가 더 우선순위가 높음 */
+  background-color: pink !important;
+  /* 선택자 우선순위를 따짐 */
+}
+
+div {
+  background-color: cyan !important;
+}
+
+div {
+  background-color: steelblue !important;   /* 마지막에 작성된 설정이 적용 */
+}
+
+/* 2순위 : inline-style(html 요소에 직접 작성) */
+ /* <div id="test1" class="cls11"="                                     >우선 순위 테스트</div> */
+ /* <div id="test1" class="cls11" style="background-color: yellowgreen;">우선 순위 테스트</div> */
+
+/* 3순위 : id 선택자 */
+#test1 {
+  /* 우선순위로 덮어씌움 */
+  height: 100px;
+  color: red;
+  background-color: skyblue;
+
+  /* 새로 추가될 속성(누적) */
+  font-family: '궁서체';
+  font-weight: bold;
+}
+
+/* 4순위 : class 선택자 */
+  /* 태그 선택자보다 우선순위가 높음! */
+.cls11 {
+  background-color: green;
+  color: white;  /* 같은 속성에 대해 값을 설정하지 않았기 때문에 적용가능 */
+}
+
+/* 5순위 : tag 선택자 */
+div {
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+}
+
+div {   /* 같은 선택자 여러번 작성 가능 */
+  border: 1px solid black;
+}
+
+div {
+  /* 같은 우선순위인 경우 마지막 설정만 적용 */
+  background-color: gray;
+}

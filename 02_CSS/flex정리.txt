@@ -1,0 +1,26 @@
+1. flex의 구성
+  - flex container : 유연하게 처리할 대상(요소)을 감싸고 있는 요소
+  - item : 유연하게 처리할 대상(요소)
+  (flex 관련 속성은 flex container 전용 속성, item 전용 속성으로 나뉨)
+
+2. flex의 축(axis)
+  2차원 평면에 요소를 유연하게 배치하기 위해 배치될 평면의
+  - 중심축(main axis) / 교차축(cross axis)
+
+[flex container 전용 속성]
+display: flex;   ==> 내부 요소를 유연하게 배치 (감싸는 요소는 display : block 형식을 띄고 있음)
+display: flex 적용시 하단 6개 사용가능
+  flex-direction  : 중심축 방향 지정         (정렬 방향 지정)
+  justify-content : 중심축 방향 item 정렬    (중심점 위치 지정)
+  align-items     : 교차축 방향 item 정렬
+  flex-wrap       : item을 한 줄 / 여러 줄로 배치
+  flex-flow       : flex-direction + flex-wrap 한 번에 설정
+  align-content   : wrap 설정이 된 item 묶음 교차축 방향 정렬
+
+[item 전용 속성]
+  order           : item 순서 지정
+  flex-grow       : item 팽창 비율 지정 (기본 값: 0)
+  flex-shrink     : item 수축 비율 지정 (기본 값: 1)
+  flex-basis      : item의 중심축 방향 기본 점유율(크기) 지정
+  flex            : flex-grow + flex-shrink + flex-basis 한 번에 설정
+  align-self      : item 별로 교차축 방향 정렬
