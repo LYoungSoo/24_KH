@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05_조건문</title>
+  <link rel="stylesheet" href="../css/05_조건문.css">
+</head>
+
+<body>
+  <h1>조건문</h1>
+  <pre>
+    프로그래밍 코드가 해석되는 순서를 제어하는 제어문 중 한 종류
+    작성된 조건식에 따라서 수행되는 코드를 변경하는 구문
+
+    * 조건식 : 결과가 true 또는 false인 식
+    ex) boolean 단독 작성
+        비교 연산자, 논리 연산자
+  </pre>
+
+  <hr>
+
+  <h3>if(만약에...) 문</h3>
+  <pre>
+    <code>
+      if(조건식) {
+        조건식이 true인 경우 수행할 코드;
+      }
+    </code>
+  </pre>
+  <h4>입력받은 수가 양수인지 아닌지 검사</h4>
+  <input type="number" id="input1">
+  <button onclick="check1()">양수인지 검사</button>
+
+  <hr>
+
+  <h3>if(만약에) - else(아니면) 문</h3>
+  <pre>
+    <code>
+      if(조건식) {
+        조건식이 true인 경우 수행할 코드;
+      }
+      else {
+        조건식이 false인 경우 수행할 코드;
+      }
+    </code>
+  </pre>
+
+  <h4>0~99 사이의 난수를 발생시켜 홀/짝 판별하기</h4>
+  <!-- 난수 == 랜덤한 숫자 -->
+  <button onclick="check2()">확인하기</button>
+
+  <hr>
+
+  <h3>if - else if - else</h3>
+  <pre>
+    if      : 만약에
+    else if : 선행(앞선) 조건이 아니라면 (false) 다른 조건
+    else    : 선행(앞선) 조건 외 (나머지, 아니면)
+    <code>
+      if(조건식) {
+        조건식이 true인 경우 수행할 코드;
+      }
+      else if (조건식) {
+        앞선 if문 조건식이 false 이면서,
+        현재 else if 문의 조건식이 true인 경우 수행할 코드;
+      }
+      else if (조건식) {
+        // ....
+      }
+      else {
+        앞선 모든 if/else if 조건식이 false인 경우 수행할 코드;
+      }
+    </code>
+  </pre>
+
+  <h4>양수, 음수, 0 판별기</h4>
+  <input type="number" id="input3">
+  <button onclick="check3()">양수,음수,0 판별</button>
+
+  <hr>
+
+  <h3>(실습문제) 어린이, 청소년, 성인 구분하기</h3>
+  <pre>
+    나이를 입력받아
+     0세 ~  13세 : 어린이 
+    14세 ~  19세 : 청소년
+    20세 ~ 120세 : 성인
+    0 미만, 120초과 : 잘못 입력하셨습니다.
+  </pre>
+  <div>
+    나이 : <input type="number" id="inputAge1">
+    <button onclick="ageCheck1()">나이,연세,춘추 가?</button>
+  </div>
+  <div>
+    나이 : <input type="number" id="inputAge2">
+    <button onclick="ageCheck2()">확인하기2</button>
+  </div>
+
+  <hr>
+
+  <h3>중첩 if문</h3>
+  <pre>
+    if문 안에 if / if-else / if-else if-else
+    else 안에 if / if-else / if-else if-else
+    를 중첩해서 작헝하는 방법
+    - 여러 조건을 겹칠 때 사용함
+    - 중첩은 무한히 가능함
+  </pre>
+  <h4>입력 받은 수가 3의 배수가 맞는지 검사</h4>
+  <pre>
+    3의 배수가 맞으면 : Y
+    3의 배수가 아니면 : N
+    음수 입력         : 양수만 입력해 주세요.
+    입력된 값이 없다면: 값을 입력해 주세요
+  </pre>
+
+  <input type="number" id="input4">
+  <button onclick="check4()">3의 배수 확인</button>
+
+  <hr>
+
+  <h3>Early Return</h3>
+  <pre>
+    return; : 현재 실행중인 함수를 "즉시 종료"하고 호출한 곳으로 돌아가라
+
+    if문 조건에 현재 수행 하려는 기능의 예외 상황을 조건식으로 작성하여 예외 상황 발생 시 즉시 함수를 종료하게 만드는 방법
+
+    장점 : 코드 들여쓰기가 줄어들고 간결해짐
+    담점 : return 구문이 함수 내부에 분산되어 함수 코드의 전체적인 복잡도가 늘어남
+  </pre>
+  <h4>두 수 A,B를 입력 받아 A가 B의 배수가 맞는지 확인</h4>
+  <pre>
+    ex)
+        A : 10    / B : 5     ==> 배수 맞음
+
+        조건
+        1) A와 B중 하나라도 입력되지 않으면 ==> 입력되지 않은 값이 존재합니다
+
+        2) A가 B보다 작으면 ==> A가 B보다 작습니다
+
+        3) 1,2번 조건이 모두 false 이면 배수 판별 진행 (배수 맞음 / 배수 아님)
+  </pre>
+  <div>
+    A : <input type="number" id="input5a"><br>
+    B : <input type="number" id="input5b"><br>
+    <button onclick="check5()">배수 판별</button>
+  </div>
+
+  <hr><hr><hr>
+
+  <h1>switch, case, default</h1>
+  <pre>
+    switch문
+    - 식 하나의 결과로 많은 경우의 수를 처리할 때 사용하는 조건문 ==> 식의 결과와 일치하는 값을 가진 case 구문이 실행됨
+    <code>
+      switch(식) { // 식의 결과는 정수 또는 문자열
+        case 결과1  : 결과1 의 수행 코드; break;
+        case 결과2  : 결과2 의 수행 코드; break;
+        case 결과3  : 결과3 의 수행 코드; break;
+        ...
+        default     : 모든 case가 만족하지 못하는 경우 수행. 기본값
+      }
+    </code>
+  </pre>
+
+  <h3>switch문을 이용한 계산기</h3>
+
+  <div class="calculator">
+    <div class="row">
+      <label for="number1">첫 번째 값</label>
+      <input type="number" id="number1"></input>
+    </div>
+    <div class="row">
+      <label for="number2">두 번째 값</label>
+      <input type="number" id="number2"></input>
+    </div>
+
+    <div class="row btn-row">
+      <!--
+      전달 인자(Arguments)
+      - 함수 호출 시 괄호 내에 작성하는 값
+      - 호출된 함수의 매개 변수(Parameter)로 전달됨 ==> () 내에 작성된 값을 함수로 보냄
+      -->
+      <button onclick="calc('+')">+</button>
+      <button onclick="calc('-')">-</button>
+      <button onclick="calc('*')">*</button>
+      <button onclick="calc('/')">/</button>
+      <button onclick="calc('%')">%</button>
+      <button onclick="calc('@')">@</button> 
+      <!-- @ : 앳(at) -->
+    </div>
+
+    <div class="row">
+      <h2>
+        결과 : <span id="calcResult"></span>
+      </h2>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>입력받은 달(월)의 계절 출력</h3>
+  <input type="number" id="input6">
+  <button onclick="check6()">계절 확인</button>
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/05_조건문.js"></script>
+</body>
+
+</html>

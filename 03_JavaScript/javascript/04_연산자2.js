@@ -87,7 +87,13 @@ function multipleCheck() {
   const num3 = Number(input3.value);
   // 10은 5의 배수? ==> 10을 5로 나눴을 때 나머지가 0인지 확인
   result2.innerText = num2 % num3 == 0;
-  result2_1.innerText = + result2_1.innerText;
+  result2_1.innerText = num2;
+  result2_2.innerText = null;
+
+  for (let i = 1; i <= num2; i++) {
+    if (num2 % i === 0) result2_2.innerText += (i + " ,");
+    if (i === num2) result2_2.innerText = result2_2.innerText.slice(0,-1);  //마지막 글자 1개 제거
+  }
 }
 
 /* 복합 대입 연산자 확인 (Assignment Operators) */
@@ -164,7 +170,7 @@ function notCheck() {
   const bool1 = (10 > 5) || !(10 % 2 === 0);
   console.log(`10은 5를 초과하거나 짝수가 아닌가? :
     (10 > 5) ${10 > 5} || !(10 % 2 === 0) ${!(10 % 2 === 0)} ==> ${bool1}`);
-  
+
   const bool2 = !((10 < 5) || !(10 % 2 !== 0));
   console.log(`10은 5 미만이거나 홀수가 아닌가? 의 거짓은? :
     !( (10 < 5) ${10 < 5} || !(10 % 2 !== 0) ${!(10 % 2 !== 0)} ) ==> !(${!bool2}) ==> ${bool2}`);

@@ -1,0 +1,46 @@
+pre > code{
+  border: 3px solid burlywood;
+  background-color: wheat;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 20px;
+  margin: 20px;
+  display: block;
+}
+
+
+.calculator {
+  width: 300px;
+  height: 150px;
+  border: 3px solid black;
+  border-radius: 10px;
+  margin: auto;
+  padding: 25px;
+}
+
+.row {
+  margin: 10px 0;
+}
+
+.btn-row {
+  display: flex;
+}
+
+.btn-row > button {
+  height: 30px;
+  margin: 0 5px;
+  flex-grow: 1;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#calcResult1, #calcResult2 {
+  font-style: italic;
+  color: red;
+}
+
+.btn2 > button{
+  font-size: 10px;
+  letter-spacing: -1px; /* 자간 설정 */
+}

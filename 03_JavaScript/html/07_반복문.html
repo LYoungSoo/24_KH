@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07_반복문</title>
+  <!-- <link rel="stylesheet" href="../css/"> -->
+</head>
+
+<body>
+  <h1>for문</h1>
+  <pre>
+    - 프로그램의 흐름을 제어하는 제어문 중 하나로
+    특정 코드를 반복할 때 사용하는 구문
+
+    - 끝이 정해져 있는 반복에서 주로 사용
+    (ex. 몇 번만 반복)
+
+
+    [작성법]
+
+    
+    for([1]초기식 ; [2]조건식 ; [4]증감식){
+
+      [3]조건식이 true인 경우 반복 수행할 코드;
+    }
+
+    // 1~4 까지 1회 반복 후, 2 ~ 4 계속 반복
+    // 조건식이 false가 되면 바로 종료
+
+
+    초기식 : for문을 제어하는 용도의 변수 선언
+
+    조건식 : for문의 반복 여부를 지정하는 식
+
+          - true 일 때 반복, false일 때 반복 종료
+
+          - 보통 초기식에 사용된 변수를 이용해서 조건식을 작성
+
+    증감식 : 초기식에 사용된 값을 변환 시키는 식
+          -> 변환된 초기식에 의해서 조건식의 결과가 달라지게 한다
+  </pre>
+  <h4>12345 출력하기</h4>
+  <button onclick="check1()">확인 1</button>
+
+  <h4>1부터 10까지 1씩 증가하며 출력하기</h4>
+  <button onclick="check2()">확인 2</button>
+
+  <h4>5부터 13까지 1씩 증가하며 출력하기</h4>
+  <button onclick="check3()">확인 3</button>
+
+  <h4>1부터 5까지 1씩 증가한 숫자를 한 줄로 출력하기</h4>
+  <button onclick="check4()">확인 4</button>
+
+  <h4>1부터 10까지 1씩 증가한 숫자들의 합을 출력하기</h4>
+  <button onclick="check5()">확인 5</button>
+
+  <h4>1부터 10까지 2씩 증가한 숫자들의 합을 출력하기</h4>
+  <button onclick="check6()">확인 6</button>
+
+  <h4>3부터 30까지 3의 배수만 출력하기</h4>
+  <button onclick="check7()">확인 7</button>
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/07_반복문.js"></script>
+</body>
+
+</html>
