@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10_배열</title>
+  <!-- <link rel="stylesheet" href="../css/10_배열.css"> -->
+  <style>
+    .result6 {
+      width: 300px;
+      height: 60px;
+      border: 3px solid red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>배열(Array)</h1>
+  <pre>
+    - 변수를 묶음으로 다루는 것
+    
+    - JS 배열의 특징
+    1. 자료형의 제한 X (여러 자료형을 저장할 수 있다, 하지만 보통 한가지로 통일)
+    2. 길이 제한 X (자동으로 배열의 길이가 늘었다, 줄었다 함 - 가변 배열이랑 다른 느낌인듯)
+        * 변수 : 메모리상에 값을 저장하는 공간 (한 가지 자료형, 하나의 값)
+
+    [JS 배열 선언 방법]
+
+      a) const arr = new Array();    // 완전 자바 아닌가 이거
+                      ==> 0칸 짜리 배열을 새롭게 생성
+                    * new 연산자 : 새로운 객체를 생성하겠다
+      b) const arr = new Array(3);
+                      ==> 3칸 짜리 배열을 새롭게 생성하겠다
+                      // 생성된 각 칸은 처음에는 비어있음(empty)
+      c) const arr = [];
+                      ==> 0칸 짜리 배열 생성
+                      * [] : 배열 기호
+      d) const arr = [값1, 값2, 값3];
+                      ==> 3칸 짜리 배열을 생성하고, 각 칸에 지정된 값을 저장
+                      * 변수의 초기화
+                      - 처음으로 값을 대입함.
+
+    3. 배열의 각 요소를 구분하기 위해 index를 이용함
+        * index (색인) : 각 요소를 구분하는 번호, 0부터 시작 
+        * 배열 요소 : 배열 내 한 칸을 의미
+  </pre>
+
+  <button onclick="check1()">배열 선언 및 기초 사용법</button>
+
+  <hr>
+
+  <h2>배열 X for문</h2>
+  <pre>
+    - 배열에 저장된 요소는 index를 이용해서 다루게 됨
+    - index는 0부터 시작해서 배열 길이 -1 까지 1씩 증가하는 규칙성을 보임
+    - index 값을 증가시켜 배열 내 모든 요소를 접근하는 방법으로 for문을 활용하는 것이 가장 효율적
+  </pre>
+  <button onclick="check2()">배열 X for문 확인1</button>
+
+  <button onclick="check3()">배열 X for문 확인2</button>
+
+  <button onclick="check4()">배열 X for문 확인3</button>
+
+  <button onclick="check5()">배열 X for문 확인4</button>
+
+  <hr>
+
+  <h3>로또 번호 생성기</h3>
+  <button onclick="check6()">번호 생성</button>
+  <p id="result6" class="result6"></p>
+
+  <hr>
+
+  <h2>점심 메뉴 뽑기</h2>
+  <div>
+    <h3>
+      오늘의 점심 : <span id="menuResult" class="result6" style="border: 3px solid green;"></span>
+    </h3>
+    <button onclick="selectMenu()">점심 메뉴</button>
+  </div>
+
+  <hr>
+
+  <h1>2차원 배열(n차원 배열)</h1>
+  <pre>
+    - 1차원 배열 : 변수를 묶음으로 다루는 것
+    ex) const arr = [1,2,3,4];
+
+    - 2차원 배열 : 1차원 배열을 묶음으로 다루는 것
+    ex) const arr = [
+                      [1,2,3],
+                      [4,5,6],
+                      [7,8,9],
+                      [10,11]
+                    ];
+    2차원 배열에서 index 1개만 작성 시 ==> arr[0], arr[1], arr[2]; ==> 해당 index의 1차원 배열 1개(행,전쳬)를 선택
+    
+    2차원 배열에서 index 2개 작성 시 ==> arr[0][0] , arr[0][1] ==> 해당 첫 번째 index의 1차원 배열에서 두번째 index 요소 선택(열 선택) 
+  </pre>
+  <button onclick="check7()">2차원 배열 확인 1</button>
+  
+  <button onclick="check8()">2차원 배열 확인 2</button>
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/10_배열.js"></script>
+</body>
+
+</html>

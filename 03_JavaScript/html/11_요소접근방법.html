@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11_요소 접근 방법</title>
+  <link rel="stylesheet" href="../css/11_요소접근방법.css">
+</head>
+
+<body>
+  <h1>DOM(Document Object Model)</h1>
+  <pre>
+    - HTML 문서를 객체 기반 형식으로 표현한 것
+    ==> HTML 문서에 작성된 내용을 트리 구조(계층형 구조)로 나타낸 객체
+
+    document == HTML 문서
+    document :  {
+      DOCTYPE : html, 
+      HTML    : {
+        Head  : {
+          TITLE : { TEXT : "제목" },
+          LINK  : { rel : "stylesheet", src : "경로"}
+        },
+        BODY : {
+          H1 : { id: "id1", class : "test1", TEXT : "제목"};
+        }
+      }
+    }
+  </pre>
+
+  <hr>
+
+  <h1>DOM을 이용한 요소 접근 방법</h1>
+  <pre>
+    1. id로 접근하기 : document.getElementById("id속성값");
+        ==> 아이디가 일치하는 요소(객체)를 얻어옴
+
+        * id 속성 : HTML에서 id 속성 값은 중복 X ==> 값이 하나만 존재 ==> 단수(Element)형태로 작성
+
+        
+    2. class로 접근하기 : document.getElementsByClassName("class속성값"); 
+        ==> 클래스가 일치하는 모든 요소를 얻어와 (유사)배열 형태로 반환  
+        
+
+    3. name으로 접근하기 : document.getElementsByName("name속성값"); 
+        ==> name이 일치하는 모든 요소를 얻어와 배열(NodeList, 유사배열) 형태로 반환  
+
+
+    4. tag로 접근하기 : document.getElementsByTagName("tag명"); 
+        ==> 태그가 일치하는 모든 요소를 얻어와 배열 형태로 반환  
+
+
+    5. CSS 선택자로 접근하기
+        1) document.querySelector("CSS 선택자");
+            ==> 선택자가 선택한 요소 중 첫 번째 요소를 반환
+
+        2) document.querySelectorAll("CSS 선택자");
+            ==> 선택한 요소 모두를 배열(NodeList, 유사배열) 형태로 반환
+  </pre>
+
+  <hr>
+
+  <h3>class를 이용한 요소(DOM 객체) 접근 방법</h3>
+  <button onclick="classTest()">배경색 변경</button>
+
+  <div class="cls-test">green</div>
+  <div class="cls-test">yellow</div>
+  <div class="cls-test">red</div>
+  <div class="cls-test">blue</div>
+  <div class="cls-test">pink</div>
+  <div class="cls-test">black</div>
+  <div class="cls-test">gold</div>
+
+  <hr>
+
+  <h3>input에 입력된 숫자 모두 얻어와 합계 구하기</h3>
+  <div class="flex-container direction-column">
+    <input type="number" class="cls-test2">
+    <input type="number" class="cls-test2">
+    <input type="number" class="cls-test2">
+    <input type="number" class="cls-test2">
+    <input type="number" class="cls-test2">
+    <input type="number" class="cls-test2">
+    <input type="number" class="cls-test2">
+    <button onclick="classTest2()">합계 구하기</button>
+  </div>
+
+  <hr>
+
+  <h1>태그명으로 요소 접근하기</h1>
+  <ul>
+    <li>red</li>
+    <li>orange</li>
+    <li>yellow</li>
+    <li>green</li>
+    <li>blue</li>
+    <li>navy</li>
+    <li>purple</li>
+  </ul>
+  <button onclick="tagNameTest()">태그명 접근</button>
+
+  <hr>
+  <h1>name으로 요소 접근하기</h1>
+  <pre>
+    - name 속성은 input 또는 input 관련 요소(select, textarea)만 기본 속성으로 가지고 있음
+    * input 요소를 한 번에 접근하는 용도
+  </pre>
+
+  <table>
+    <tr>
+      <td>
+        <input type="checkbox" name="hobby" id="game" value="게임">
+        <label for="game">게임</label>
+      </td>
+      <td>
+        <input type="checkbox" name="hobby" id="music" value="음악감상">
+        <label for="music">음악감상</label>
+      </td>
+      <td>
+        <input type="checkbox" name="hobby" id="movie" value="영화감상">
+        <label for="movie">영화감상</label>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <input type="checkbox" name="hobby" id="coding" value="코딩">
+        <label for="coding">코딩</label>
+      </td>
+      <td>
+        <input type="checkbox" name="hobby" id="exercise" value="운동">
+        <label for="exercise">운동</label>
+      </td>
+      <td>
+        <input type="checkbox" name="hobby" id="book" value="독서">
+        <label for="book">독서</label>
+      </td>
+    </tr>
+  </table>
+
+  <!-- 선택된 취미만 출력 -->
+  <div class="name-div"></div>
+  <button onclick="nameTest()">선택된 취미만 출력</button>
+
+  <hr>
+
+  <h1>CSS 선택자를 이용한 요소 접근방법</h1>
+
+  <!-- target-div  속성은 만들어낸 속성(기본 속성 X) -->
+   <div target-div="css-div">
+    <div>red</div>
+    <div>blue</div>
+   </div>
+
+  <button onclick="cssTest1()">css 선택자로 요소 접근</button>
+
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/11_요소접근방법.js"></script>
+</body>
+
+</html>
