@@ -1,7 +1,7 @@
 .cls-test {
   width: 400px;
   height: 50px;
-  border : 1px solid black;
+  border: 1px solid black;
 }
 
 .flex-container {
@@ -13,8 +13,80 @@
   flex-direction: column;
 }
 
-.name-div{
+.name-div {
   width: 300px;
   height: 100px;
   border: 1px solid black;
+}
+
+/* 카카오톡 모양 만들기 */
+/* 채팅 관련 모든 요소 */
+.chatting,
+.chatting * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* 채팅 전체를 감싸는 요소 */
+.chatting {
+  width: 360px;
+  border: 1px solid black;
+  margin: 50px 20px;
+}
+
+/* 채팅 출력 화면 */
+#chattingBackground {
+  width: 100%;
+  height: 400px;
+
+  /*
+    색상 작성법
+    1) 색상 영문
+    2) #fff, #ffffff #ffffffff 16진수
+    3) rgb(0,0,0), rgba(0,0,0,0)
+    4) hsl(0,0,0) (명도 채도 밝기)
+  */
+  background-color: rgb(178, 199, 217);
+
+  /* overflow : 내부 내용이 감싸는 요소를 넘칠 때에 대한 속성
+      - auto : 넘치기 전 ==> 스크롤 X / 넘친 후 ==> 스크롤 생성
+      - hidden : 넘친 부분을 숨김
+  */
+  overflow: auto;
+
+  /* 입력하면 스크롤이 아래로 내려갔으면 좋겠다! */
+}
+
+/* 채팅 내용 */
+#chattingBackground>p {
+  margin: 0 10px 20px;
+  padding: 5px;
+  text-align: right;
+}
+
+#chattingBackground>p>span {
+  background-color: rgb(254, 234, 51);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* 입력 부분 */
+#chattingInput {
+  width: 100%;
+  height: 22px;
+  display: flex;
+}
+
+#chattingInput>input {
+  height: 100%;
+  flex-grow: 1;
+  outline: none;
+  padding-left: 5px;
+}
+
+#chattingInput>button {
+  height: 100%;
+  width: 10%;
+
 }

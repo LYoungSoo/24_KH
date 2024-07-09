@@ -107,13 +107,13 @@ function cssTest1() {
   container.style.border = "10px solid orange";
 
   const divs = document.querySelectorAll('[target-div = css-div] > div');
-  for(let i = 0; i<divs.length; i++) {
+  for (let i = 0; i < divs.length; i++) {
     divs[i].style.height = "50%";
 
     //가운데 정렬
-    divs[i].style.display="flex"; 
-    divs[i].style.justifyContent = "center"; 
-    divs[i].style.alignItems = "center"; 
+    divs[i].style.display = "flex";
+    divs[i].style.justifyContent = "center";
+    divs[i].style.alignItems = "center";
   }
 
   // index별로 배경색 따로 지정
@@ -127,3 +127,48 @@ function cssTest1() {
 
   console.log(container.innerText);
 }
+
+/* 카카오톡 채팅 만들기 */
+function readValue() {
+  /* 채팅이 출력되는 화면 */
+  const bg = document.querySelector("#chattingBackground");
+
+  /* 채팅이 입력되는 input */
+  const input = document.querySelector("#userInput");
+
+  /*
+    입력된 값이 없을 경우
+    1) 진짜 작성 X
+    2) 작성된 내용이 모두 공백문자(띄어쓰기, 탭, 엔터)(whiteSpace)
+    
+    문자열.trim() : 문자열 좌우 공백을 제거 (중간 공백에는 적용 X)
+    // document.querySelector("#userInput").value.trim();
+    // trim() : 문자열 양 끝의 공백을 제거해주는 JS 제공 함수
+  */
+  if (input.value.trim().length === 0) {
+    alert("채팅 내용을 입력해 주세요");
+    input.value = ''; // 입력된 공백 제거(입력된 값 모두 제거)
+    return; // 함수를 "즉시 종료" 하고 호출한 곳으로 돌아감
+  }
+
+  /* 입력된 값을 읽어와 채팅 화면에 누적 */
+  bg.innerHTML += `<p><span>${input.value}</span></p>`
+  input.value = ''; // 이전 입력 내용 제거
+  input.focus();    // input에 다시 포커스 맞춤(커서 활성화)
+
+  // bg.scrollHeight : 스크롤되어 가려진 부분까지 포함한 전체 높이
+  // bg.scrollTop : 스크롤 위쪽 부분의 현재 위치(스크롤의 top이 위치한 부분)
+  // bg.scrollTop = 값 : 스크롤 위쪽 부분을 "값" 부분으로 이동 (값이 스크롤 높이를 초과하면 제일 아래로 이동)
+
+  // 채팅 화면 제일 아래로 스크롤 이동 (스크롤 현재높이 값 = 스크롤 전체 높이값 ==> 스크롤이 맨 아래로 내려감)
+  bg.scrollTop = bg.scrollHeight;
+}
+
+/*
+  #userInput에서 키보드로 값 입력 중 "Enter" 입력이 감지되는 경우 readValue() 함수 호출
+*/
+document.querySelector("#userInput").addEventListener("keydown",function(e){
+  if(e.key === "Enter") {
+    readValue(); // 함수 호출
+  }
+});

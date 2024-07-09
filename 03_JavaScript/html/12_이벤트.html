@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12_이벤트</title>
+  <link rel="stylesheet" href="../css/12_이벤트.css">
+</head>
+<body>
+
+  <h1>이벤트(Event)</h1>
+  <pre>
+    * Event 뜻 : 행동, 동작, 행위, 행사 ==> 브라우저에서 할 수 있는 동작
+    ex) click, keydown, keypress, keyup, mouseover(hover), mouseon, mouseout, mouseleave,
+        change, drag, submit, focus, blur, ...
+        <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">
+HTML 이벤트 종류 참고</a>
+    
+    * 이벤트 리스너 (Event Listener)  // Listener : 감지기
+      - 브라우저에서 발생하는 이벤트를 감지
+      - 이벤트가 감지될 때 까지 대기
+      - 이벤트가 감지 되었을 때 연결된 기능(함수)를 수행
+      - 이벤트 리스너 작성법
+        1) on이벤트명
+            ex) onclick, onchange, onsubmit, onkeydown, ...
+
+        2) 요소.addEventListener("이벤트명", 함수);
+
+    * 이벤트 핸들러 (Event Handler)   // Handler : 처리기
+      - 이벤트 리스너에 연결된 기능(함수)
+      - 이벤트가 감지 되었을 때 수행하거나 처리하는 내용을 작성한 함수
+  </pre>
+
+  <hr>
+
+  <h3>인라인 이벤트 모델(Inline)</h3>
+  <pre>
+    HTML 요소에 직접 이벤트 리스너 = "이벤트 핸들러" 형식으로 작성하는 방법 (지금까지 했던 방식)
+    * 최근 많이 사용 X , 종종 사용 O (지양)
+
+    * 인라인 이벤트 모델 작성 시 이벤트 핸들러 () 안에 this를 작성하면 이벤트가 발생한 요소를 나타낸다!
+      ex) onclick = testFn(this)  / this == 클릭된 요소
+  </pre>
+  <div class="my-btn1" onclick="check1(this)">
+    인라인 이벤트 모델 확인
+  </div>
+
+  <hr>
+
+  <h3>고전 이벤트 모델</h3>
+  <pre>
+    - HTML 요소 이벤트 관련 코드를 직접 작성하지 않고 JS에서 DOM을 이용해 원하는 이벤트 리스너 / 핸들러를 직접 작성하는 방법
+    
+    *단점 : 하나의 요소에 동일한 이벤트 리스터/핸들러 작성 불가능(마지막 작성한 이벤트 리스터/핸들러 코드가 적용)(덮어쓰기)
+  </pre>
+
+  <button id="test1a">고전 이벤트 모델 확인</button>
+  <button id="test1b">고전 이벤트 모델 제거</button>
+  <button id="test1c">고전 이벤트 모델 단점 확인</button>
+
+  <hr>
+
+  <h1>표준 이벤트 모델( 요소.addEventListener() )</h1>
+  <pre>
+    - W3C (웹 표준 재정 단체) 에서 공식적으로 지정한 이벤트 모델 (이게 표준이야!)
+    - 고전 이벤트 모델의 단점인 한 요소에 같은 이벤트 리스너 / 핸들러 작성 1개 만 되는 것을 해결!
+  </pre>
+  <h3>클릭할수록 투명도 + 클릭 횟수 증가</h3>
+  <div id="test2">0</div>
+
+  <hr>
+
+  <h3>클릭한 버튼에 작성된 색으로 배경색 변경하기</h3>
+  <pre>
+    배열 + 요소 접근 방법 + 표준 이벤트 모델 예시
+  </pre>
+
+  <div class="test3">
+    <!-- 배경색이 변할 영역 -->
+    <div id="result3"></div>
+    <div class="btn-container3">
+      <button>red</button>
+      <button>orange</button>
+      <button>yellow</button>
+      <button>green</button>
+      <button>lightseagreen</button>
+      <button>cyan</button>
+      <button>blue</button>
+      <button>navy</button>
+      <button>purple</button>
+      <button>magenta</button>
+      <button>white</button>
+      <button>lightgray</button>
+      <button>darkgray</button>
+      <button>gray</button>
+      <button>black</button>
+    </div>
+  </div>
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/12_이벤트.js"></script>
+</body>
+</html>

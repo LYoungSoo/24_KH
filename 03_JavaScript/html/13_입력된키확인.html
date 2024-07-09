@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>13_입력된 키 확인</title>
+  <link rel="stylesheet" href="../css/13_입력된키확인.css">
+</head>
+
+<body>
+  <img src="../images/cursor.gif" id="cursorImage">
+
+  <!-- 입력된 키(QWER) 확인 -->
+   <div class="container">
+    <div class="block">Q</div>
+    <div class="block">W</div>
+    <div class="block" style="background-image: url(../images/dogs/dog2.jpg);">E</div>
+    <div class="block">R</div>
+   </div>
+
+   <hr>
+
+   <pre>
+    - keydown 이벤트  ==> key가 내려갈 때, 내려가 있을 때
+    - keyup 이벤트    ==> key가 올라왔을 때 (1회), 눌림이 끝났을 때.
+    - keypress 이벤트 ==> key를 눌러서 값이 입력되었을 때 (shift에 반응 없음. 입력된 '값'은 없기때문)
+
+    - 요소.addEventListener("keydown", function(e) {
+
+        // 매개 변수 e : 이벤트 객체
+        // - 수행된 이벤트와 관련된 모든 정보를 가지고 있음
+        // e.key : 어떤 key가 down / up 되었는지 반환
+      });   // 뒤에 ; 잊지말것. 중괄호로 끝나는게 아니라 소괄호로 끝나기 때문.
+
+      - document.addEventListener("keydown", function(e) {})
+   </pre>
+
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/13_입력된키확인..js"></script>
+</body>
+
+</html>
