@@ -1,13 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>집에 가고 싶어요</title>
   <link rel="stylesheet" href="./UI구현.css">
 </head>
+
 <body>
+  <h1>UI구현_이영수</h1>
+
+  <header id="container">
+    <!-- 상단 6개 -->
+    <!-- 1줄 -->
+    <div class="row">
+      <div class="row top">
+        <div class="property">너비 : </div>
+        <div class="value">
+          <input type="number" class="number" id="b_width">&nbsp px
+        </div>
+      </div>
+      <div class="row top">
+        <div class="property">높이 : </div>
+        <div class="value">
+          <input type="number" class="number" id="b_height">&nbsp px
+        </div>
+      </div>
+    </div>
+    <!-- 2줄 -->
+    <div class="row">
+      <div class="row top">
+        <div class="property">글자 크기 : </div>
+        <div class="value">
+          <input type="number" class="number" id="b_fontSize">&nbsp px
+        </div>
+      </div>
+      <div class="row top">
+        <div class="property">글자 굵기 : </div>
+        <div class="value">
+          <div class="radiocheck">
+            보통 <input type="radio" name="fWeight" value="normal" checked="checked">
+          </div>
+          <div class="radiocheck">
+            굵게 <input type="radio" name="fWeight" value="bold">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 3줄 -->
+    <div class="row">
+      <div class="row top">
+        <div class="property">글자색 : </div>
+        <div class="value">
+          <input type="text" id="fColor">
+        </div>
+      </div>
+      <div class="row top">
+        <div class="property">배경색 : </div>
+        <div class="value">
+          <input type="text" id="BGC">
+        </div>
+      </div>
+    </div>
+
+    <!-- 하단 3개 (가로정렬 세로정렬 출력문자열) -->
+    <!-- 1줄 -->
+    <div class="row">
+      <div class="property">가로 정렬 : </div>
+      <div class="value">
+        <div class="radiocheck">
+          왼쪽 <input type="radio" name="f_justify" value="flex-start" checked="checked">
+        </div>
+        <div class="radiocheck">
+          가운데 <input type="radio" name="f_justify" value="center">
+        </div>
+        <div class="radiocheck">
+          오른쪽 <input type="radio" name="f_justify" value="flex-end">
+        </div>
+      </div>
+    </div>
+
+    <!-- 2줄 -->
+    <div class="row">
+      <div class="property">세로 정렬 : </div>
+      <div class="value">
+        <div class="radiocheck">
+          위 <input type="radio" name="f_align" value="flex-start" checked="checked">
+        </div>
+        <div class="radiocheck">
+          가운데 <input type="radio" name="f_align" value="center">
+        </div>
+        <div class="radiocheck">
+          아래 <input type="radio" name="f_align" value="flex-end">
+        </div>
+      </div>
+    </div>
+
+    <!-- 3줄 -->
+    <div class="row">
+      <div class="property">출력 문자열</div>
+      <div class="value">
+        <input type="text" id="input_string" style="flex-grow: 1;">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="submit">
+      <button id="complete">적용하기</button>
+    </div>
+  </main>
+  <br><br><br>
+
+  <footer>
+    <div id="finish">
+    </div>
+  </footer>
 
   <script src="UI구현.js"></script>
 </body>
+
 </html>

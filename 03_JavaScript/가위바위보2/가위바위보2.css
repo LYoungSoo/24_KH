@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+h4 {
+  text-align: center;
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.container {
+  width: 810px;
+  height: 500px;
+  display: flex;
+  border: 1px solid black;
+}
+
+.container > * {
+  border: 1px dotted black;
+}
+
+.gameboard {
+  flex-grow: 1;
+  border-right: 1px solid black;
+  padding: 5px 20px;
+}
+
+.scoreboard {
+  width: 210px;
+  padding-right: 5px;
+  margin-left: 5px;
+  position: relative;
+  overflow: auto;
+}
+
+.score {
+  height: 20px;
+}
+
+.result-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+  position: sticky;
+  top: 0;
+}
+
+.win {
+  color: green;
+}
+
+.lose {
+  color: red;
+}
+
+.draw {
+  color: blue;
+}
+
+.scoreboard span {
+  width: 50px;
+  font-weight: bold;
+  padding:0 10px;
+  text-align: center;
+}
+
+li {
+  display: flex;
+  width: 100%;
+}

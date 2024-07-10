@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="가위바위보.css">
+</head>
+
+<body>
+
+	<main class="container">
+
+		<section class="game-board">
+
+			<div class="row box-row">
+
+				<div class="user-container">
+					<h3>USER</h3>
+					
+					<div class="box">
+						<img src="images/가위L.png" id="user">
+					</div>
+
+					<div class="btn-container user-btn">
+						<button class="btn">가위</button>
+						<button class="btn">바위</button>
+						<button class="btn">보</button>
+					</div>
+				</div>
+
+				<div class="vs">VS</div>
+
+				<div class="com-container">
+					<h3>COM</h3>
+
+					<div class="box">
+						<img src="images/가위R.png" id="com">
+					</div>
+
+					<div class="btn-container">
+						<button class="btn" id="startBtn">GAME START</button>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<section class="result-board">
+			<h4>USER  VS  COM</h4>
+
+			<table class="result-table" border="1">
+				<thead>
+					<tr>
+						 <th>승</th>
+						 <th>무</th>
+						 <th>패</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id="score">
+						<th>1</th>
+						<th>1</th>
+						<th>1</th>
+					</tr>
+				</tbody>
+			</table>
+
+			<ul id="gameHistory">
+				<li>
+					 <span class="win">WIN</span>
+					 <span>가위</span> VS <span>보</span>
+				</li>
+				<li>
+					 <span class="lose">LOSE</span>
+					 <span>바위</span> VS <span>보</span>
+				</li>
+				<li>
+					 <span class="draw">DRAW</span>
+					 <span>보</span> VS <span>보</span>
+				</li>
+			</ul>
+
+		</section>
+
+	</main>
+
+
+	<script src="가위바위보.js"></script>
+</body>
+
+</html>
