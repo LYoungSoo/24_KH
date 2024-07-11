@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>17_DOM 요소 생성, 추가, 제거</title>
+  <link rel="stylesheet" href="../css/17_DOM요소 _생성,추가,제거.css">
+</head>
+
+<body>
+  <h1>DOM 요소 생성 / 추가 / 제거</h1>
+  <pre>
+    [생성]
+    1) document.createTextNode("내용")    ==> TEXT 노드 생성
+    2) document.createElement("태그명")   ==> HTML 요소 생성
+
+    * 노드/요소가 생성만 된 것이지 아직 화면(document)에 추가된 것은 아님!!!
+
+    [추가]
+    1) 요소.appendChild(노드/요소) ==> 요소 내부에 마지막 자식 노드/요소로 추가
+    2) 요소.append(요소 [,요소2, 요소3, ...]) ==> 지정된 요소 내부에 () 내 요소를 마지막 자식으로 순서대로 추가
+    3) 요소.prepend(요소 [,요소2, 요소3, ...]) ==> 지정된 요소 내부에 () 내 요소를 첫 번째 자식으로 순서대로 추가
+    4) 요소.before(요소)  ==> 지정된 요소의 이전 형제(앞에) 추가
+    5) 요소.after(요소)   ==> 지정된 요소의 다음 형제(뒤에) 추가
+
+    [제거]
+    요소.remove() ==> 지정된 요소를 제거
+  </pre>
+
+  <div class="container">
+    <div id="standard" class="box" style="background-color: yellow;"></div>
+  </div>
+  <button class="btn">prepend</button>
+  <button class="btn">append</button>
+  <button class="btn">before</button>
+  <button class="btn">after</button>
+  <button class="btn">remove</button>
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/17_DOM요소 _생성,추가,제거.js"></script>
+</body>
+
+</html>

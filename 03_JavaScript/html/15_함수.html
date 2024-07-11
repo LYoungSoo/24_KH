@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15_함수</title>
+  <link rel="stylesheet" href="../css/15_함수.css">
+</head>
+
+<body>
+
+  <h1>함수(Function === 기능)</h1>
+  <pre>
+    - 목표하는 결과를 만들기 위한 코드의 묶음
+
+    - 코드를 {}(블록)으로 묶어서 작성하고 붙여진 이름을 호출해서 사용
+
+    [함수 기본 사용법]
+    
+        // [] : 생략 가능
+        // ... : n개 작성 가능(여러 개)
+    
+     function 함수명([매개변수, ...] ) {  // 함수 선언
+      // 함수 정의
+     }
+
+     함수명( [전달 인자, ...] ); // 함수 호출
+  </pre>
+
+  <hr>
+
+  <h1>매개 변수(Parameter), 전달 인자(Argument)</h1>
+  <pre>
+    * 매개 변수(Parameter)
+      - 함수 "선언" 시 () 안에 작성되는 변수
+      - 함수를 호출할 때 전달되는 값(전달 인자)를 저장하기 위한 변수
+      - 매개 변수는 함수의 지역 변수로 사용됨
+    
+    * 전달 인자(Argument)
+      - 함수 "호출" 시 () 안에 작성되는 값
+      - 작성된 값을 함수의 매개 변수로 전달됨. /// 값을 전달함? 값을 전달받음? 값이 전달됨?
+  </pre>
+  <input type="number" id="input1">
+  <button id="btn1">매개 변수, 전달 인자 확인</button>
+
+  <hr>
+
+  <h4>입력 받은 수 3개 합계 구하기</h4>
+  입력 1 : <input type="number" class="input2"> <br>
+  입력 2 : <input type="number" class="input2"> <br>
+  입력 3 : <input type="number" class="input2"> <br>
+  <button id="btn2">합계 구하기1</button>
+  <button id="btn3">합계 구하기2(배열)</button>
+
+  <hr>
+  <hr>
+
+  <h1>return (반환)</h1>
+
+  <pre>
+    - 함수 내에 작성하는 명령어
+    - 현재 수행 중인 함수를 종료하고 호출한 곳으로 돌아가라!
+      - return;    ==> 함수 종료, 호출한 곳으로 돌아감
+      - return 값; ==> 함수 종료, 호출한 곳으로 값을 가지고 돌아감
+
+    (참고)
+     함수 정의 시 return을 작성하지 않으면 코드 해석 시 자동으로 함수 끝에 return 구문이 추가된다.
+  </pre>
+
+  <button id="btn4">return 확인하기1</button>
+
+  <button id="btn5">return 확인하기2</button>
+
+  <hr><hr><hr>
+  
+  <h1>익명 함수(이름이 없는 함수)</h1>
+  <pre>
+    [작성법]
+
+    function ([매개변수]){ // 함수 선언
+      // 함수 정의
+    }
+    - 이름이 없는 함수 형태
+    - 이름(함수명)이 존재하지 않아서 필요한 곳에서도 별도 호출 불가
+    * 익명 함수는 정의 되자 마자 실행 또는 변수에 대입, 매개변수, 이벤트 핸들러 같은 곳에서 사용됨
+  </pre>
+
+  <button id="btn6">익명 함수 확인</button>
+
+  <button id="btn7">매개 변수/return으로 익명 함수 전달하기</button>
+
+  <hr>
+
+  <h1 style="color:red">화살표 함수(Arrow Function)</h1>
+  <pre>
+    - 익명 함수의 한 종류
+    - 익명 함수를 간단히 표기하는 방법 (ES6)
+
+    익명 함수 :  function(){}
+
+
+    1. 기본 형태 :  () => {}
+
+
+    <!-- 매개변수 1개면 () 생략 가능!! -->
+    2. 매개변수 1개 :  (e) => {}  또는  
+                        e  => {}  // () 생략
+
+
+    3. 매개변수 n개 :  (a,b,c) => {}   //  () 생략 불가
+
+
+    4. 함수 정의 부분에 return 한 줄만 있을 경우 :
+
+      1) 익명 함수 :               function(){ return 1 + 2; }
+
+      2) 화살표 함수(기본) :       () => { return 1 + 2; }
+       
+      3) 화살표 함수(return 한줄) : () => 1 + 2
+                                    // {return} 생략
+
+
+    5. 함수 정의 부분에 return 한 줄만 있는데
+      return하는 값이 object(객체, 배열 등) 인 경우
+      {return} 생략 불가!!!
+
+      () => { return {name:"홍길동", age:20}; }
+  </pre>
+
+  <button class="arrow">화살표 함수 기본 형태</button>
+  <button class="arrow">매개 변수가 1개인 경우</button>
+  <button class="arrow">한 줄만 작성된 경우</button>
+  <button class="arrow">object를 return할 경우</button>
+ 
+  <hr>
+
+  <h1>즉시 실행 함수</h1>
+  <pre>
+    - 익명함수가 정의되자마자 실행하게 하는 함수
+
+    [작성법]
+    function(){}   ==>   () => {}   ==>   ( () => {} )()
+    ( () => {} )  ()
+      함수정의 / 함수실행
+    
+    - 사용 이유
+    1) 성능(속도)적 우위를 가지기 위해서
+    2) 변수명 중복 문제 해결 (함수 내 변수 == 지역 변수)
+  </pre>
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/15_함수.js"></script>
+</body>
+
+</html>
