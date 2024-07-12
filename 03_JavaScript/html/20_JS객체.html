@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20_JS 객체</title>
+  <link rel="stylesheet" href="../css/20_JS객체.css">
+</head>
+
+<body>
+  <h1>객체(Object)</h1>
+  <pre>
+    - 속성과 기능으로 이루어진 것
+      ==> 속성 == 필드 (변수)
+      ==> 기능 == 메서드 (함수)
+    
+    - {} (블록) 내에 Key : Value 가 모여있는 형태
+      ==> Key = 필드명/메서드명 (중복X)
+      ==> Value == 값 / 함수
+
+    - { K:V, K:V, K:V,... }
+    
+    [JS 객체 생성 방법]
+    1. {} : JS 객체의 리터럴 표기법을 이용한 생성
+
+    2. 생성자 함수 : 생성자 + new 연산자를 이용한 생성
+    
+    * 리터럴(Literal) == 값
+    - 각 자료형 별 리터럴(값) 표기법이 존재함
+
+    ex)
+    문자열 (string) ==> "", ''
+    숫자 (number)   ==> 3, -3, 0, 1.23
+    논리 (boolean)  ==> true, false
+    배열 (array)    ==> []
+    객체 (object)   ==> {}
+  </pre>
+
+  <button id="btn1">JS객체 생성 + 다루기</button>
+  <button id="btn2">메서드() 확인</button>
+
+  <hr>
+
+  <h1>생성사(constrictor) 함수</h1>
+
+  <pre>
+    * 생성자란??
+    - 객체 생성 시 수행되는 기능(함수)
+    - 생성자 수행 시, 생성자에 정의된 내용(필드, 메서드) 대로 객체가 생성됨
+      (생성자 == 객체를 만들기 위한 설계도)
+    - 하나의 생성자로 같은 형태의 객체를 다수 생성할 수 있음(코드 재사용성 증가)
+
+    [작성법]
+
+    function 객체명( [매개변수] ) {
+      this.필드명   = 값;
+      this.필드명   = 값;
+      this.메서드명 = function(){};
+    //  . (key)   =  (Value)
+    }
+
+    - 객체 명은 반드시 대문자로 시작!! (ex : Person)
+    - 필드명 / 메서드명 == key
+    - 값 / function() {} == value
+
+    [사용법]
+    const 객체명 = new 생성자명([매개변수]);
+    const 객체명 = new 생성자명([매개변수]);
+
+    - new 연산자 : (메모리에) 새로운 객체를 생성
+  </pre>
+
+  <h4>학생 기록부</h4>
+  <!-- 이름, 학년, 반, 번호 -->
+  학년 : <input type="number" id="inputGrade"><br>
+  반 &nbsp;&nbsp; : <input type="number" id="inputBan"><br>
+  번호 : <input type="number" id="inputNumber"><br>
+  이름 : <input type="text" id="inputName"><br>
+
+  <button id="addStudent">추가</button>
+  <button id="printStudent">현재 학생 목록 출력</button>
+
+  <ul id="result"></ul>
+
+  <hr>
+
+  <h1>JSON</h1>
+  <pre>
+    - JavaScript Object Notation (자바스크립트 객체 표기법)
+    - 자바스크립트 객체 모양으로 작성된 문자열(string)
+      ==> string은 모든 언어에서 공통적으로 지원하는 데이터 타입
+      ==> 다른 프로그램과 데이터 교환 시 string을 주로 이용
+        ===> 다량의 데이터를 가볍고 간단히 작성할 수 있는 string 모양으로 JS 객체를 활용
+
+    JS 객체     :  {"memberId":"user01","memberPw":"pass01","age":20}
+    JSON 문자열 : '{"memberId":"user01","memberPw":"pass01","age":20}'
+
+    - 간단한 포멧
+      괄호 {} 내에 key:value 쌍으로 구성 {"key" : value }
+      key   : 반드시 문자열 사용 (쌍 따옴표("") 표기 필수)
+      value : String, Number, Boolean, Array, Object, null 데이터 저장
+
+    - 객체{} 또는 배열[] 데이터를 효율적으로 표시 가능
+    - 경량 데이터 교환 방식
+    - 간단한 포멧을 가지고 있어 이해하기 쉬움
+    - 순수 TEXT 기반
+      구조화된 TEXT 형식
+      대부분의 프로그래밍 언어에서 JSON 포멧 데이터를 핸들링 할 수 있는 라이브러리를 제공
+      시스템간 객체 교환에 용이
+
+      ex) Java To C ==> Java to JSON & JSON to C
+          Phython To C# ==> Phython to JSON & JSON to C#
+          뭐 이런느낌인건가?
+  </pre>
+
+  <h3>JS가 제공하는 JSON 전용 내장 객체</h3>
+  <pre>
+    - 객체명 : JSON
+    - JSON.stringify (JS객체)   : JS객체 ==> JSON (문자열) 반환
+    - JSON.parse (JSON 문자열)  : JSON (문자열) ==> JS 객체 변환 
+  </pre>
+
+  <button id="checkJSON">JSON 확인</button>
+
+
+
+  <br><br><a href=".">실습폴더 목록</a>
+  <script src="../javascript/20_JS객체.js"></script>
+</body>
+
+</html>
