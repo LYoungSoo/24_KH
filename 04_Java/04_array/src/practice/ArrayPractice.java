@@ -1,5 +1,6 @@
 package practice;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayPractice {
@@ -210,10 +211,10 @@ public class ArrayPractice {
     public void practice8 () {
         int[] arr = new int[10];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random()*10 + 1);
+            arr[i] = (int) (Math.random() * 10 + 1);
         }
         System.out.print("발생한 난수 : ");
-        for(int num : arr) System.out.print(num + " ");
+        for (int num : arr) System.out.print(num + " ");
     }
     
     /**
@@ -223,14 +224,14 @@ public class ArrayPractice {
      */
     public void practice9 () {
         int[] arr = new int[10];
-        int max=1,min=10;   // 배열 첫번째거 넣어도 되는데 코드가 너무 길어지는듯
+        int max = 1, min = 10;   // 배열 첫번째거 넣어도 되는데 코드가 너무 길어지는듯
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random()*10 + 1);
-            if (max<arr[i]) max = arr[i];
-            if (min>arr[i]) min = arr[i];
+            arr[i] = (int) (Math.random() * 10 + 1);
+            if (max < arr[i]) max = arr[i];
+            if (min > arr[i]) min = arr[i];
         }
         System.out.print("발생한 난수 : ");
-        for(int num : arr) System.out.print(num + " ");
+        for (int num : arr) System.out.print(num + " ");
         System.out.println("\n최대값 : " + max);
         System.out.println("최소값 : " + min);
     }
@@ -260,30 +261,58 @@ public class ArrayPractice {
      * (중복 값 없이 오름차순으로 정렬하여 출력하세요.)
      */
     public void practice11 () {
-        int[] arr = new int[10];
+        int[] arr = new int[6];
         boolean check = true;
-        int count = 0;
         for (int i = 0; i < arr.length; i++) {
             do {
                 check = false;
-                arr[i] = (int) (Math.random() * 10 + 1);
+                arr[i] = (int) (Math.random() * 45 + 1);
                 for (int k = 0; k < i; k++) {
                     if (arr[i] == arr[k]) check = true;
                 }
             } while (check);
         }
+        Arrays.sort(arr);
         for (int num : arr) System.out.print(num + " ");
     }
     
     /**
+     * 문자열을 입력 받아 문자열에 어떤 문자가 들어갔는지 배열에 저장하고
+     * 문자의 개수와 함께 출력하세요. (중복 제거)
      *
+     * 문자열 : application
+     * 문자열에 있는 문자 : a, p, l, i, c, t, o, n
+     * 문자 개수 : 8
      */
     public void practice12 () {
+        System.out.print("문자열 : ");
+        String str = sc.next();
+        char[] cha = new char[str.length()];
+
+        int length = 0;
+        boolean check = true;
+        
+        
+        for (int i = 0; i < str.length(); i++) {
+            check = false;
+            for (int k = 0; k < i; k++) {
+                if (str.charAt(i) == str.charAt(k)) check = true;
+            }
+            if (!check) {
+                cha[length] = str.charAt(i);
+                length++;
+            }
+        }
+        System.out.print("문자열에 있는 문자 : ");
+        for (char c : cha) System.out.print(c + " ");
+        System.out.println("\n문자 개수 : " + length);
     }
     
     /**
      *
      */
+    // Arrays.sort(Array, fromIndex, toIndex) :
+    // 이 오버로드된 정렬 방법을 사용하면 fromIndex 및 toIndex 매개 변수로 지정된 배열의 일부만 정렬할 수 있습니다.
     public void practice13 () {
     }
     
