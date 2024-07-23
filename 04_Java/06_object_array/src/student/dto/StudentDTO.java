@@ -22,6 +22,15 @@ public class StudentDTO {
         this.gender = gender;
     }
     
+    // 점수 담는 용도로 객체 생성할 때 사용하는 생성자
+    public StudentDTO(int html, int css, int js, int java) {
+        super();
+        this.html = html;
+        this.css = css;
+        this.js = js;
+        this.java = java;
+    }
+    
     public String getStudentNumber () {
         return studentNumber;
     }
