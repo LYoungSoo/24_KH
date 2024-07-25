@@ -15,11 +15,11 @@ public class Child extends Parent {
         this.car = car;
     }
     
-    public String getCar() {
-        return car;
-    }
+    public String getCar() { return car; }
     
-    public void setCar(String car) {
-        this.car = car;
-    }
+    public void setCar(String car) { this.car = car; }
+    
+    // Parent의 toString() 오버라이딩 하기
+    @Override
+    public String toString() { return "Child : " + getLastName() + " / " + getMoney() + " / " + car; }
 }
