@@ -1,0 +1,35 @@
+물론 오늘 한 예제를 기준으로'만' 작성됨
+안드로이드 하던 때 처럼 막 다룰줄은 알아야지
+
+1. 클래스 선언
+
+    a) Run  : static void main(String[] args)
+            - 지금까지 한 예제들은 mainMenu()에 있는 switch 문을 통해 나머지 메서드를 실행함
+
+    b) View : 사용자에게 보여지는 부분 및 상호작용(출력, 입력)에 필요한 부분 작성
+            - Run에서 호출하기 위한 mainMenu()를 제외한 나머지는
+              모두 private로 작성되어 다른 클래스에 영향을 받지 않게 만듦
+            - Service와 값을 주고받는 정도의 동작만 함
+
+    c) Service  : 기능(비즈니스 로직) 제공을 위한 클래스
+                - 입출력을 제외한 나머지 기능은 대부분 여기에 작성함
+                - 객체 생성, View에서 전달받은 값으로 기능을 수행하고 결과를 return;
+                - 당연하지만, 사용자로 인해 발생하는 오류체크가 진짜 힘듬
+
+    d) DTO  : Data Transfer Object
+            - 기본 생성자 매개변수 생성자 등등을 생성함
+            - 나만의 자료형 객체를 만드는 곳임
+            - 매개변수를 생성하고 getter / setter 를 작성함
+            - 출력 형식을 별도로 만든 toString을 포함하고 있음
+
+
+2. 작성
+
+    a) Run : new BookView().mainMenu(); 하나 만들고 나머지는 View에서 동작
+            유저와 상호작용하는 부분이 View라서 이게 사실상 맞는듯함
+    b) View : mainMenu()를 제외한 나머지는 모두 private void임. 객체선언도 private임
+    c)
+    d) DTO
+        * BookDTO라는 자료형을 만들었음.
+          이 자료형은 String title, String writer, int Price 3개의 값을 묶어 저장하는
+          하나의 배열 객체로 생각하여야 함.

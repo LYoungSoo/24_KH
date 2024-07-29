@@ -6,6 +6,7 @@ public class ListRun {
     public static void main(String[] args) {
         ListService listService = new ListService();
 //        listService.test1();
-        listService.test2();
+//        listService.test2();
+        listService.test3();
     }
 }
