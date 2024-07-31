@@ -37,6 +37,7 @@ public class TryCatchService {
         System.out.print("정수 입력 : ");
         int input = sc.nextInt();
         // 콘솔 입력 시 문자열/실수/값의 범위 초과 입력
+        System.out.println(input);
     }
     
     /**

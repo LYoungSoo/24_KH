@@ -1,0 +1,2 @@
+war 와르 : Window Archive
+jar 자르 : Java Archive

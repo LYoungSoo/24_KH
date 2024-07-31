@@ -1,5 +1,5 @@
 package pkg4.exception;
-
+@SuppressWarnings("serial")	// 클래스를 직렬화할 의도가 없다 - 직렬화 요구 경고문을 무시한다
 /**
  * 사용자 정의 예외
  * - java에서 제공하지 않는 사용자만의 예외를 만들어 사용할 수 있다!!
