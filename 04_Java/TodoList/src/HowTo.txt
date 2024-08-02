@@ -1,0 +1,16 @@
+run 패키지
+- TodoListRun 클래스
+
+view 패키지
+- TodoListView 클래스
+
+service 패키지
+- TodoListService     인터페이스
+- TodoListServiceImpl 클래스
+
+dao 패키지
+- TodoListDao     인터페이스
+- TodoListDaoImpl 클래스
+
+dto 패키지
+- Todo 클래스

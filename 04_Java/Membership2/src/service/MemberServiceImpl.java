@@ -32,14 +32,14 @@ public class MemberServiceImpl implements MemberService {
     
     // 회원 추가
     @Override
-    public boolean addMember(String name, String phone) throws IOException {
+    public boolean addMember(String name, String phone) throws IOException{
         
         // 1) 회원 목록을 얻어와  휴대폰 번호 중복 검사
         List<Member> memberList = dao.getMemberList();
         
-        for (Member member : memberList) {
+        for(Member member : memberList) {
             // 휴대폰 번호가 같은 경우 == 중복인 경우
-            if (phone.equals(member.getPhone())) {
+            if(phone.equals(member.getPhone())) {
                 return false;
             }
         }
@@ -70,8 +70,8 @@ public class MemberServiceImpl implements MemberService {
         // 검색 결과를 저장할 별도 List에 추가
         List<Member> searchList = new ArrayList<Member>();
         
-        for (Member member : memberList) {
-            if (member.getName().equals(searchName)) {
+        for(Member member : memberList) {
+            if(member.getName().equals(searchName)) {
                 searchList.add(member);
             }
         }
@@ -98,8 +98,8 @@ public class MemberServiceImpl implements MemberService {
         // 판별된 등급 저장할 변수
         int grade = 0;
         
-        if (currentAmount < 100000) grade = Member.COMMON;
-        else if (currentAmount < 1000000) grade = Member.GOLD;
+        if(currentAmount < 100000)  grade = Member.COMMON;
+        else if(currentAmount < 1000000) grade = Member.GOLD;
         else grade = Member.DIAMOND;
         
         // 신짱구 회원님의 누적 금액
@@ -111,9 +111,9 @@ public class MemberServiceImpl implements MemberService {
         sb.append(before + " ==> " + currentAmount);
         
         // 이전 회원의 등급과 새로 판별된 긍급이 다른 경우
-        if (target.getGrade() != grade) {
+        if (target.getGrade() != grade){
             String str = String.format("\n * %s * 등급으로 변경 되셨습니다.",
-                    gradeArr[grade]);
+            gradeArr[grade] );
             sb.append(str);
             
             // 회원의 등급을 판별된 등급(grade)으로 변경
@@ -126,41 +126,10 @@ public class MemberServiceImpl implements MemberService {
         return sb.toString();
     }
     
-    //회원 정보(전화번호) 수정
     @Override
-    public String updateMember(Member target, String phone) throws IOException {
-        
-        // 이전 번호 저장
+    public String updateMember(Member target, String changePhone) throws IOException {
         String before = target.getPhone();
         
-        // 대상의 전화번호를 입력 받은 새 번호로 변경
-        target.setPhone(phone);
-        
-        // 출력 문자열 만들기
-        StringBuilder sb = new StringBuilder();
-        
-        // 홍길동님의 전화번호가 변경 되었습니다
-        sb.append(target.getName());
-        sb.append(" 님의 전화번호가 변경되었습니다\n");
-        sb.append(before + " ==> " + phone);
-        dao.saveFile();
-        return sb.toString();   // 결과 문자열 반환
+        return "";
     }
-    
-    // 회원 탈퇴
-    @Override
-    public String deleteMember(Member target) throws IOException {
-        // 회원 목록 얻어오기
-        List<Member> memberList = dao.getMemberList();
-        
-        // 회원 목록에서 target 제거(remove)하기
-        // boolean List.remove(Object obj) ==> List에 저장된 요소 중 obj와 같은 요소 제거
-        // * 조건 : 요소 객체가 equals() 오버라이딩 되어 있어야함
-        boolean result = memberList.remove(target);
-        
-        dao.saveFile(); // 탈퇴 데이터 저장
-        
-        return target.getName() + " 회원이 탈퇴 처리 되었습니다";
-    }
-    
 }

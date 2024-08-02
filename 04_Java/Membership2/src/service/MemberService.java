@@ -48,19 +48,10 @@ public interface MemberService {
     String updateAmount(Member target, int acc) throws IOException;
     
     /**
-     * 회원 정보(전화번호) 수정
-     * @param target
-     * @param phone
+     * 전달 받은 회원의 전화번호 수정하기
      * @return 결과 문자열
-     * @throws IOException
      */
-    String updateMember(Member target, String phone) throws IOException;
+    String updateMember(Member target, String changePhone) throws IOException;
     
-    /**
-     * 회원 탈퇴
-     * @param target
-     * @return 결과 문자열
-     * @throws IOException
-     */
-    String deleteMember(Member target) throws IOException;
+
 }
