@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Servlet Project</title>
+</head>
+<body>
+	<h1>이영수</h1>
+	<h1>index.html 파일은 메인 페이지 역할의 html 파일입니다</h1>
+	(확인은 web.xml 파일을 보세요!!)
+	
+	<hr><hr>
+
+	<h1>서버에 요청 보내기 1</h1>
+
+	<pre>
+		- 이름, 나이를 입력 받아 서버로 제출
+
+		*** 알고 있어야 하는 선수 지식 ***
+		1) input 태그  : 값을 입력할 수 있는 양식을 제공하는 태그
+
+			a. name 속성 : input 태그에 작성된 값(value)가 서버로 제출 될 때 Key 역할을 하는 속성
+
+			b. value 속성 또는 input에 작성된 값 : 서버로 제출되는 값
+
+		2) form 태그 : 내부에 작성된 입력 값(input)을 지정된 경로(주소)에 제출하는 역할의 태그
+			- 지정된 경로 : 다른 html 경로 / 서버(Servlet) 요청 주소
+			
+			a. action 속성 : 다른 html 경로 / 서버(Servlet) 요청 주소
+
+			b. method 속성 : 제출 방식을 지정하는 속성
+												GET(기본 값)	/		POST
+	</pre>
+
+	<form action="/ex1" method="GET">
+		<pre>
+			* action  = "/ex1"		==>	192.0.0.1:8080/ex1	,	localhost:8080/ex1
+				==> 주소 : 포트번호/ex1 요청을 서버로 보내기 위한 주소
+				(지정된 주소의 서버한테 /ex1 주세요~ 하는 것)
+
+			* method = "GET"
+				==> 요청 시 제출하는 데이터(이름, 나이)를 주소 뒤에 쿼리스트링으로 담아서 전달
+				주소:포트번호/ex1?inputName=홍길동&inputAge=20
+		</pre>
+
+		<d1v>
+			이름 : <input type = "text" name = "inputName">
+		</d1v>
+		<div>
+			나이 : <input type="number" name = "inputAge">
+		</div>
+
+		<button type="submit">제출하기</button>
+	</form>
+
+	<hr><hr>
+
+	<h1>서버에 요청 보내기 2</h1>
+
+	<form action="/ex2" method="GET">
+			<h3>입력 받은 두 수 연산하기</h3>
+			<div>
+				입력 1 : <input type="number" name="input1">
+			</div>
+			<div>
+				입력 2 : <input type="number" name="input2">
+			</div>
+
+			<!-- radio : name 속성 값이 일치하는 요소들 중 하나만 선택 -->
+			<h5>연산자 선택</h5>
+			<div>
+				+ <input type="radio" name="op" value="plus" checked>
+				- <input type="radio" name="op" value="minus">
+				* <input type="radio" name="op" value="multi">
+				/ <input type="radio" name="op" value="div">
+				% <input type="radio" name="op" value="mod">
+			</div>
+
+			<button type="submit">계산하기</button>
+
+
+	</form>
+
+	<hr><hr>
+
+	<h1>치킨 주문하기</h1>
+	<form action="/chicken" method="GET">
+		
+		치킨 선택 : 
+    <select name="chicken">
+      <option value="후라이드">후라이드 (10000)</option>
+      <option value="양념">양념 (11000)</option>
+      <option value="마늘">마늘 (12000)</option>
+      <option value="간장">간장 (12000)</option>
+    </select>
+
+    <br>
+
+    뼈/순살 :
+    뼈   <input type="radio" name="type" value="bone"> 
+    / 
+    순살 (+ 2000)<input type="radio" name="type" value="boneless">
+
+    <br>
+
+    기타 옵션 : <br>
+    
+    <input type="checkbox" name="opt" value="치킨무">
+    치킨 무 추가 (+500)
+    <br>
+
+    <input type="checkbox" name="opt" value="콜라">
+    콜라 추가 (+2000)
+    <br>
+
+    <input type="checkbox" name="opt" value="치즈볼">
+    치즈볼 추가 (+3000)
+    <br>
+
+    주문자명 : <input type="text" name="ordererName"> <br>
+    주소 : <input type="text" name="ordererAddress" size="50"> <br>
+
+    <button>주문하기</button>
+	</form>
+
+
+
+</body>
+</html>

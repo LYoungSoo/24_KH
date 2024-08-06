@@ -1,0 +1,45 @@
+[웹 개발 상식]
+
+Server : 기능을 제공하는 컴퓨터
+
+Client : 기능을 요청하고 이용하는 고객 컴퓨터
+
+	요청(Request) ===> 
+Client			    Server	
+	<=== 응답(Response)
+(요청에 맞는 화면을 Java에서 HTML을 만들어서  돌려보내줌)
+----------------
+HTTP : Hyper Text Transfer Protocol + Security (인증서)
+- 서버-클라이언트 간의 HTML 요청-응답 전송(전달) 규약
+	(인터넷에서 HTML을 주고받을 떄의 약속)
+
+IP (Internet Protocol) : 인터넷/네트워크를 통해 데이터를 송수신하는 규약
+	==> 인터넷/네트워크에 연결된 각종 통신 기기를 구분하는 주소
+		(컴퓨터, 휴대폰, 교통수단, 사물인터넷 모조리 등등)
+
+IPv6 주소 . . . . : fe80::fa4b:f24f:c38e:7f49%5
+IPv4 주소 . . . . . . . . . : 192.168.10.37
+
+Port 번호 : 컴퓨터 내 프로그램을 구분하는 식별 번호
+
+IP + Port 번호를 알아야 다른 컴퓨터(서버)에 요청을 할 수 있다
+
+ex) http://192.168.10.5:8080
+
+
+
+
+tomcat - bin 폴더에서 cmd 실행하고 startup.bat
+
+127.0.0.1:8080
+현재 컴퓨터:포트
+LocalHost
+
+
+
+
+
+
+preference - general - Show heap status(check) ***APPLY
+general - workspace - Refresh using native hooks...(check) ***APPLY
+font 검색 - general - appearance - colors and fonts - basic - textfont 
