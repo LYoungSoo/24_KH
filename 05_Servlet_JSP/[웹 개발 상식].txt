@@ -43,3 +43,32 @@ LocalHost
 preference - general - Show heap status(check) ***APPLY
 general - workspace - Refresh using native hooks...(check) ***APPLY
 font 검색 - general - appearance - colors and fonts - basic - textfont 
+
+
+HTTP 포트 번호 중 80번
+- http:// 요청 시 80번 포트는 생략 가능!
+(참고: https는 443번 생략 가능)
+
+ex) http://localhost:80
+
+
+Servlet
+Thread 1개당 1대1로 ==> 접속자들이 동시에 일할수 있도록 ==> 제한 가능하며, 최대 갯수는 성능에 따라
+
+
+WAS (Wevb Application Server) ==> Tomcat을 사용중임
+
+1. 요청 (Http Request) (주소)
+2. HttpServletRequest / HttpServletResponse 객체 생성 (자바 오버라이딩으로 자동완성한 doGet에 매개변수로 사용했었음)
+3. 해당 요청 주소를 처리하기로 한 Servlet Class 찾기(web.xml (@WebServlet 어노테이션을 대신 사용하였음))
+4. init() (Initionlize (초기화))
+5. service() / - doGet() / - doPost()
+6. 응답 (Http Response)
+
+
+JSP
+Java 파일에 HTML 코드 작성 힘듦 ==> 기본 작성법이 Java
+그러면 기본 작성법을 HTML로 변경하면 HTML 코드 작성이 쉬워짐!! + 자바도 작성 가능해야 된다!
+그러니까 HTML에 Java를 섞은거. HTML 작성법을 따르며 Java 기능 구현이 되는
+이걸 10분 남짓 설명하시면 학부생들은 못알아먹어요 교수님
+코딩노다가를 하고 이론시험보니 미치고 팔짝뛰고

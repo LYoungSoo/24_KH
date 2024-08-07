@@ -5,6 +5,7 @@ META-INF
 Servers
 .classpath
 .project
+.gitignore
 
 ### Eclipse ###
 .metadata
