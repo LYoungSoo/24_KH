@@ -63,5 +63,63 @@
     <a href="/book/list">책 목록 조회하기</a>
   </h1>
 
+  <hr>
+
+  <h1>forward와 redirect</h1>
+
+  <h3>forward : 요청 위임</h3>
+
+  <pre>
+    - 클라이언트 요청을 받은 Servlet/JSP가 직접 응답하는 것이 아닌
+      다른 Servlet/JSP에 HttpServletRequest, HttpServletResponse 객체를 넘겨서 
+      대신 응답하게 하는 것
+
+    - 요청 위임 시 RequestDispatcher(요청 발송자)를 이용
+
+    - 요청 위임할 JSP ***파일 경로*** 작성
+
+    - 응답 화면(결과 페이지) 주소는 처음 Servlet이 요청 받은 주소 그대로!
+  </pre>
+
+
+  <form action="/fr/forward">
+    forward 입력 1 : <input type="text" name="forwardInput1">
+    <br>
+    forward 입력 2 : <input type="text" name="forwardInput2">
+    <button>forward 확인하기</button>    
+  </form>
+
+  <hr>
+
+  <h3>redirect (재요청, 다른 Servlet 요청)</h3>
+
+  <pre>
+    - 클라이언트의 요청을 받은 Servlet/JSP에서 직접 응답하지 않고
+      다른 Servlet/JSP를 다시 요청하는 것
+    
+    - 보통 Servlet 요청 처리 후 특정 JSP로 요청을 위임해 결과 화면을 응답해 주는 것이 아닌
+      (요청 받은 Servlet이 응답해줄 JSP가 없음)
+      다른 Servlet을 다시 요청하여 다른 Servlet의 결과 화면을 응답해줌
+    
+    - redirect는 다시 요청하는 것!!!
+      ==> 기존 client의 req, resp 객체가 사라지고 새로운 req, resp 객체가 생성된다!!!
+      ===> request scope 범위에 세팅된 값을이 모두 사라짐!!
+    
+    - redirect는 응답 화면의 주소가 처음 요청한 Servlet 주소가 아닌
+      다시 요청한 Servlet 주소로 변경된다!
+    
+    - 다른 Servlet을 요청하기 위해서는 "요청 주소"를 작성해야 한다
+  </pre>
+
+  <hr>
+
+  <form action="/fr/redirect">
+    redirect 입력 1 : <input type="text" name="redirectInput1">
+    <br>
+    redirect 입력 2 : <input type="text" name="forwardInput2">
+    <button>redirect 확인하기</button>
+
+  </form>
+
 </body>
 </html>

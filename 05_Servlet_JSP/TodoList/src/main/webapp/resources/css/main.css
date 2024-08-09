@@ -1,0 +1,16 @@
+/* 테이블 스타일 지정 */
+#todoList {
+  border-collapse : collapse;
+}
+
+#todoList td, #todoList th {
+  padding: 5px 8px;
+}
+
+thead th {
+  background-color:skyblue;
+}
+
+tbody > tr:nth-of-type(2n) {
+  background-color: #dddd;
+}

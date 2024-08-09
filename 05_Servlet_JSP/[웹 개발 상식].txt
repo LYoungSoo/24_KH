@@ -72,3 +72,69 @@ Java 파일에 HTML 코드 작성 힘듦 ==> 기본 작성법이 Java
 그러니까 HTML에 Java를 섞은거. HTML 작성법을 따르며 Java 기능 구현이 되는
 이걸 10분 남짓 설명하시면 학부생들은 못알아먹어요 교수님
 코딩노다가를 하고 이론시험보니 미치고 팔짝뛰고
+
+
+----------20240809--------------------------------------------------
+[EL]
+
+- EL 구문 내 연산 시 parsing 자동으로 일어남
+
+- 파라미터 얻어오는 법
+1) $param.key ==> string
+2) ${paramvalues.key} ==> string[]
+
+- 데이터 유지 범위별 객체에 세팅된 속성 얻어오기
+page				==> ${pageScope.key}
+Requests		==> ${requestScope.key}
+session			==> ${sesionScope.key}
+application	==> ${applicationScope.key}
+
+- 만약 ${key}만 입력하게 되는 경우 좁은 범위의 객체부터 탐색하여 일치하는 key가 있으면 출력
+
+- EL의 특징
+1) null, NullPointerException을 빈 문자열로 처리
+2) 출력용 언어라 set이 없음 ==> 모두 get ==> get 생략
+		ex) ${book.getName()} ==> ${book.name}
+
+[JSTL]
+ - JSP Standard Tag Library
+ - 아파치에서 JSP에서 자주 사용하는 Java 구문을 태그형태로 만들어서 제공해주는 라이브러리
+
+ * 라이브러리란? -남들이 만들어서 준 클래스(코드)
+ ==> 제공해준 기능을 사용하면 됨
+
+ - JSTL을 사용하기 위해서 해야하는 것들
+ 1) 라이브러리 다운로드
+ 2) webapp/WEB-INT/lib 폴더에 라이브러리 추가
+ 3) 사용하려는 JSP 위에 <%@ taglib %> 작성
+
+ - 변수 선언(범위 객체에 속성 추가(set))
+  <c:set var="" value="" scope="" />
+
+ - 변수 제거(removeAttribute)
+	<c:remove var="" scope="" />
+
+ - 단일 조건문(else 없음!)
+	<c:if test="${}>
+
+ - 연속된 조건문
+	<c:choose>
+		<c:when test="${}">
+		</c:when>
+
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
+
+ - 일반 for문 + 향상된 for문
+  <c:forEach var="" begin="" end="" step="" items="" varStatus="">
+						 int i    i=0  i<length() i++
+	
+	</c:forEach>
+  <c:forEach var="" items="" (varStatus="")> 이렇게하면 향상된 for문
+
+ - 문자열, 배열, 컬렉션 길이
+	${fn:length(문자열|배열|컬렉션)}
+
+ - null 또는 비어있으면 true
+	${empty key|값}
