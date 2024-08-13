@@ -65,6 +65,5 @@
     <c:remove var="message" scope="session" />
   </c:if>
 
-  <script></script>
 </body>
 </html>

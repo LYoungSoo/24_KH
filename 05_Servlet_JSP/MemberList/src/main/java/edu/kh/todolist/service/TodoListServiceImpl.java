@@ -14,11 +14,11 @@ import edu.kh.todolist.dto.Todo;
 
 public class TodoListServiceImpl implements TodoListService{
 
-private TodoListDao dao = null;
+	private TodoListDao dao = null;
 	
 	// 기본 생성자
 	public TodoListServiceImpl() throws FileNotFoundException, IOException, ClassNotFoundException {
-		// 객체 생성 시 TodoListDao 객체 생성
+		// 객체 생성 시 TodoListDAO 객체 생성
 		dao = new TodoListDaoImpl();
 	}
 	
