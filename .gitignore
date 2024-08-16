@@ -6,7 +6,7 @@ Servers
 .classpath
 .project
 .gitignore
-
+.json
 ### Eclipse ###
 .metadata
 bin/
