@@ -66,6 +66,34 @@
 					"include": ["KH_LYS"]
 				}
 			]
+		},
+		"oracle_thin-1915a030336-7f3330b9ef5de589": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "WORKBOOK계정",
+			"save-password": true,
+			"configuration": {
+				"host": "khj-1.xyz",
+				"port": "10000",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@//khj-1.xyz:10000/XE",
+				"configurationType": "MANUAL",
+				"home": "C:\\app\\user1\\product\\18.0.0\\dbhomeXE",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			},
+			"filters": [
+				{
+					"type": "org.jkiss.dbeaver.ext.oracle.model.OracleSchema",
+					"enabled": true,
+					"include": ["WORKBOOK"]
+				}
+			]
 		}
 	},
 	"connection-types": {
