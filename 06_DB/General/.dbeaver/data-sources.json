@@ -94,6 +94,27 @@
 					"include": ["WORKBOOK"]
 				}
 			]
+		},
+		"oracle_thin-19169c61e8f-159ae90eeaf77eff": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "시험용계정(TEST_USER / TEST1234)",
+			"save-password": true,
+			"configuration": {
+				"host": "khj-1.xyz",
+				"port": "10000",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@//khj-1.xyz:10000/XE",
+				"configurationType": "MANUAL",
+				"home": "C:\\app\\user1\\product\\18.0.0\\dbhomeXE",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
 		}
 	},
 	"connection-types": {

@@ -61,8 +61,11 @@ FROM TB_DEPARTMENT
 -- 9번
 -- 02학번 전주 거주자들의 모임을 만들려고 한다.
 -- 휴학한 사람들은 제외한 재학중인 학생들의 학번, 이름, 주민번호를 조회하는 구문을 작성하시오. 
-SELECT STUDENT_ADDRESS
+SELECT STUDENT_NO 학번, STUDENT_NAME 이름, STUDENT_SSN 주민번호
 FROM TB_STUDENT
-WHERE
+WHERE 
+	ENTRANCE_DATE BETWEEN '2002-01-01' AND '2002-12-31'
+	AND ABSENCE_YN = 'N'
+	AND STUDENT_ADDRESS LIKE '%전주%'	
 ;
  
