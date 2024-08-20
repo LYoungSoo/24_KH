@@ -171,7 +171,10 @@ JOIN JOB USING(JOB_CODE)
 ;
 
 /* USING 사용하지 않고 JOIN 하기 */
-
+SELECT EMP_ID, EMP_NAME, E.JOB_CODE, JOB_NAME
+FROM EMPLOYEE E
+JOIN JOB J ON (E.JOB_CODE = J.JOB_CODE)
+;
 
 -- 오라클 -> 별칭 사용
 -- 테이블 별로 별칭을 등록할 수 있음.
