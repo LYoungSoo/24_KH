@@ -42,6 +42,7 @@ WHERE STUDENT_ADDRESS LIKE '%강원%'
   AND STUDENT_NO NOT LIKE 'A%'
    OR STUDENT_ADDRESS LIKE '%경기도%'
   AND STUDENT_NO NOT LIKE 'A%'
+ORDER BY "학생이름" ASC
 ; --- 이건 된다
 
 -- 4번 
@@ -101,9 +102,11 @@ WHERE CATEGORY = '인문사회'
 ORDER BY CLASS_NAME ASC
 ;
 
--- 10번 
+-- 10번 ***********************************************
 -- 음악학과 학생들의 "학번", "학생 이름", "전체 평점"을 조회하시오. 
 -- (단, 평점은 소수점 1자리까지만 반올림하여 표시한다.) 
+
+-- 각 평점을 전부 조회
 SELECT STUDENT_NO, STUDENT_NAME, POINT, TERM_NO
 FROM TB_STUDENT
 JOIN TB_GRADE USING (STUDENT_NO)
@@ -112,25 +115,50 @@ WHERE DEPARTMENT_NAME = '음악학과'
 ORDER BY STUDENT_NO
 ;
 
-
-
+SELECT STUDENT_NO, STUDENT_NAME, '전체평점'
+FROM TB_STUDENT
+JOIN TB_GRADE USING(STUDENT_NO)
+;
 
 -- 11번 
 -- 학번이 A313047인 학생의 학과이름, 학생이름, 지도교수 이름을 조회하시오. 
-
-
+SELECT DEPARTMENT_NAME 학과이름, STUDENT_NAME 학생이름, PROFESSOR_NAME 지도교수이름
+FROM TB_STUDENT
+JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+JOIN TB_PROFESSOR ON (COACH_PROFESSOR_NO = PROFESSOR_NO)
+WHERE STUDENT_NO = 'A313047'
+;
 
 -- 12번 
 -- 2007년도에 '인간관계론' 과목을 수강한 학생을 찾아  
 -- 학생이름과 수강학기를 조회하는 SQL을 작성하시오. 
+SELECT STUDENT_NAME, TERM_NO
+FROM TB_STUDENT
+JOIN TB_GRADE USING (STUDENT_NO)
+JOIN TB_CLASS USING (CLASS_NO)
+WHERE CLASS_NAME = '인간관계론'
+AND   TERM_NO LIKE '2007%'
+;
 
-
-
--- 13번 
+-- 13번 ***********************************************
 -- 예체능 계열 과목 중 과목 담당교수를 한 명도 배정받지 못한 과목을 찾아  
 -- 과목 이름, 학과 이름을 조회하시오. 
 
+SELECT CLASS_NAME, DEPARTMENT_NAME
+FROM TB_CLASS MAIN
+JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+LEFT JOIN TB_CLASS_PROFESSOR USING (CLASS_NO)
+LEFT JOIN TB_PROFESSOR USING (PROFESSOR_NO)			-- 여기가 882개가 아니라 776개가 나옴 --> LEFT JOIN으로 해결
+WHERE CATEGORY = '예체능'												-- 107개에서 151개가 됨
+AND CLASS_NO NOT IN (
+	SELECT CLASS_NO
+	FROM TB_CLASS_PROFESSOR
+)
+;
 
+
+SELECT * FROM TB_CLASS_PROFESSOR ORDER BY CLASS_NO; -- 776
+SELECT * FROM TB_CLASS ORDER BY CLASS_NO;						-- 882
 
 -- 14번 
 -- 춘 기술대학교 서반아어학과 학생들의 지도교수를 게시하고자 한다.  
@@ -141,8 +169,23 @@ ORDER BY STUDENT_NO
 
 -- 15번 
 -- 휴학생이 아닌 학생 중 평점이 4.0 이상인 학생을 찾아  
--- 학생의 학번, 이름, 학과, 이름, 평점을 조회하시오. 
+-- 학생의 학번, 이름, 학과 이름, 평점을 조회하시오. 
 
+-- 1) 휴학생이 아닌
+SELECT STUDENT_NO, STUDENT_NAME, DEPARTMENT_NO, DEPARTMENT_NAME
+FROM TB_STUDENT
+JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+WHERE ABSENCE_YN != 'Y'
+;	-- 588명 - 91 명 = 497명
+
+-- 2) 평점이 4.0 이상인
+SELECT STUDENT_NO, TRUNC(AVG(POINT),1)
+FROM TB_GRADE
+GROUP BY STUDENT_NO
+HAVING 4 <= AVG(POINT)
+;
+
+-- 를 어떻게 합쳐야?
 
 
 -- 16번 

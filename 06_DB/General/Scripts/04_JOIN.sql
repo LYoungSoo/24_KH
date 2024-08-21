@@ -393,7 +393,6 @@ SELECT * FROM DEPARTMENT;
 SELECT * FROM LOCATION;
 SELECT * FROM SAL_GRADE;
 
-
 -- [연습문제]
 
 -- 1. 주민번호가 80년대 생이면서 성별이 여자이고, 성이 '전'씨인 직원들의 
@@ -560,8 +559,6 @@ WHERE E1.DEPT_CODE = E2.DEPT_CODE
 	AND E1.EMP_NAME != E2.EMP_NAME
 ORDER BY E1.EMP_NAME ASC
 ;
-
-
 
 -- 9. 보너스포인트가 없는 직원들 중에서 직급코드가 J4와 J7인 직원들의 사원명, 직급명, 급여를 조회하시오.
 -- 단, JOIN, IN 사용할 것
