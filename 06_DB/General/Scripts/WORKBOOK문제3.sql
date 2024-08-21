@@ -140,7 +140,7 @@ WHERE CLASS_NAME = '인간관계론'
 AND   TERM_NO LIKE '2007%'
 ;
 
--- 13번 ***********************************************
+-- 13번
 -- 예체능 계열 과목 중 과목 담당교수를 한 명도 배정받지 못한 과목을 찾아  
 -- 과목 이름, 학과 이름을 조회하시오. 
 
@@ -185,8 +185,21 @@ GROUP BY STUDENT_NO
 HAVING 4 <= AVG(POINT)
 ;
 
--- 를 어떻게 합쳐야?
 
+
+--SELECT STUDENT_NO 학번, STUDENT_NAME 이름, DEPARTMENT_NAME "학과 이름", POINT
+SELECT *
+FROM TB_STUDENT
+JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+JOIN TB_GRADE USING (STUDENT_NO)
+WHERE ABSENCE_YN != 'Y'
+AND   STUDENT_NO IN (
+	SELECT STUDENT_NO
+	FROM TB_GRADE
+	GROUP BY STUDENT_NO
+	HAVING 4 <= AVG(POINT)
+)
+;
 
 -- 16번 
 -- 환경조경학과 전공과목들의 과목 별 평점을 조회하시오. 
@@ -197,14 +210,64 @@ HAVING 4 <= AVG(POINT)
 -- 17번 
 -- 춘 기술대학교에 다니고 있는 최경희 학생과 같은 과 학생들의 이름과 주소를 조회하시오. 
 
+-- 1) 최경희 학과
+SELECT DEPARTMENT_NO
+FROM TB_STUDENT
+WHERE STUDENT_NAME = '최경희'
+;
 
--- 18번 
+-- 2)
+SELECT STUDENT_NAME, STUDENT_ADDRESS
+FROM TB_STUDENT
+WHERE DEPARTMENT_NO = (
+		SELECT DEPARTMENT_NO
+		FROM TB_STUDENT
+		WHERE STUDENT_NAME = '최경희'
+)
+;
+
+-- 18번 *****************************
 -- 국어국문학과에서 총 평점이 가장 높은 학생의 이름과 학번을 조회하시오 
 
+-- 1) 국어국문학과 학생
+SELECT DISTINCT STUDENT_NAME, STUDENT_NO, DEPARTMENT_NO, DEPARTMENT_NAME
+FROM TB_STUDENT
+JOIN TB_GRADE USING (STUDENT_NO)
+JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+WHERE DEPARTMENT_NAME = '국어국문학과'
+ORDER BY STUDENT_NAME
+;
 
+-- 2) 평점
+SELECT AVG(POINT), STUDENT_NO, STUDENT_NAME
+FROM TB_GRADE
+JOIN TB_STUDENT USING (STUDENT_NO)
+GROUP BY STUDENT_NO, STUDENT_NAME
+;
+
+-- 3) 국어국문학생들 평점
+SELECT MAX(AVG(POINT))
+FROM TB_STUDENT
+JOIN TB_GRADE USING (STUDENT_NO)
+JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+WHERE DEPARTMENT_NAME = '국어국문학과'
+GROUP BY STUDENT_NAME, STUDENT_NO
+ORDER BY STUDENT_NAME
+;
+
+-- 4)
+SELECT STUDENT_NAME, STUDENT_NO, AVG(POINT)
+FROM TB_STUDENT
+JOIN TB_GRADE USING (STUDENT_NO)
+JOIN TB_DEPARTMENT USING (DEPARTMENT_NO)
+WHERE DEPARTMENT_NAME = '국어국문학과'
+GROUP BY STUDENT_NAME, STUDENT_NO
+ORDER BY STUDENT_NAME
+; --실패!
 
 -- 19번 
 -- 춘 기술대학교의 "환경조경학과"가 속한 같은 계열 학과들의  
 -- 학과 별 전공과목 평점을 파악하기 위한 적절한 SQL문을 작성하시오 
 -- 단, 출력헤더는 "계열 학과명", "전공평점"으로 표시되도록 하고,  
--- 평점은 소수점 첫째자리까지만 반올림하여 표시 
+-- 평점은 소수점 첫째자리까지만 반올림하여 표시
+
