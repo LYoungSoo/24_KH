@@ -467,15 +467,18 @@ VALUES(NULL, 'user01', 'pass01', '신사임당', '여', '010-9999-9999', 'sin123
 --참조할 테이블의 참조할 컬럼명이 생략이 되면, PRIMARY KEY로 설정된 컬럼이 자동 참조할 컬럼이 됨
 
 CREATE TABLE USER_GRADE(
-  GRADE_CODE NUMBER PRIMARY KEY,
+  GRADE_CODE NUMBER PRIMARY KEY,		-- 식별자,  줄여서 ㅅㅂㅈ
   GRADE_NAME VARCHAR2(30) NOT NULL
-);
+)
+;
+
 INSERT INTO USER_GRADE VALUES (10, '일반회원');
 INSERT INTO USER_GRADE VALUES (20, '우수회원');
 INSERT INTO USER_GRADE VALUES (30, '특별회원');
 
 SELECT * FROM USER_GRADE;
 
+COMMIT;
 
 CREATE TABLE USER_USED_FK(
   USER_NO NUMBER PRIMARY KEY,
@@ -485,10 +488,17 @@ CREATE TABLE USER_USED_FK(
   GENDER VARCHAR2(10),
   PHONE VARCHAR2(30),
   EMAIL VARCHAR2(50),
-  GRADE_CODE NUMBER
+  GRADE_CODE NUMBER -- 해당 컬럼에 작성될 수 있는 값은
+  									-- USER_GRADE 테이블의 PK컬럼값(GRADE_CODE)만 작성하게 제한하고 싶다!
+  									--> FK 제약조건 설정
   
-);
+  /* 테이블 레벨 설정 */
+  , CONSTRAINT GRADE_CODE_FK1 FOREIGN KEY (GRADE_CODE)	-- 바로 윗줄에 있는 GRADE_CODE를 대상으로 !
+  REFERENCES USER_GRADE (GRADE_CODE) 
+)
+;
 
+--DROP TABLE USER_USED_FK;
 
 INSERT INTO USER_USED_FK
 VALUES(1, 'user01', 'pass01', '홍길동', '남', '010-1234-5678', 'hong123@kh.or.kr', 10);
@@ -510,6 +520,12 @@ VALUES(5, 'user05', 'pass05', '윤봉길', '남', '010-6666-1234', 'yoon123@kh.o
 --> 50이라는 값은 USER_GRADE 테이블 GRADE_CODE 컬럼에서 제공하는 값이 아니므로
  -- 외래키 제약 조건에 위배되어 오류 발생.
 
+-- ORA-02291: 무결성 제약조건(KH_LYS.GRADE_CODE_FK1)이 위배되었습니다
+-- - 부모 키가 없습니다
+
+-- 부모 테이블 : 참조를 "당하는" 테이블 (USER_GRADE)
+-- 자식 테이블 : 참조를 "하는" 테이블 (USER_USED_FK)
+
 ----------------------------------------------------------------------------------------------------
 
 -- * FOREIGN KEY 삭제 옵션 
@@ -522,16 +538,30 @@ SELECT * FROM USER_USED_FK;
 -- 1) ON DELETE RESTRICTED(삭제 제한)로 기본 지정되어 있음
 -- FOREIGN KEY로 지정된 컬럼에서 사용되고 있는 값일 경우
 -- 제공하는 컬럼의 값은 삭제하지 못함
+--> 자식 테이블이 참조하고 있는 값은 부모테이블에서 삭제할 수 없다!! 
 
 -- GRADE_CODE 중 20은 외래키로 참조되고 있지 않으므로 삭제가 가능함.
+DELETE
+FROM USER_GRADE
+WHERE GRADE_CODE = 20
+;
 
-
+/* 참조를 당하고 있는 값(GRADE_CODE) 10 삭제해보기 */
+DELETE
+FROM USER_GRADE
+WHERE GRADE_CODE = 10
+;
+-- ORA-02292: 무결성 제약조건(KH_LYS.GRADE_CODE_FK1)이 위배되었습니다
+-- - 자식 레코드가 발견되었습니다
+-- 자식 테이블인 USER_USED_FK 테이블에서 GRADE_CODE 컬럼의 값 10을 참조하고 있기 때문에 삭제 불가!!
 
 -- 2) ON DELETE SET NULL : 부모키 삭제시 자식키를 NULL로 변경하는 옵션
 CREATE TABLE USER_GRADE2(
   GRADE_CODE NUMBER PRIMARY KEY,
   GRADE_NAME VARCHAR2(30) NOT NULL
 );
+
+--DROP TABLE USER_GRADE2;
 
 INSERT INTO USER_GRADE2 VALUES (10, '일반회원');
 INSERT INTO USER_GRADE2 VALUES (20, '우수회원');
@@ -546,8 +576,17 @@ CREATE TABLE USER_USED_FK2(
   GENDER VARCHAR2(10),
   PHONE VARCHAR2(30),
   EMAIL VARCHAR2(50),
+  
+  -- 컬럼 레벨로 FK 제약조건 작성
+  --> FOREIGN KEY 단어를 사용하지 않음!!!!!
   GRADE_CODE NUMBER
-);
+  	CONSTRAINT GRADE_CODE_FK2
+  	REFERENCES USER_GRADE2 (GRADE_CODE)
+  	ON DELETE SET NULL	-- 삭제 옵션 추가
+)
+;
+
+--DROP TABLE USER_USED_FK2;
 
 --샘플 데이터 삽입
 INSERT INTO USER_USED_FK2
@@ -567,19 +606,23 @@ COMMIT;
 SELECT * FROM USER_GRADE2;
 SELECT * FROM USER_USED_FK2;
 
--- 부모 테이블인 USER_GRADE2에서 GRADE_COE =10 삭제
+-- 부모 테이블인 USER_GRADE2 에서 GRADE_CODE = 10 삭제
 --> ON DELETE SET NULL 옵션이 설정되어 있어 오류없이 삭제됨.
+DELETE
+FROM USER_GRADE2
+WHERE GRADE_CODE = 10
+;
 
-
-
+SELECT * FROM USER_GRADE2;		-- 10 삭제 확인
+SELECT * FROM USER_USED_FK2;	-- 10 이 NULL로 변했는지 확인
 
 -- 3) ON DELETE CASCADE : 부모키 삭제시 자식키도 함께 삭제됨
 -- 부모키 삭제시 값을 사용하는 자식 테이블의 컬럼에 해당하는 행이 삭제가 됨
-
 CREATE TABLE USER_GRADE3(
   GRADE_CODE NUMBER PRIMARY KEY,
   GRADE_NAME VARCHAR2(30) NOT NULL
-);
+)
+;
 
 INSERT INTO USER_GRADE3 VALUES (10, '일반회원');
 INSERT INTO USER_GRADE3 VALUES (20, '우수회원');
@@ -596,7 +639,8 @@ CREATE TABLE USER_USED_FK3(
   EMAIL VARCHAR2(50),
   GRADE_CODE NUMBER
   
-);
+)
+;
 
 --샘플 데이터 삽입
 INSERT INTO USER_USED_FK3
