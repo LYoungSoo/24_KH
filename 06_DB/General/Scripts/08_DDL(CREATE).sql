@@ -559,7 +559,8 @@ WHERE GRADE_CODE = 10
 CREATE TABLE USER_GRADE2(
   GRADE_CODE NUMBER PRIMARY KEY,
   GRADE_NAME VARCHAR2(30) NOT NULL
-);
+)
+;
 
 --DROP TABLE USER_GRADE2;
 
@@ -585,6 +586,20 @@ CREATE TABLE USER_USED_FK2(
   	ON DELETE SET NULL	-- 삭제 옵션 추가
 )
 ;
+
+/*
+SQL> DESC USER_USED_FK2
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ USER_NO                                   NOT NULL NUMBER
+ USER_ID                                            VARCHAR2(20)
+ USER_PWD                                  NOT NULL VARCHAR2(30)
+ USER_NAME                                          VARCHAR2(30)
+ GENDER                                             VARCHAR2(10)
+ PHONE                                              VARCHAR2(30)
+ EMAIL                                              VARCHAR2(50)
+ GRADE_CODE                                         NUMBER
+ */
 
 --DROP TABLE USER_USED_FK2;
 
@@ -624,6 +639,8 @@ CREATE TABLE USER_GRADE3(
 )
 ;
 
+--DROP TABLE USER_GRADE3;
+
 INSERT INTO USER_GRADE3 VALUES (10, '일반회원');
 INSERT INTO USER_GRADE3 VALUES (20, '우수회원');
 INSERT INTO USER_GRADE3 VALUES (30, '특별회원');
@@ -639,8 +656,33 @@ CREATE TABLE USER_USED_FK3(
   EMAIL VARCHAR2(50),
   GRADE_CODE NUMBER
   
+  -- 테이블 레벨 FK 제약조건 추가
+  
+  -- [CONSTRAINT 이름] 
+  -- FOREIGN KEY (적용할컬럼명) 
+  -- REFERENCES 참조할테이블명 [(참조할컬럼)] [삭제룰]
+
+  , CONSTRAINT GRADE_CODE_FK3
+  FOREIGN KEY(GRADE_CODE)
+  REFERENCES USER_GRADE3 (GRADE_CODE) 
+  ON DELETE CASCADE -- 부모 행 삭제 시 참조하던 자식 행 모두 삭제
 )
 ;
+/*
+SQL> DESC USER_USED_FK3
+ 이름                                      널?      유형
+ ----------------------------------------- -------- ----------------------------
+ USER_NO                                   NOT NULL NUMBER
+ USER_ID                                            VARCHAR2(20)
+ USER_PWD                                  NOT NULL VARCHAR2(30)
+ USER_NAME                                          VARCHAR2(30)
+ GENDER                                             VARCHAR2(10)
+ PHONE                                              VARCHAR2(30)
+ EMAIL                                              VARCHAR2(50)
+ GRADE_CODE                                         NUMBER
+ */
+
+--DROP TABLE USER_USED_FK3;
 
 --샘플 데이터 삽입
 INSERT INTO USER_USED_FK3
@@ -660,14 +702,18 @@ COMMIT;
 SELECT * FROM USER_GRADE3;
 SELECT * FROM USER_USED_FK3;
 
-
--- 부모 테이블인 USER_GRADE3에서 GRADE_COE =10 삭제
+-- 부모 테이블인 USER_GRADE3에서 GRADE_CODE =10 삭제
 --> ON DELETE CASECADE 옵션이 설정되어 있어 오류없이 삭제됨.
-
+DELETE 
+FROM USER_GRADE3
+WHERE GRADE_CODE = 10;
 
 -- ON DELETE CASECADE 옵션으로 인해 참조키를 사용한 행이 삭제됨을 확인
 
+SELECT * FROM USER_GRADE3;
+SELECT * FROM USER_USED_FK3;
 
+COMMIT;
 
 ----------------------------------------------------------------------------------------------------
 
@@ -679,10 +725,16 @@ CREATE TABLE USER_USED_CHECK(
   USER_ID VARCHAR2(20) UNIQUE,
   USER_PWD VARCHAR2(30) NOT NULL,
   USER_NAME VARCHAR2(30),
-  GENDER VARCHAR2(10) ,
+  
+  -- 컬럼 레벨 설정
+  GENDER VARCHAR2(10) 
+  	CONSTRAINT GENDER_CHECK
+  	CHECK (GENDER IN ('남', '여') ),
+  	--> GENDER 컬럼에 저장되는 값이 '남' 또는 '여' 중 하나인지 검사
   PHONE VARCHAR2(30),
   EMAIL VARCHAR2(50)
 );
+
 
 INSERT INTO USER_USED_CHECK
 VALUES(1, 'user01', 'pass01', '홍길동', '남', '010-1234-5678', 'hong123@kh.or.kr');
@@ -690,13 +742,12 @@ VALUES(1, 'user01', 'pass01', '홍길동', '남', '010-1234-5678', 'hong123@kh.o
 INSERT INTO USER_USED_CHECK
 VALUES(2, 'user02', 'pass02', '홍길동', '남자', '010-1234-5678', 'hong123@kh.or.kr');
 -- GENDER 컬럼에 CHECK 제약조건으로 '남' 또는 '여'만 기록 가능한데 
--- '남자'라는 조건 이외의 값이 들어와 에러 발생
+--	'남자'라는 조건 이외의 값이 들어와 에러 발생
 
-
+-- ORA-02290: 체크 제약조건(KH_BDH.GENDER_CHECK)이 위배되었습니다
 
 -- CHECK 제약 조건은 범위로도 설정 가능.
 
- 
 ----------------------------------------------------------------------------------------------------
 
 -- [연습 문제]
@@ -712,30 +763,92 @@ VALUES(2, 'user02', 'pass02', '홍길동', '남자', '010-1234-5678', 'hong123@k
 -- 각 컬럼의 제약조건에 이름 부여할 것
 -- 5명 이상 INSERT할 것
 
+/* 테이블 잘못 만들었을 경우 삭제 구문 수행!! */
+DROP TABLE USER_TEST;
 
 
+CREATE TABLE USER_TEST(
+	USER_NO		NUMBER,
+	USER_ID 	VARCHAR2(20),
+	USER_PWD 	VARCHAR2(20) 
+		-- NOT NULL은 컬럼 레벨만 가능!
+		CONSTRAINT NN_USER_PWD NOT NULL, 
+		
+	PNO			CHAR(14)
+		CONSTRAINT NN_PNO NOT NULL ,
+	GENDER		CHAR(3),
+	PHONE		CHAR(13),
+	ADDRESS		VARCHAR2(300),
+	STATUS		CHAR(1)
+		CONSTRAINT NN_STATUS NOT NULL,
+	
+	-- 테이블 레벨
+	CONSTRAINT PK_USER_TEST PRIMARY KEY(USER_NO), -- PK
+	CONSTRAINT UK_USER_ID   UNIQUE(USER_ID),
+	CONSTRAINT UK_PNO		UNIQUE(PNO),
+	CONSTRAINT CK_GENDER    CHECK(GENDER IN ('남', '여')),
+	CONSTRAINT CK_STATUS    CHECK(STATUS IN ('Y', 'N'))
+);
+
+COMMENT ON COLUMN USER_TEST.USER_NO IS '회원번호';
+COMMENT ON COLUMN USER_TEST.USER_ID IS '회원아이디';
+COMMENT ON COLUMN USER_TEST.USER_PWD IS '비밀번호';
+COMMENT ON COLUMN USER_TEST.PNO IS '주민등록번호';
+COMMENT ON COLUMN USER_TEST.GENDER IS '성별';
+COMMENT ON COLUMN USER_TEST.PHONE IS '연락처';
+COMMENT ON COLUMN USER_TEST.ADDRESS IS '주소';
+COMMENT ON COLUMN USER_TEST.STATUS IS '탈퇴여부';
+
+INSERT INTO USER_TEST
+VALUES(1, 'user01', 'pass01', '880122-1234567', '남', '010-1234-1234', NULL, 'N');
+INSERT INTO USER_TEST
+VALUES (2, 'user02', 'pass02', '890222-2234567', '여', '010-2222-9999', '서울시 강남구 삼성동', 'N');
+INSERT INTO USER_TEST
+VALUES (3, 'user03', 'pass03', '900322-2234567', '여', '010-3333-9999', '서울시 강남구 청담동', 'Y');
+INSERT INTO USER_TEST
+VALUES (4, 'user04', 'pass04', '910422-1234567', '남', '010-4444-9999', '서울시 강남구 도곡동', 'N');
+INSERT INTO USER_TEST
+VALUES (5, 'user05', 'pass05', '920522-2234567', '여', '010-5555-9999', '서울시 강남구 대치동', 'N');
+
+SELECT * FROM USER_TEST;
 ----------------------------------------------------------------------------------------------------
 
 -- 8. SUBQUERY를 이용한 테이블 생성
 -- 컬럼명, 데이터 타입, 값이 복사되고, 제약조건은 NOT NULL 만 복사됨
 
 -- 1) 테이블 전체 복사
+CREATE TABLE EMPLOYEE_COPY
+AS (SELECT * FROM EMPLOYEE);
 
 SELECT * FROM EMPLOYEE_COPY;
 
--- 2) JOIN 후 원하는 컬럼만 테이블로 복사
 
+-- 2) JOIN 후 원하는 컬럼만 테이블로 복사
+CREATE TABLE EMPLOYEE_COPY2
+AS SELECT 
+		EMP_NAME,
+		NVL(DEPT_TITLE, '부서없음') AS DEPT_TITLE,
+		JOB_NAME
+	FROM EMPLOYEE
+	JOIN JOB USING(JOB_CODE)
+	LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
+	ORDER BY JOB_CODE ASC;
+
+SELECT * FROM EMPLOYEE_COPY2;
 
 
 
 -- 9. 제약조건 추가
 -- ALTER TABLE 테이블명 ADD [CONSTRAINT 제약조건명] PRIMARY KEY(컬럼명)
+
 -- ALTER TABLE 테이블명 ADD [CONSTRAINT 제약조건명] 
 --  FOREIGN KEY(컬럼명) REFERENCES 참조 테이블명(참조컬럼명)
      --> 참조 테이블의 PK를 기본키를 FK로 사용하는 경우 참조컬럼명 생략 가능
                                                                                                                                                       
 -- ALTER TABLE 테이블명 ADD [CONSTRAINT 제약조건명] UNIQUE(컬럼명)
+
 -- ALTER TABLE 테이블명 ADD [CONSTRAINT 제약조건명] CHECK(컬럼명 비교연산자 비교값)
+
 -- ALTER TABLE 테이블명 MODIFY 컬럼명 NOT NULL;
 
 -- 테이블 제약 조건 확인
@@ -747,28 +860,51 @@ WHERE C1.TABLE_NAME = 'EMPLOYEE_COPY';
 -- NOT NULL 제약 조건만 복사된 EMPLOYEE_COPY 테이블에
 -- EMP_ID 컬럼에 PRIMARY KEY 제약조건 추가
 ALTER TABLE EMPLOYEE_COPY ADD CONSTRAINT PK_EMP_COPY PRIMARY KEY(EMP_ID);
-
+-- ALTER TABLE 테이블명 ADD [CONSTRAINT 제약조건명] PRIMARY KEY(컬럼명)
 
 -- * 수업시간에 활용하던 테이블에는 FK 제약조건 없는상태이므로 추가!!
 
+/*
+ 	ALTER TABLE 테이블명 
+ 	ADD [CONSTRAINT 제약조건명] 
+	FOREIGN KEY(컬럼명) REFERENCES 참조 테이블명(참조컬럼명)
+*/
 
 -- EMPLOYEE테이블의 DEPT_CODE에 외래키 제약조건 추가
 -- 참조 테이블은 DEPARTMENT, 참조 컬럼은 DEPARTMENT의 기본키
-
+ALTER TABLE EMPLOYEE 
+ADD CONSTRAINT DEPT_CODE_FK
+FOREIGN KEY(DEPT_CODE)
+REFERENCES DEPARTMENT;  -- 컬럼명 미작성 시 자동으로 PK 컬럼 참조
+	-- 	== DEPARTMENT(DEPT_ID)
 
 -- EMPLOYEE테이블의 JOB_CODE 외래키 제약조건 추가
 -- 참조 테이블은 JOB, 참조 컬럼은 JOB의 기본키
+ALTER TABLE EMPLOYEE
+ADD CONSTRAINT JOB_CODE_FK
+FOREIGN KEY(JOB_CODE)
+REFERENCES JOB;
+
 
 
 -- EMPLOYEE테이블의 SAL_LEVEL 외래키 제약조건 추가
 -- 참조 테이블은 SAL_GRADE, 참조 컬럼은 SAL_GRADE의 기본키
-
+ALTER TABLE EMPLOYEE
+ADD CONSTRAINT SAL_LEVEL_FK
+FOREIGN KEY(SAL_LEVEL)
+REFERENCES SAL_GRADE;
 
 -- DEPARTMENT테이블의 LOCATION_ID에 외래키 제약조건 추가
 -- 참조 테이블은 LOCATION, 참조 컬럼은 LOCATION의 기본키
-
+ALTER TABLE DEPARTMENT
+ADD CONSTRAINT LOCATION_ID_FK
+FOREIGN KEY(LOCATION_ID)
+REFERENCES LOCATION;
 
 -- LOCATION테이블의 NATIONAL_CODE에 외래키 제약조건 추가
 -- 참조 테이블은 NATIONAL, 참조 컬럼은 NATIONAL의 기본키
-
+ALTER TABLE LOCATION
+ADD CONSTRAINT NATIONAL_CODE_FK
+FOREIGN KEY(NATIONAL_CODE)
+REFERENCES NATIONAL;
 
