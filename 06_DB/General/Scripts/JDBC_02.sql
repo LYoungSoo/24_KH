@@ -44,4 +44,4 @@ WHERE USER_ID = 'user01'
 -- 아이디, 비밀번호 불일치 ==> 수정 실패 (0)
 
 SELECT * FROM TB_USER;
-ROLLBACK;	-- 트랜잭션이 형성이 되어있으면 java에서 오류가 날 수 있음
+ROLLBACK;	-- 다른 트랜잭션이 형성이 되어있으면 java에서 오류가 날 수 있음
