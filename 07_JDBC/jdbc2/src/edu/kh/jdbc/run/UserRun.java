@@ -9,6 +9,7 @@ public class UserRun {
         // oracle.jdbc.driver.T4CConnection@7364985f
         
         UserView view = new UserView();
-        view.test();
+//        view.test();
+        view.mainMenu();
     }
 }

@@ -45,3 +45,65 @@ WHERE USER_ID = 'user01'
 
 SELECT * FROM TB_USER;
 ROLLBACK;	-- 다른 트랜잭션이 형성이 되어있으면 java에서 오류가 날 수 있음
+
+
+-- 1. User 등록
+INSERT INTO TB_USER --(USER_ID, USER_PW, USER_NAME, ENROLL_DATE)
+VALUES (SEQ_USER_NO.NEXTVAL, 'user02', 'pass02', '유저이', DEFAULT)
+--VALUES (SEQ_USER_NO.NEXTVAL, ?, ?, ?, DEFAULT)
+;
+
+-- 2. User 전체 조회 (SELECT)
+SELECT USER_NO, USER_ID, USER_PW, USER_NAME,
+       TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') ENROLL_DATE
+FROM TB_USER
+ORDER BY USER_NO ASC
+;
+
+-- 3. User 중 이름에 검색어가 포함된 회원 조회 (SELECT)
+SELECT USER_NO, USER_ID, USER_PW, USER_NAME, ENROLL_DATE
+FROM TB_USER
+WHERE USER_NAME LIKE '%이%'
+;
+
+-- 4. USER_NO 를 입력받아 일치하는 User 조회 (SELECT)
+SELECT USER_NO, USER_ID, USER_PW, USER_NAME, ENROLL_DATE
+FROM TB_USER
+WHERE USER_NO = '6'
+;
+-- 5. USER_NO 를 입력받아 일치하는 User 삭제 (DELETE)
+DELETE
+FROM TB_USER
+WHERE USER_NAME = '유저오'
+;
+
+SELECT * FROM TB_USER ORDER BY USER_NO;
+
+COMMIT;
+ROLLBACK;
+
+-- 6. ID, PW 가 일치하는 회원이 있을 경우 이름 수정(UPDATE)
+UPDATE TB_USER
+SET USER_NAME = ''
+WHERE USER_ID = ''
+AND   USER_PW = ''
+;
+
+-- 6-1. ID, PW 가 일치하는 회원의 USER_NO(PK) 조회
+SELECT USER_NO
+FROM TB_USER
+WHERE USER_ID = '' 
+AND 	USER_PW = ''
+;
+
+-- 6-2. 6-1에서 찾은 회원의 이름 변경
+UPDATE TB_USER
+SET    USER_NAME = '유저오'
+WHERE  USER_NO = '10'
+;
+
+-- 7
+SELECT COUNT(*)
+FROM TB_USER
+WHERE USER_ID = 'user07'
+;
