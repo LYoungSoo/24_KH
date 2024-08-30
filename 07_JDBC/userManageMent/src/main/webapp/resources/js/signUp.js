@@ -1,6 +1,8 @@
 // 아이디가 userId, check인 요소를 얻어와 변수에 저장
 const userId = document.querySelector("#userId");
 const check = document.querySelector("#check");
+const signUpBtn = document.querySelector("#signUpBtn");
+
 
 // #userId 에 입력(input)이 되었을 때
 userId.addEventListener("input", e => {
@@ -19,12 +21,34 @@ userId.addEventListener("input", e => {
       check.classList.add("green");   // green 클래스 추가
       check.classList.remove("red");  // red   클래스 제거
       check.innerText = "사용 가능한 아이디 입니다";
+      signUpBtn.disabled = false;
     } else {
       check.classList.add("red");
       check.classList.remove("green");
       check.innerText = "이미 사용중인 아이디 입니다";
+      signUpBtn.disabled = true;
     }
 
   });
   
 });
+
+document.addEventListener("input", e => {
+  const list = document.querySelectorAll(".a");
+
+  for(let input of list){
+    if(input.value.trim().length == 0){
+      signUpBtn.disabled = true;
+      return;
+    }
+  }
+  // list.forEach(input => {  })
+
+  if(result == 0) signUpBtn.disabled = false;
+});
+
+
+// 아 진짜 검사할거 개많고 순서 어렵고
+// 머리아파서 생각이 안난다....
+// 2년 젊은 영수 데려와
+// 안드로이드 장인 데려와...

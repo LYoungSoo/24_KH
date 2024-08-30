@@ -13,19 +13,19 @@
   <h1>사용자 등록</h1>
   <form action="/signUp" method="POST" id="signUpForm">
     <div>
-      ID : <input type="text" name="userId" id = "userId">
+      ID : <input type="text" name="userId" id="userId" class="a">
 
       <%-- 아이디 중복 여부 확인해서 메시지 출력 --%>
       <span id="check"></span>
     </div>
     <div>
-      PW : <input type="password" name="userPw">
+      PW : <input type="password" name="userPw" class="a">
     </div>
     <div>
-      Name : <input type="text" name="userName">
+      Name : <input type="text" name="userName" class="a">
     </div>
     <div>
-      <button>등록</button>
+      <button id="signUpBtn" disabled>등록</button>
     </div>
   </form>
 

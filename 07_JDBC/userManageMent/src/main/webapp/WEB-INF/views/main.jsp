@@ -43,6 +43,7 @@
     <hr>
 
     <h3>메뉴</h3>
+        <ul>
     <%-- 
        - 클릭 시 /selectAll GET방식 요청 
        - 모든 사용자 회원번호, id, pw, name, enrollDate 조회
@@ -53,8 +54,8 @@
         컬럼명 : 회원번호 | 아이디 | 비밀번호 | 이름 | 등록일
         hint. JSTL 중 <c:forEach> 사용
       --%>
-    <ul>
-      <li><a href="#">사용자 목록 조회</a></li>
+
+      <li><a href="/selectAll">사용자 목록 조회</a></li>
     </ul>
 
   </c:if>
