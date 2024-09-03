@@ -21,12 +21,14 @@
   <h4>선택한 과일</h4>
   <p th:text="${param.fruit}"></p>
   <ul>
-    <li th:each="c : ${param.fruit}" th:text="${c}"></li>
+    <li th:each="f : ${param.fruit}" th:text="${f}"></li>
   </ul>
 
   <h4>상품명</h4>
+  <p th:text="${param.productName}"></p>
 
   <h4>유통기한</h4>
+  <p th:text="${expirationDate}"></p>
 
 </body>
 </html>
