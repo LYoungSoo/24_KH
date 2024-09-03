@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@RequestParam - 여러 개 얻어오는 방법</title>
+</head>
+<body>
+  <h1>@RequestParam - 여러 개 얻어오는 방법</h1>
+
+  <h3>th:each문 사용하기</h3>
+
+  <h4>선택한 색상</h4>
+  <p th:text="${param.color}"></p>
+  <ul>
+    <!-- param.color 길이 만큼 반복, 요소를 꺼내서 c 변수에 저장 -->
+    <!-- li 태그 내용으로 c 변수의 값 출력 -->
+    <li th:each="c : ${param.color}" th:text="${c}"></li>
+  </ul>
+
+  <h4>선택한 과일</h4>
+  <p th:text="${param.fruit}"></p>
+  <ul>
+    <li th:each="c : ${param.fruit}" th:text="${c}"></li>
+  </ul>
+
+  <h4>상품명</h4>
+
+  <h4>유통기한</h4>
+
+</body>
+</html>

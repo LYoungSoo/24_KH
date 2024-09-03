@@ -1,6 +1,12 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse
 
+.springBeans
+MANIFEST.MF
+settings.json
+*.log
+config.properties
+
 driver.xml
 
 META-INF
