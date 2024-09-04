@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // 2) 클래스 작성된 내용대로 구현
 //    ==> 스프링이 객체 생성 == Bean 등록 / Bean 생성 
 
+// Comment	  : 사람이 인식하는 주석 	 - 해석되지 않는 메모
+// Annotation : 컴파일러가 인식하는 주석 - 기능이 섞여있다
+
 @Controller
 public class ForwardTestController {
 
@@ -60,7 +63,7 @@ public class ForwardTestController {
 	 * 특수한 경우를 제외하고
 	 * 매핑 주소 제일 앞에 "/" 를 작성하지 않는다!!!
 	 */
-	@RequestMapping("forward")
+	@RequestMapping("forward")		// /forward 요청 매핑(GET/POST 가리지 않음)
 	public String forwardTest() {
 		
 		System.out.println("/forward 매핑 되었는지 확인");

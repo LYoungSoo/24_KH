@@ -66,5 +66,35 @@
 
   </form>
 
+  <hr>
+
+  <h3>4. @RequestParam 속성 확인하기</h3>
+
+  <form action="/param/test4" method="GET">
+    ID : <input type="text" name="inputId">     <br>
+    PW : <input type="password" name="inputPw"> <br>
+
+    <!-- checkbox, radio 에 value 가 없으면
+         체크하고 제출 시 "on" 제출됨
+    -->
+    아이디 저장 <input type="checkbox" name="saveId" value="O"> <br>
+
+    <button>로그인(제출)</button>
+  </form>
+
+  <hr>
+
+  <h3>5. ㅁㅁㅁ 을 이용한 파라미터 얻어오기</h3>
+
+  <form action="/param/test5" method="POST">
+    ID   : <input type="text"     name="memberId"> <br>
+    PW   : <input type="password" name="memberPw"> <br>
+    NAME : <input type="text"     name="memberName"> <br>
+    AGE  : <input type="number"   name="memberAge"> <br>
+
+    <button>제출하기</button>
+  </form>
+
+
 </body>
 </html>
