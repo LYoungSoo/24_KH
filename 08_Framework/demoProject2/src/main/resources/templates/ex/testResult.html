@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PathVariable 확인</title>
+</head>
+<body>
+  <h1>PathVariable 확인</h1>
+
+  <!--
+    @PathVariable로 얻어온 값 html 에서 사용하는 방법 ==> ${주소 {내부에 작성한 이름}}
+    ex) /ex3/{number} ==> ${number}
+  -->
+
+  <h1 th:text="|@PathVariable로 얻어온 number 값 : ${number}|"></h1>
+  <h1 th:text="|@PathVariable로 얻어온 num 값 : ${num}|"></h1>
+
+  <th:block th:replace= "~{fragments/footer}"></th:block>
+  
+</body>
+</html>

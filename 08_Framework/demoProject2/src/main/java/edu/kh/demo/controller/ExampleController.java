@@ -6,13 +6,13 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.kh.demo.dto.Student;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Slf4j		// log 필드 생성 및 초기화 자동완성 lombok Annotation
@@ -117,6 +117,71 @@ public class ExampleController {
 		// classpath:/templates/ex/result2.html 파일로
 		// forward(요청 위임)
 		return "ex/result2";
+	}
+	
+	/**
+	 * @param model : Spring 에서 데이터 전달하는 용도의 객체 (request)
+	 * @return
+	 */
+	@GetMapping("ex3")
+	public String ex3(Model model) {
+		
+		model.addAttribute("boardNo", 10);
+		model.addAttribute("key", "제목");
+		model.addAttribute("query", "검색어");
+		
+		return "ex/result3";
+	}
+	
+	/* @PathVariable
+	 * - 주소 중 일부분을 변수 값 처럼 사용
+	 * + 해당 어노테이션으로 얻어온 값은
+	 *   현재 메서드 + forward 한 html 파일에서 사용 가능
+	 */
+	
+	// 주소 중 값을 얻어오고 싶은 부분을 {} 작성하고 {}를 지칭하는 이름(변수명)을 내부에 작성 
+	@GetMapping("ex3/{number}")		
+	public String pathVariableTest(
+		@PathVariable("number") int num
+		// 주소 중 {number} 자리에 작성된 값을 얻어와
+		// 매개 변수 int num에 저장
+	) {
+		
+		log.debug("num: {}", num);
+		
+		return "ex/testResult";
+	}
+	
+	@GetMapping("ex4")
+	public String ex4(Model model) {
+		
+		Student std = new Student("33333", "맹구", 5, null);
+		
+		model.addAttribute("std", std);
+		
+		// ex4 사용
+		model.addAttribute("num", 100);
+		
+		return "ex/result4";
+		
+	}
+	
+	@GetMapping("ex5")
+	public String ex5(Model model) {
+		
+		model.addAttribute("message", "서버에서 전달된 메시지");
+		
+		model.addAttribute("num", 12345);
+		
+		Student std = new Student();
+		std.setStudentNo("6789");
+		model.addAttribute("std", std);
+		
+		model.addAttribute("start", 0);
+		model.addAttribute("end", 7);
+		
+		
+		return "ex/result5";
 	}
 	
 	

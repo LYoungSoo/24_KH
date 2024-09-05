@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타임리프 예제 3</title>
+</head>
+<body>
+  <h1>타임리프 예제 3</h1>
+
+  <h4>${}   *{}   #{}   @{}</h4>
+
+  <h3>링크(URL) 조합에 사용되는 Spring EL @{}</h3>
+
+  <ul>
+    <li>
+      <a href="/example/ex3/test">/example/ex3/test 주소 요청</a>
+    </li>
+
+    <!-- 쿼리스트링 : 주소 뒤에 ? 로 표현해서 전달하고 싶은 값을  -->
+    <li>
+      <a href="/example/ex3/test?key=aaa&query=bbb">
+        /example/ex3/test 주소 요청
+        <br>
+        주소에 쿼리스트링으로 key=aaa, query=bbb 서버에 값 전달
+      </a>
+    </li>
+ 
+    <li>
+      <a th:href="@{/example/ex3/test(key=${key}, query=${query}, boardNo=${boardNo})}">
+        Spring EL의 @{} 를 이용해 쿼리스트링 자동 완성
+      </a>
+    </li>
+
+  </ul>
+
+  <hr>
+
+  <h3>PathVariable</h3>
+  <p>
+    주소(URL, 경로) 중 일부분을 변수 값 처럼 사용
+  </p>
+  
+  <ul>
+    <li><a href="/example/ex3/1">1번</a></li>
+    <li><a href="/example/ex3/2">2번</a></li>
+    <li><a href="/example/ex3/3">3번</a></li>
+
+    <li>
+      <a th:href="@{/example/ex3/{abc}(abc=${boardNo})}">${boardNo}번</a>
+    </li>
+
+  </ul>
+
+  <th:block th:replace= "~{fragments/footer}"></th:block>
+  
+</body>
+</html>
