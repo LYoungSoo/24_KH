@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="|${user.userId} 상세 정보 페이지|"></title>
+</head>
+<body>
+  <h1 th:text="|${user.userId} 상세 정보 페이지|"></h1>
+  
+  <form th:action="@{/user/update/{userNo}(userNo=${user.userNo})}" method="POST">
+    <table border="1" style="border-collapse:collapse;">
+      <tbody>
+        <tr>
+          <th>userNo</th>
+          <td th:text="${user.userNo}"></td>
+        </tr>
+
+        <tr>
+          <th>userId</th>
+          <td th:text="${user.userId}"></td>
+        </tr>
+
+        <tr>
+          <th>userPw</th>
+          <td>
+            <input type="text" name="userPw" th:value="${user.userPw}">
+          </td>
+        </tr>
+
+        <tr>
+          <th>userName</th>
+          <td>
+            <input type="text" name="userName" th:value="${user.userName}">
+          </td>
+        </tr>
+
+        <tr>
+          <th>enrollDate</th>
+          <td th:text="${user.enrollDate}"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button>수정</button>
+    <button type="button" id="deleteBtn">삭제</button>
+    <button type="button" id="goToList">목록으로 돌아가기</button>
+  </form>
+
+  <!-- 어떤건 #이고 어떤건 $고 ==> 외워야 한다 -->
+  <!-- post로 보내는건 폼이랑 ajax만 가능하다 -->
+  <!-- 삭제 동작용 폼 -->
+  <form th:action="@{/user/delete/{userNo}(userNo=${user.userNo})}" id="deleteForm" method="POST">
+  </form>
+
+  <script>
+    document.querySelector("#goToList")
+      .addEventListener("click", () => location.href="/user/selectAll");
+
+    const deleteBtn = document.querySelector("#deleteBtn");
+    const deleteForm = document.querySelector("#deleteForm");
+
+    // 삭제 버튼 클릭 시
+    deleteBtn.addEventListener("click", () => {
+      // 취소 버튼을 클릭한 경우 (confirm => 확인, 취소 버튼으로 boolean 값 반환하는 alert비슷한거)
+      if(!confirm("삭제 하시겠습니까?")) return;
+
+      // 확인 버튼 클릭 시 deleteForm 제출
+      deleteForm.submit();
+    });
+
+  </script>
+
+  <!-- message 출력하는 script 조각 추가(messageAlert) ==> selectAll 에서 만들어서 쪼개놈 -->
+  <th:block th:replace= "~{user/selectAll :: messageAlert}"></th:block>
+
+
+</body>
+</html>
