@@ -46,6 +46,33 @@ VALUES(SEQ_TODO_NO.NEXTVAL, '테스트4', '테스트4 입니다.', DEFAULT, DEFA
 
 COMMIT;
 
+
+INSERT INTO TB_USER(USER_NO, USER_ID, USER_PW, USER_NAME, ENROLL_DATE)
+--VALUES (SEQ_USER_NO.NEXTVAL, #{userId}, #{userPw}, #{userName}, DEFAULT);
+VALUES (SEQ_USER_NO.NEXTVAL, 'user700', 'pass700', '유저칠백', DEFAULT);
+
+ROLLBACK;
+
+SELECT	TODO_NO, TODO_TITLE, TODO_COMPLETE,
+		TO_CHAR(REG_DATE, 'YYYY-MM-DD HH24:MI:SS') REG_DATE 
+FROM	TB_TODO
+WHERE	TODO_NO = 5;
+
+
+UPDATE TB_TODO
+SET    TODO_COMPLETE = DECODE(TODO_COMPLETE, 0, 1, 0)
+WHERE  TODO_NO = 4;
+
+DELETE
+FROM TB_TODO
+WHERE TODO_NO = 6;
+
+COMMIT;
+
+
+SELECT * FROM TB_TODO;
+
+DROP TABLE TB_TODO;
 ----------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------
 
@@ -59,8 +86,3 @@ VALUES USER_NO = SEQ_USER_NO.NEXTVAL,
 	   ENROLL_DATE = DEFAULT
 	   ;
 	   
-INSERT INTO TB_USER(USER_NO, USER_ID, USER_PW, USER_NAME, ENROLL_DATE)
---VALUES (SEQ_USER_NO.NEXTVAL, #{userId}, #{userPw}, #{userName}, DEFAULT);
-VALUES (SEQ_USER_NO.NEXTVAL, 'user700', 'pass700', '유저칠백', DEFAULT);
-
-ROLLBACK;

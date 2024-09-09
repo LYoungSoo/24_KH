@@ -56,6 +56,13 @@ public interface TodoListMapper {
 	 */
 	int todoDelete(int todoNo);
 
+	/**
+	 * ajax
+	 * @param todoNo
+	 * @return
+	 */
+	String searchTitle(int todoNo);
+
 
 
 }

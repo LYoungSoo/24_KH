@@ -60,5 +60,11 @@
 		WHERE	TODO_NO = #{todoNo}
 	</delete>
 	
+	<!-- 제목 검색 -->
+	<select id="searchTitle" parameterType="_int" resultType="string">
+		SELECT	TODO_TITLE
+		FROM	TB_TODO
+		WHERE	TODO_NO = #{todoNo}
+	</select>
 	
 </mapper>

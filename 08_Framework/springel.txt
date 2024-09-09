@@ -1,0 +1,6 @@
+$ : request 내장객체
+* : th:object ==> todo.todoNo , todo.todoTitle 의 공통부분 todo. 을 뽑아 th:object${todo} 하고 
+*{todoNo} *{todoTitle} 로 하는것
+# : messages.properties
+@ : link
+~ : fragment
