@@ -1,6 +1,0 @@
-Error
-
-주소 이상할떄 : Thymeleaf 적용 되었는지 확인(html에 th:action ... 등 th태그 확인)
-404 = 경로가 옳지않음(파일경로 파일명 오타확인)
-405 = get/post 틀림
-500 = 

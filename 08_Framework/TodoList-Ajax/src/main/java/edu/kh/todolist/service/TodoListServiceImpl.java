@@ -68,9 +68,28 @@ public class TodoListServiceImpl implements TodoListService {
 		return mapper.todoDelete(todoNo);
 	}
 
+	// ajax 제목 검색
 	@Override
 	public String searchTitle(int todoNo) {
 		return mapper.searchTitle(todoNo);
+	}
+
+	// 전체 할 일 개수 조회
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount();
+	}
+
+	// 완료된 할 일 개수 조회
+	@Override
+	public int getCompleteCount() {
+		return mapper.selectCompleteCount();
+	}
+
+	// 할 일 전체 목록
+	@Override
+	public List<Todo> getTodoList() {
+		return mapper.selectTodoList();
 	}
 	
 }

@@ -57,11 +57,17 @@ public interface TodoListMapper {
 	int todoDelete(int todoNo);
 
 	/**
-	 * ajax
+	 * ajax 제목 검색
 	 * @param todoNo
-	 * @return
+	 * @return 검색된 제목
 	 */
 	String searchTitle(int todoNo);
+
+	/**
+	 * 전체 할 일 개수 조회
+	 * @return 전체 할 일 개수
+	 */
+	int getTotalCount();
 
 
 

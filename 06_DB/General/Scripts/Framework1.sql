@@ -65,7 +65,7 @@ WHERE  TODO_NO = 4;
 
 DELETE
 FROM TB_TODO
-WHERE TODO_NO = 6;
+WHERE TODO_NO > 7;
 
 COMMIT;
 
@@ -73,6 +73,10 @@ COMMIT;
 SELECT * FROM TB_TODO;
 
 DROP TABLE TB_TODO;
+
+UPDATE TB_TODO
+SET    TODO_COMPLETE = DECODE(TODO_COMPLETE, 0, 1, 0)
+WHERE  TODO_NO <13 ;
 ----------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------
 
