@@ -4,3 +4,5 @@ $ : request 내장객체
 # : messages.properties
 @ : link
 ~ : fragment
+
+@ComponentScan ==> @Controller , @Service 처럼 bean을 등록해주는 어노테이션

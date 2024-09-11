@@ -1,3 +1,0 @@
-CREATE TABLE KH_LYS.TB_TODO (
-
-);
