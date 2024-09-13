@@ -36,8 +36,37 @@
   </section>
 
 
-  <!-- 안쓰는 섹션 -->
-  <section></section>
+  <section>
+    <!-- 우측 상단 로그인 / 드롭다운 메뉴 -->
+    <div class="header-top-menu"> <!-- 클래스는 '-' 아이디는 camel -->
+
+      <!-- 로그인 X -->
+      <th:block th:unless="${session.loginMember}">
+        <a href="/">메인 페이지</a>
+        |
+        <a href="/member/login">로그인</a>
+      </th:block>
+
+      <!-- 로그인 O -->
+      <th:block th:if= "${session.loginMember}">
+        <!-- for랑 연결된 id 를 가진 input태그가 활성화/비활성화 -->
+        <label for="headerMenuToggle">
+          [[${session.loginMember.memberNickname}]]
+          
+          <i class="fa-solid fa-caret-down"></i>
+        </label>
+        <!-- css 406~414  토글을 js 안쓰고 사용가능 -->
+        <input type="checkbox" id="headerMenuToggle">
+
+        <div class="header-menu">
+          <a href="#">내정보</a>
+          <a href="/member/logout">로그아웃</a>
+        </div>
+
+      </th:block>
+
+    </div>
+  </section>
 
 
 </header>

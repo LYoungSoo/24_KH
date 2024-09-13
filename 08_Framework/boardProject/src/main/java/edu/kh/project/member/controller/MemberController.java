@@ -17,7 +17,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
-@SessionAttributes({"loginMember"})
+@SessionAttributes({"loginMember"})		// 모델에서 key값이 logimMember 인 것을 세션으로 올려라
 @Controller // 요청/응답 제어 역할 명시 + Bean 등록(IOC)
 @RequestMapping("member") // /member로 시작하는 요청 매핑
 @Slf4j // log 필드 자동 생성 Lombok 어노테이션

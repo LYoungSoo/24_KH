@@ -3,11 +3,11 @@ function getCookie(key) {
 
   // 1. cookie 전부 얻어오기(string)
   const cookies = document.cookie;  //"K=V; K=V; ..."
-  console.log(cookies);   //////////////
+  // console.log(cookies);   //////////////
 
   // 2.";"을 구분자로 삼아서 배열 형태로 쪼개기(split)
   const arr = cookies.split(";");   // ["K=V", "K=V"]
-  console.log(arr);   /////////////
+  // console.log(arr);   /////////////
 
   // 3. 쪼개진 배열 요소를 하나씩 꺼내서
   // JS 객체에 K:V 형태로 추가
