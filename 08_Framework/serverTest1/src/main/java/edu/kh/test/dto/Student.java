@@ -8,9 +8,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class Student {
 	private String stdName;
 	private int stdAge;

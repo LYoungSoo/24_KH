@@ -81,7 +81,8 @@ VALUES(SEQ_MEMBER_NO.NEXTVAL, 'member03@kh.or.kr',
 
 COMMIT;
 
-
+UPDATE "MEMBER"
+SET		MEMBER_DEL_FL = 'N'
 
 
 
