@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -117,8 +119,92 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+
+//----------------------------------------------------------------------------------------------------
+
+	/**
+	 * 회원 가입 페이지 전환
+	 * @return
+	 */
+	@GetMapping("signUp")
+	public String signUp() {
+		return "member/signUp";
+	}
 	
+	/**
+	 * 회원 가입 수행
+	 * @param inputMember : 입력 값이 저장된 Member 객체(커멘드 객체)
+	 * @param ra		  : 리다이렉트 시 request scope로 값 전달
+	 * @return
+	 */
+	@PostMapping("signUp")
+	public String signUp(
+		@ModelAttribute Member inputMember,
+		RedirectAttributes ra
+	) {
+		
+		// 회원 가입 서비스 호출
+		int result = service.signUp(inputMember);
+		
+		// 서비스 결과에 따라 응답 제어
+		String path = null;
+		String message = null;
+
+		if(result > 0) {
+			path = "/";
+			message = inputMember.getMemberNickname() + "님의 가입을 환영합니다";
+		} else {
+			path = "signUp";
+			message = "회원 가입 실패....";
+		}
+		
+		return "redirect:" + path;
+	}
+	
+	/**
+	 * 이메일 중복 검사 (비동기)
+	 * @param email : 입력된 이메일
+	 * @return 0 : 중복 X , 1 : 중복 O
+	 */
+	@ResponseBody	// 반환 값을 응답 본문(ajax 코드)로 반환
+	@GetMapping("emailCheck")
+	public int emailCheck(
+		@RequestParam("email") String email
+	) {
+		
+		return service.emailCheck(email);
+	}
+	
+	/**
+	 * 닉네임 중복 검사(비동기)
+	 * @param nickName : 입력된 닉네임
+	 * @return 0 : 중복 X , 1 : 중복 O
+	 */
+	@ResponseBody
+	@GetMapping("nickNameCheck")
+	public int nickNameCheck(
+		@RequestParam("nickName") String nickName
+	) {
+		return service.nickNameCheck(nickName);
+	}
+	
+	
+//	@ResponseBody
+//	@GetMapping("telCheck")
+//	public int telCheck(
+//		@RequestParam("memberTel") String memberTel
+//	) {
+//		return service.telCheck(memberTel);
+//	}
+	
+
+
+
+//----------------------------------------------------------------------------------------------------
+
 }
+
+//----------------------------------------------------------------------------------------------------
 
 /* Cookie란?
  * - 클라이언트 측(브라우저)에서 관리하는 데이터(파일 형식)
