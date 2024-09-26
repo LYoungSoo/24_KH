@@ -30,7 +30,8 @@ public interface MyPageMapper {
 	 */
 	int changePw(
 		@Param("memberNo") int memberNo,
-		@Param("encPw")    String encPw);
+		@Param("encPw")    String encPw
+	);
 
 	/**
 	 * 회원 탈퇴
