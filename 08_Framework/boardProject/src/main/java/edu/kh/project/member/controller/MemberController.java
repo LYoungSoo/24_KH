@@ -66,7 +66,7 @@ public class MemberController {
 			// 1. model에 값 추가
 			model.addAttribute("loginMember", loginMember);
 			
-			// 2. 클래스 선언부 위에 @SessionAttrbutes({"key"}) 추가
+			// 2. 클래스 선언부 위에 @SessionAttributes({"key"}) 추가
 			// ==> key 값은 model에 추가된 key값 "loginMember" 작성
 			//	   (request ==> session)
 			

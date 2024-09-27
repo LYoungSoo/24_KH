@@ -57,7 +57,7 @@ public class FileUploadController {
 	 */
 	@PostMapping("test1")
 	public String test1(
-		@RequestParam("uploadFile") MultipartFile uploadFile
+		@RequestParam("uploadFile") MultipartFile uploadFile	// 임시 저장된 파일(메모리, 임시저장 폴더)을 참조하는 객체
 	) throws IllegalStateException, IOException {
 		String filePath = service.test1(uploadFile);
 		
@@ -65,5 +65,48 @@ public class FileUploadController {
 		
 		return "redirect:main";
 	}
-
+	
+	/**
+	 * 단일 파일 업로드 + 일반 데이터
+	 * @param uploadFile : 업로드 되어 임시저장된 파일을 참조하는 객체
+	 * @param fileName   : 원본 이름으로 지정된 파일명
+	 * @return
+	 * @throws IOException 
+	 * @throws IllegalStateException 
+	 */
+	@PostMapping("test2")
+	public String test2(
+		@RequestParam("uploadFile") MultipartFile uploadFile,
+		@RequestParam("fileName") String fileName
+	) throws IllegalStateException, IOException {
+		String filePath = service.test2(uploadFile, fileName);
+		log.debug("업로드된 파일 경로 : {}", filePath);
+		
+//		return "redirect:main";
+		return "redirect:/";
+	}
+	
+	/**
+	 * 단일 파일 업로드 + 사용자 정의 예외를 이용한 예외 처리
+	 * @param uploadFile
+	 * @return
+	 */
+	@PostMapping("test3")
+	public String test3(
+		@RequestParam("uploadFile") MultipartFile uploadFile
+	) {
+		String filePath = service.test3(uploadFile);
+		
+		log.debug("업로드된 파일 경로 : {}", filePath);
+		
+		return "redirect:main";
+	}
 }
+
+/* 
+	1. 파일 O , 이름 O	: 둘다 정상 제출
+	2. 파일 O , 이름 X	: 파일 정상 제출, 이름은 빈칸("")
+	3. 파일 X , 이름 O	: 제출된 파일명 == ""(빈칸), size == -1 ==> 파일 제출 안됨 뜻
+						  (파일이 선택되지 않으면 null이 아니라 빈칸, 비어있는 형태로 제출
+	4. 파일 X , 이름 X	: 제출되지 않음 
+*/

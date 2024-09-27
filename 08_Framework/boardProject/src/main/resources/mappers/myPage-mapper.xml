@@ -36,4 +36,11 @@
 		WHERE	MEMBER_NO = #{memberNo}
 	</update>
 	
+	<!-- 프로필 이미지 변경 -->
+	<update id="profile">
+		UPDATE "MEMBER"
+		SET		PROFILE_IMG = #{url}
+		WHERE	MEMBER_NO = #{memberNo}
+	</update>
+	
 </mapper>
