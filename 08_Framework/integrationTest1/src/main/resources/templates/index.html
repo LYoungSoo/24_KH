@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>책 목록 조회</title>
+	</head>
+	<body>
+		
+		<button type="button" id="selectBookListBtn">책 목록 조회</button>
+
+		<section id="bookListSection"></section>
+		
+	</body>
+
+	<script>
+		document.getElementById("selectBookListBtn").addEventListener("click", function() {
+        
+        fetch("/book/selectAllList")  
+//		.then(response => response.text())
+		.then(response => response.json())
+		.then(data => {
+			let bookListSection = document.getElementById("bookListSection");
+            bookListSection.innerHTML = ""; 
+
+            if (data.length === 0) {
+
+                bookListSection.innerHTML = "<h1>등록된 책이 없습니다</h1>";
+            } else {
+                const ul = document.createElement("ul");
+//				data.parse머시기로 json으로 변환해도되고
+                data.forEach(function(book) {
+                    var li = document.createElement("li");
+                    li.textContent = book.title;
+                    ul.appendChild(li);
+                });
+				
+                bookListSection.appendChild(ul);
+            }
+		})
+		.catch(error => console.error('Error:', error)); 
+    });
+	</script>
+</html>
