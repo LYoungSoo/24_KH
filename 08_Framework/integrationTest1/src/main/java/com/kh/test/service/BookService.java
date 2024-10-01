@@ -1,7 +1,9 @@
 package com.kh.test.service;
 
-import java.awt.print.Book;
+
 import java.util.List;
+
+import com.kh.test.dto.Book;
 
 public interface BookService {
 

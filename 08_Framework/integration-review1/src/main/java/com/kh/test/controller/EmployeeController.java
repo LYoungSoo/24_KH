@@ -1,6 +1,5 @@
 package com.kh.test.controller;
 
-
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -8,23 +7,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.test.dto.Book;
-import com.kh.test.service.BookService;
+import com.kh.test.dto.Employee;
+import com.kh.test.service.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor	// final 구문이 작성된 구문을 자동 의존성 주입
-@RequestMapping("book")
-public class BookController {
+@RequestMapping("employee")
+public class EmployeeController {
 	
-//	private BookService service;
-	private final BookService service;		// (의존성 주입)
+	private final EmployeeService service;
 	
-	@ResponseBody	//세션새로고침안쓰니까
-	@GetMapping("selectAllList")
-	public List<Book> selectAllList() {
-		return service.selectAllList();
+	@ResponseBody
+	@GetMapping("selectAll")
+	public List<Employee> selectAll(
+	) {
+		return service.selectAll();
 	}
-	
+
 }
