@@ -19,6 +19,8 @@ public class CommonFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
 
+        
+        
         String ip = getRemoteAddr(req);
         System.out.println("request IP : " + ip);
         System.out.println("request URI : " + req.getRequestURI());

@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.test.dto.Book;
-import com.kh.test.service.BookService;
+import com.kh.test.dto.Member;
+import com.kh.test.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequiredArgsConstructor	// final 구문이 작성된 구문을 자동 의존성 주입
-@RequestMapping("book")
-public class BookController {
+@RequiredArgsConstructor
+@RequestMapping("member")
+public class MemberController {
 	
-//	private BookService service;
-	private final BookService service;		// (의존성 주입)
+//	private MemberService service;
+	private final MemberService service;	// RequiredArgsConstructor 어노테이션 의존성 주입용 final
 	
-	@ResponseBody	//세션새로고침안쓰니까
+	@ResponseBody		// 새로고침 없이 적용할것이니 추가
 	@GetMapping("selectAllList")
-	public List<Book> selectAllList() {
+	public List<Member> selectAllList() {
 		return service.selectAllList();
 	}
 	
