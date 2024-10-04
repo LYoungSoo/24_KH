@@ -86,7 +86,7 @@
 
             <div class="btn-area">
                 <!-- 로그인 상태일 때만 글쓰기 버튼 노출 -->
-                <button id="insertBtn">글쓰기</button>                     
+                <button th:if= "${session.loginMember}" id="insertBtn">글쓰기</button>                     
             </div>
 
 
