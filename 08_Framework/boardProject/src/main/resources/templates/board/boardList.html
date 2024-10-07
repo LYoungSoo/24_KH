@@ -55,6 +55,9 @@
                                 <td th:text="*{rnum}">게시글 번호</td>
                                 <td> 
                                    <!-- 썸네일 추가 예정 -->
+                                    <img th:if= "*{thumbnail}"
+                                         th:src="*{thumbnail}"
+                                         class = "list-thumbnail">
     
                                    <!-- 상세조회 요청 주소 /board/{boardCode}/{boardNo} -->
                                 <!--    <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode})}"  --></a>
@@ -90,7 +93,7 @@
             </div>
 
 
-            <!-- ============================================================================================================== -->
+            <!-- ==================================================================================================== -->
 
             <!-- 게시글이 있을 때만 페이지네이션이 보이게 할 예정 -->
             <div class="pagination-area" th:unless= "${#lists.isEmpty(boardList)}">

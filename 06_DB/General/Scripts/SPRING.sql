@@ -226,13 +226,19 @@ SELECT	ROW_NUMBER() OVER (ORDER BY BOARD_NO ASC) "RNUM",
 					
 					ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
 				END AS "BOARD_WRITE_DATE"
+				
+				,
+				(SELECT	IMG_PATH || IMG_RENAME
+				 FROM		BOARD_IMG I
+				 WHERE 	IMG_ORDER = 0
+				 AND 		I.BOARD_NO = B.BOARD_NO
+				 ) AS THUMBNAIL
 FROM 		"BOARD" B
 JOIN		"MEMBER" M ON (B.MEMBER_NO = M.MEMBER_NO)
 WHERE 	BOARD_DEL_FL = 'N'	-- 삭제 안된 글
 AND			BOARD_CODE = 1
 ORDER BY RNUM DESC
 ;
-
 
 
 -- DATE 타입끼리 ( - ) 연산 시 결과 = 몇 일 차이 (일 단위)의 결과로 출력됨 => 1시간은 0.083333...?
@@ -251,8 +257,106 @@ INSERT INTO "BOARD"
 
 ----------------------------------------------------------------------------------------------------
 
+SELECT * FROM "COMMENT";
 
+SELECT	BOARD_NO,
+				BOARD_TITLE,
+				BOARD_CONTENT,
+				BOARD_CODE,
+				READ_COUNT,
+				B.MEMBER_NO,
+				MEMBER_NICKNAME,
+				PROFILE_IMG,
+				TO_CHAR(BOARD_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS')
+					AS BOARD_WRITE_DATE,
+				TO_CHAR(BOARD_UPDATE_DATE, 'YYYY"년" MM"월" DD"일" HH24:MI:SS')
+					AS BOARD_UPDATE_DATE,
+				(	SELECT COUNT(*)
+					FROM BOARD_LIKE L
+					WHERE L.BOARD_NO = 2018
+				) AS LIKE_COUNT,
+				(	SELECT IMG_PATH || IMG_RENAME
+					FROM BOARD_IMG I
+					WHERE I.BOARD_NO = 2018
+					AND IMG_ORDER = 0
+				) AS THUMBNAIL
+FROM	"BOARD" B
+JOIN	"MEMBER" M ON (B.MEMBER_NO = M.MEMBER_NO)
+WHERE	BOARD_NO = 2018
+AND		BOARD_CODE = 1
+;
 
+----------------------------------------------------------------------------------------------------
 
+/* 댓글 샘플 데이터 추가 */
+INSERT INTO "COMMENT"
+VALUES(
+	SEQ_COMMENT_NO.NEXTVAL,
+	'부모 댓글 3',
+	DEFAULT,
+	DEFAULT,
+	1,		-- 회원 번호
+	2020, -- 게시글 번호
+	NULL
+);
+
+COMMIT;
+
+-- 부모 댓글 1의 자식 댓글
+INSERT INTO "COMMENT"
+VALUES(SEQ_COMMENT_NO.NEXTVAL, '자식 댓글 2-3',
+			 DEFAULT, DEFAULT,
+			 1,			-- 회원 번호
+			 2020,	-- 게시글 번호
+			 3003		-- 부모 댓글 번호
+)
+;
+
+-- 자식 댓글 1의 자식 댓글
+INSERT INTO "COMMENT"
+VALUES(SEQ_COMMENT_NO.NEXTVAL, '손자 댓글 1-2-2',
+			 DEFAULT, DEFAULT,
+			 1,			-- 회원 번호
+			 2020,	-- 게시글 번호
+			 3006		-- 자식 댓글 번호
+)
+;
+
+/* 특정 게시글의 댓글 목록 조회 + 계층형 쿼리 */
+-- LEVEL 컬럼 : 현재 계층 레벨 출력
+SELECT LEVEL, COMMENT_NO, PARENT_COMMENT_NO, COMMENT_CONTENT
+FROM "COMMENT"
+WHERE BOARD_NO = 2020		-- 3002 ~ 3004
+
+/* 계층형 쿼리 코드 추가 */
+
+-- PARENT_COMMENT_NO 값이 NULL인 행이 계층의 시작이다
+-- ==> LEVEL == 1
+START WITH PARENT_COMMENT_NO IS NULL
+
+-- PARENT_COMMENT_NO 값이 COMMENT_NO와 같은 행을
+-- 자식으로 지정하여 연결 
+CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
+
+-- 형제들(같은 LEVEL) 간의 정렬 순서를 COMENT_NO 오름차순으로 지정
+ORDER SIBLINGS BY COMMENT_NO ASC
+;
+
+/* 실제 사용할 댓글 목록 조회 + 계층형 쿼리 */
+SELECT LEVEL, C.* FROM
+	(SELECT COMMENT_NO, COMMENT_CONTENT,
+	    TO_CHAR(COMMENT_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') COMMENT_WRITE_DATE,
+	    BOARD_NO, MEMBER_NO, MEMBER_NICKNAME, PROFILE_IMG, PARENT_COMMENT_NO, COMMENT_DEL_FL
+	FROM "COMMENT"
+	JOIN MEMBER USING(MEMBER_NO)
+	WHERE BOARD_NO = 1998) C
+WHERE COMMENT_DEL_FL = 'N'
+OR 0 != (SELECT COUNT(*) FROM "COMMENT" SUB
+				WHERE SUB.PARENT_COMMENT_NO = C.COMMENT_NO
+				AND COMMENT_DEL_FL = 'N')
+START WITH PARENT_COMMENT_NO IS NULL
+CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
+ORDER SIBLINGS BY COMMENT_NO
+;
 
 
