@@ -40,7 +40,9 @@
                     <span class="like-area">
                         
                         <!-- 좋아요 누른적이 있으면 fa-solid, 없으면 fa-regular 클래스 추가 -->
-                        <i class="fa-heart fa-regular" id="boardLike"></i>
+                        <i class="fa-heart" id="boardLike"
+                           th:classappend="*{likeCheck == 1} ? fa-solid : fa-regular"></i>
+                           <!-- 하트를 비동기로 하면 비어있다가 로딩되고 갑자기 하트 채워질수도 있음-->
 
                         <!-- 좋아요 개수 -->
                         <span th:text="*{likeCount}">0</span>
@@ -129,7 +131,14 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
 
+    <script th:inline="javascript">
+        // th:inline="javascript"
+        // - Java 데이터 ==> JS 자료형으로 자동 변환
 
+        // 로그인 되어있으면 true, 아니면 false
+        const loginCheck = /*[[${session.loginMember != null}]]*/ false;
+        
+    </script>
     <script src="/js/board/boardDetail.js"></script>
     <script src="/js/board/comment.js"></script>
     

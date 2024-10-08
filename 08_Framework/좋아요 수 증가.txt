@@ -1,0 +1,8 @@
+[게시글 좋아요]
+- 로그인한 회원만 클릭 가능
+
+- 좋아요 체크(Insert) <-> 체크 해제(Delete)
+  클릭 시 마다 반대로 동작
+
+boardNo
+@SessionAttribute("loginMember")
