@@ -365,3 +365,17 @@ VALUES(4, '테스트');
 
 COMMIT;
 
+
+----------------------------------------------------------------------------------------------------
+
+SELECT * FROM BOARD ORDER BY BOARD_NO DESC;
+
+/* 게시글 삭제 */
+UPDATE	BOARD
+SET			BOARD_DEL_FL = 'Y'
+WHERE		MEMBER_NO    = '2'
+AND			BOARD_NO     = '2021'
+;
+
+COMMIT;
+

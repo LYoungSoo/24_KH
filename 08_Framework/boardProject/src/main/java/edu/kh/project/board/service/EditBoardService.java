@@ -16,4 +16,21 @@ public interface EditBoardService {
 	 */
 	int boardInsert(Board inputBoard, List<MultipartFile> images);
 
+	/**
+	 * 게시글 삭제
+	 * @param memberNo
+	 * @param boardNo
+	 * @return
+	 */
+	int boardDelete(int memberNo, int boardNo);
+
+	/**
+	 * 게시글 수정
+	 * @param inputBoard
+	 * @param images
+	 * @param deleteOrderList
+	 * @return result
+	 */
+	int boardUpdate(Board inputBoard, List<MultipartFile> images, String deleteOrderList);
+
 }
