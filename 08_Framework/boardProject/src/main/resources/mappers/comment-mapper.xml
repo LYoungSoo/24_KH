@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+	Mapper 인터페이스와 연결하는 방법 : 
+	namespace 속성 값으로 Mapper 인터페이스의 패키지명 + 인터페이스명 작성
+-->
+<mapper namespace="edu.kh.project.board.mapper.CommentMapper">
+
+	<!--
+		useGeneratedKeys="true"
+		: DB에서 생성된 key(시퀀스) 값을 자바에서도 사용할 수 있게 하는 속성
+	-->
+
+	<!-- 댓글 등록 -->
+	<insert id="commentInsert" parameterType="Comment" useGeneratedKeys="true">
+		<!-- INSERT 실행 전, 다음 시퀀스 번호를 생성해서 저장 ==> commentNo 필드에 대입 -->
+		<selectKey order="BEFORE" resultType="_int" keyProperty="commentNo">
+			SELECT SEQ_COMMENT_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO "COMMENT"
+		VALUES(	#{commentNo},
+				#{commentContent},
+				DEFAULT,
+				DEFAULT,
+				#{memberNo},
+				#{boardNo},
+				
+				<!-- 부모 댓글 -->
+				<if test="parentCommentNo == 0">
+					NULL
+				</if>
+				
+				<!-- 자식 댓글 -->
+				<if test="parentCommentNo != 0">
+					#{parentCommentNo}
+				</if>
+		)
+	</insert>
+	
+	<!-- 댓글 삭제(상태 값 변경) -->
+	<update id="commentDelete">
+		UPDATE	"COMMENT"
+		SET		COMMENT_DEL_FL = 'Y'
+		WHERE	COMMENT_NO = #{commentNo}
+		AND		MEMBER_NO = #{memberNo}
+	</update>
+
+
+</mapper>

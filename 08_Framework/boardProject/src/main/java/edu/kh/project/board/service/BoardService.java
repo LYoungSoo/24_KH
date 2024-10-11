@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.project.board.dto.Board;
+import edu.kh.project.board.dto.Comment;
 
 public interface BoardService {
 
@@ -39,7 +40,18 @@ public interface BoardService {
 
 	// ------------- interceptor
 	
-	// DB에서 모든 게시판 종류를 조회
+	/**
+	 * DB에서 모든 게시판 종류를 조회
+	 * @return
+	 */
 	List<Map<String, String>> selectBoardTypeList();
+
+	
+	/**
+	 * 댓글 목록 조회
+	 * @param boardNo
+	 * @return commentList
+	 */
+	List<Comment> selectCommentList(int boardNo);
 
 }
