@@ -1,0 +1,8 @@
+[product-mapper.xml]
+      SELECT CATEGORY_NO, CATEGORY_NAME
+
+      ==> 인터셉터를 사용할 때에는 자동완성되는 객체명을 사용할 수 없음
+
+-> SELECT 구문 수행 시 key를 나타내는 컬럼명이 "언더스코어 표기법"으로 작성되어 Map에 그대로 세팅 되었는데
+
+   index.html에서 Map에 저장된 값을 얻어올 때 key를 "카멜 표기법" 형태로 작성되어 값을 읽어오지 못하는 문제 발생

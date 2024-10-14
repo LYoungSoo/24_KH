@@ -46,7 +46,7 @@ public class BoardTypeInterceptor implements HandlerInterceptor {
 	
 	// 전처리
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler)
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
 //		log.info("----- BoardTypeInterceptor 전처리 메서드 실행 -----");
@@ -58,7 +58,7 @@ public class BoardTypeInterceptor implements HandlerInterceptor {
 		
 		// 2) application 객체에 "boardTypeList" 가 없을 경우
 		if(application.getAttribute("boardTypeList") == null) {
-			log.info("----- boardTYpeList 조회 -----");
+			log.info("----- boardTypeList 조회 -----");
 			
 			// DB에서 모든 게시판 종류를 조회하는 서비스 호출
 			List<Map<String, String>> boardTypeList = service.selectBoardTypeList();
