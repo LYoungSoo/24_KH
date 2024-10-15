@@ -1,0 +1,22 @@
+예외 처리
+
+[이유] 프로그램의 비정상 종료를 막기 위해서
+
+- throws : 메서드에서 발생한 예외를 호출부로 던짐
+- try-catch : try 안에서 발생한 예외를 catch 에서 잡아서 처리
+
+기본적으로 Spring 에서 발생하는 대부분의 예외를 한 번에 처리하여
+  에러 페이지로 넘어가게 하는 ErrorController 를 제공함 (Unchecked Exception)
+
+[목표]
+1. 예외 처리 범위를 확장
+- Controller 범위(@ExceptrionHandler)
+- 전역(@ControllerAdvice + ErrorController 상속
+
+2. 예외 처리 페이지 변경
+-- 별도의 설정 없이
+  templates/error/응답코드.html 파일만 있어도
+  (응답 코드 == 400, 404, 500 등)
+
+  Spring에 내장된 Error Controller 가
+  발생하는 응답 코드와 같은 html 파일로 forward 함

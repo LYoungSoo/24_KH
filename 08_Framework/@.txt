@@ -1,0 +1,12 @@
+@RequestParam   : 제출된 값을 받아오는 것
+- form 태그를 이용한 제출이나 / query String 을 이용한 값 / ajax- Get 방식으로 얻어온 값
+- 전달되어 온 값을 저장하는 매개변수
+
+@ModelAttribute
+- 제출된 값을 Map이나 DTO에 바로 전달할때
+
+@RequestBody
+- ajax post/put/delete ==> body에 data를 담아서 옮김
+
+@ResponseBody
+- 응답할 때, 응답 본문으로 데이터를 그대로 돌려보내라 ==> 새로고침이 필요없어짐
