@@ -12,10 +12,12 @@ import org.springframework.data.redis.core.RedisTemplate;
 @PropertySource("classpath:config.properties") // 외부 프로퍼티 파일을 로드
 public class RedisConfig {
   
-  @Value("${spring.redis.host}") // 프로퍼티 파일에서 Redis 호스트 값을 주입
+//  @Value("${spring.redis.host}") // 프로퍼티 파일에서 Redis 호스트 값을 주입
+  @Value("${spring.data.redis.host}") // 프로퍼티 파일에서 Redis 호스트 값을 주입
   private String redisHost;
 
-  @Value("${spring.redis.port}") // 프로퍼티 파일에서 Redis 포트 값을 주입
+//  @Value("${spring.redis.port}") // 프로퍼티 파일에서 Redis 포트 값을 주입
+  @Value("${spring.data.redis.port}") // 프로퍼티 파일에서 Redis 포트 값을 주입
   private int redisPort;
 
   @Bean // 해당 메서드에서 반환된 객체를 Bean으로 등록
