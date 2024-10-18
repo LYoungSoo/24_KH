@@ -23,13 +23,26 @@ boardLike.addEventListener("click", e => {
     throw new Error("좋아요 실패");
   })
   .then(result => {
-    console.log("result : ", result);
+    // console.log("result : ", result);
 
     // 좋아요 결과가 담긴 result 객체의 check 값에 따라
     // 하트 아이콘을 비우기/ 채우기 지정
     if(result.check === 'insert') {
       boardLike.classList.add("fa-solid");
       boardLike.classList.remove("fa-regular");
+
+      // 게시글 작성자에게 알림 보내기
+      // const content = `<strong>샘플2</strong> 님이 <strong>제목</strong> 게시글을 좋아합니다`;
+      const content = `<strong>${memberNickname}</strong> 님이 <strong>${boardDetail.boardTitle}</strong> 게시글을 좋아합니다`;
+
+      // type, url, pkNo, content
+      sendNotification(
+        "boardLike",
+        location.pathname,  // 게시글 상세 조회 페이지 주소
+        boardDetail.boardNo,
+        content
+      );
+
     } else {    // 비우기
       boardLike.classList.add("fa-regular");
       boardLike.classList.remove("fa-solid");

@@ -137,7 +137,12 @@
 
         // 로그인 되어있으면 true, 아니면 false
         const loginCheck = /*[[${session.loginMember != null}]]*/ false;
-        
+
+        // 로그인한 회원의 닉네임
+        const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ null;
+
+        // 상세 조회한 게시글 정보
+        const boardDetail = /*[[${board}]]*/ null;
     </script>
     <script src="/js/board/boardDetail.js"></script>
     <script src="/js/board/comment.js"></script>

@@ -447,3 +447,34 @@ JOIN	"MEMBER" ON (SEND_MEMBER_NO = MEMBER_NO)
 WHERE	RECEIVE_MEMBER_NO = 1
 ORDER BY NOTIFICATION_NO DESC
 ;
+
+----------------------------------------------------------------------------------------------------
+
+/* 이미지 파일명 모조리 조회 */
+SELECT	IMG_RENAME
+FROM		BOARD_IMG
+;
+
+-- 회원 프로필 이미지 + 게시글 이미지 파일명만 모두 조회
+
+-- SUBSTRING(컬럼명, 시작 인덱스) : 인덱스 부터 끝까지 잘라서 반환
+-- INSTR(컬럼명, '찾을 문자열', 검색 순서) : 일치하는 문자열 인덱스 반환
+-- * 검색 순서 : -1 : 뒤에서부터 검색
+-- 맨 뒤의 / 부터 검색을 해서, 거기부터 끝까지 잘라서 반환하려는걸, 1번 자리부터 (맨앞에서 두번째) 보내겠다~
+SELECT	SUBSTR(PROFILE_IMG, INSTR(PROFILE_IMG, '/', -1) + 1) AS "FILE_NAME"
+FROM		"MEMBER"
+WHERE		PROFILE_IMG IS NOT NULL
+
+UNION
+
+SELECT	TO_CHAR(IMG_RENAME) "FILENAME"
+FROM BOARD_IMG 
+;
+
+
+
+
+
+
+
+

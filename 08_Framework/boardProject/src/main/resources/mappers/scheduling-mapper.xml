@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--
+	Mapper 인터페이스와 연결하는 방법 : 
+	namespace 속성 값으로 Mapper 인터페이스의 패키지명 + 인터페이스명 작성
+-->
+<mapper namespace="edu.kh.project.common.scheduling.mapper.SchedulingMapper">
+
+	<!-- DB 에 기록된 모든 파일명 조회 -->
+	<select id="getDbFileNameList" resultType="string">
+		SELECT	SUBSTR(PROFILE_IMG, INSTR(PROFILE_IMG, '/', -1) + 1) AS "FILE_NAME"
+		FROM	"MEMBER"
+		WHERE	PROFILE_IMG IS NOT NULL
+		
+		UNION
+		
+		SELECT	TO_CHAR(IMG_RENAME) "FILE_NAME"
+		FROM	BOARD_IMG 
+	</select>
+
+</mapper>
