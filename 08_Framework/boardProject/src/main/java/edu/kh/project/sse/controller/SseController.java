@@ -98,7 +98,6 @@ public class SseController {
 		}
 	}
 	
-	
 	// --------------------------------------------------------------------------------
 	
 	/**
@@ -147,10 +146,5 @@ public class SseController {
 	) {
 		service.updateNotification(notificationNo);
 	}
-	
-	
-	
-	
-	
 	
 }

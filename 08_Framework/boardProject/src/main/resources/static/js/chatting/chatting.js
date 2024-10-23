@@ -32,6 +32,11 @@ if(notificationLoginCheck) {		// common.html 에 선언된 전역 변수
 /* 채팅 메시지를 보내는 함수 */
 const sendMessage = () => {
 
+	if(selectChattingNo === undefined){
+    alert("대화방을 선택해주세요");
+    return;
+  }
+
   // 채팅 입력 textarea
   const inputChatting = document.querySelector("#inputChatting");
   const msg = inputChatting.value.trim(); // 입력된 채팅 메시지
@@ -53,6 +58,14 @@ const sendMessage = () => {
 
   // JSON으로 변환하여 웹소켓 핸들러로 전달
   chattingSock.send( JSON.stringify(chattingObj) );
+
+	// type, url, pkNo, content
+	const content = 
+	`<strong>${loginMemberNickname}</strong>님이 채팅을 보냈습니다.<br>`
+	+`<span class="chat-preview">${msg}</span>`;
+
+  const url = location.pathname + "?chat-no=" + selectChattingNo;
+  sendNotification("chatting", url, selectTargetNo, content);
 
   inputChatting.value = ""; // 보낸 채팅 내용 삭제
 }

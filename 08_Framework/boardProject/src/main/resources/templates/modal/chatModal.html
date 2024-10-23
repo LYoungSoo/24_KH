@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>modalChatting Test</title>
+
+  <style>
+    #chatModal {
+      width : 350px;
+      height : 600px;
+      background-color: wheat;
+      border-radius: 20px;
+    }
+
+
+
+  /* fixed */
+  #chatModal {
+    width : 300px;
+    height : 600px;
+    background-color: wheat;
+    border-radius: 20px;
+
+    position: fixed;
+
+    bottom: 30px;
+    right: 30px;
+  }
+
+  .modal-content {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+    text-decoration:none; /* 밑줄 삭제 */
+    color: black;
+    font-weight: bold;
+    line-height: 38px;    /* 장평 */
+    user-select: none;    /* 블럭 금지 */
+    border-radius: 50%;
+  }
+
+  .closeModalBtn {
+    
+    background-color: burlywood;
+
+  }
+
+  .chatRooms {/* 116~ */
+    height: 58px;
+  }
+
+
+  /* https://fromnowwon.tistory.com/entry/css-triangle-bubble */
+  makingtriangle {
+  width: 0;
+  height: 0;
+  border-bottom: 50px solid skyblue;
+  border-top: 50px solid transparent;
+  border-left: 50px solid skyblue;
+  border-right: 50px solid transparent;
+}
+  </style>
+</head>
+<body>
+
+  <!-- 모달 열기 버튼 -->
+  <button id="chatModalBtn">채팅 열기</button>
+
+  <!-- 모달 -->
+  <div id="chatModal" style="display:none;">
+    <div class="modal-content">
+      <span id="closeModalBtn">&times;</span>
+
+      <h2>ChatRoomList</h2>
+      <div class="chatRooms"></div>
+      
+    </div>
+  </div>
+
+
+  <script>
+
+
+    // 모달 열기/닫기 버튼 기능
+    document.getElementById('chatModalBtn').addEventListener('click', () => {
+      document.getElementById('chatModal').style.display = 'block';
+      sessionStorage.setItem('modalOpenFl', 'true');
+    });
+  
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+      document.getElementById('chatModal').style.display = 'none';
+      sessionStorage.setItem('modalOpenFl', 'false');
+    });
+  
+
+
+    //--------------------------------------------
+    // 페이지 로드 시 모달 상태 유지
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalOpenFl = sessionStorage.getItem('modalOpenFl');
+      if (modalOpenFl === 'true') {
+          document.getElementById('chatModal').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
