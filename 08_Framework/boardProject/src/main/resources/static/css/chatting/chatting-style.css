@@ -117,7 +117,7 @@
 	width: 30%;
 	border : 1px solid black;
 	list-style: none;
-	overflow: auto; /* scroll */
+	overflow: auto;
 }
 
 .chatting-item{
@@ -133,7 +133,7 @@
 }
 
 .chatting-item > div{ height: 100%; text-align: center;}
-.item-header{ width : 25%; }	/* 채팅 상대방 썸네일 */
+.item-header{ width : 25%; }
 .item-body{ 
 	width : 75%; 
 	padding : 2px 0;
@@ -223,9 +223,9 @@
 	margin-right: 5px;
 }
 
-.chat {	/* 채팅창 출력 */
+.chat {
 	display: inline-block;
-	border-radius: 10px;
+	border-radius: 5px;
 	padding: 5px;
 	background-color: #eee;
 	text-align: left;

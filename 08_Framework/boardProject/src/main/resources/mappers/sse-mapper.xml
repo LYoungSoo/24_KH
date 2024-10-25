@@ -49,11 +49,6 @@
 							FROM	"COMMENT"
 							WHERE	COMMENT_NO = #{pkNo})
 					</when>
-					
-					<!-- 알림 종류가 채팅인 경우(pkNo == targetNo(채팅 받는 사람 번호)) -->
-					<when test="notificationType == 'chatting'">
-						#{pkNo}
-					</when>
 				</choose>
 		)
 		
@@ -81,7 +76,8 @@
 	
 	<!-- 로그인한 회원의 알림 목록 조회 -->
 	<select id="selectNotificationList"  resultType="Notification">
-		SELECT	NOTIFICATION_NO, 
+		SELECT 
+				NOTIFICATION_NO, 
 				NOTIFICATION_CONTENT, 
 				NOTIFICATION_URL, 
 				PROFILE_IMG AS SEND_MEMBER_PROFILE_IMG, 

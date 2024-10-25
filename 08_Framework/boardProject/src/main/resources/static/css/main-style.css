@@ -631,8 +631,3 @@ header>section:nth-child(3) {
 .notification-item:hover > .notification-text{
   text-decoration: underline;
 }
-
-/* 단어 길이 영역 초과 시 ... 으로 변경  */
-.chat-preview{
-  word-break: break-word;
-}
