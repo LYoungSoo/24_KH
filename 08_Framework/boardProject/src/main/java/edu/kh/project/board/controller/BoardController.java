@@ -87,14 +87,14 @@ public class BoardController {
 		
 		return "board/boardList";
 	}
-	
+
 	/**
 	 * 게시글 상세 조회
 	 * @param boardCode   : 게시판 종류
 	 * @param boardNo     : 게시글 번호
 	 * @param model		  : forward 시 request scope 값 전달 객체
 	 * @param ra		  : redirect 시 request scope 값 전달 객체
-	 * @param loginMEmber : 로그인한 회원 정보, 로그인 안되어 있으면 null
+	 * @param loginMember : 로그인한 회원 정보, 로그인 안되어 있으면 null
 	 * @param req		  : 요청 관련 데이터를 담고 있는 객체 (쿠키 포함) 
 	 * @param resp		  : 응답 방법을 담고 있는 객체 (쿠키 생성, 쿠키를 클라이언트에게 전달)
 	 * @return
@@ -406,7 +406,8 @@ public class BoardController {
 	
 	/* 목록으로 동작 버튼을 눌렀을 때, 몇 페이지로 돌아가야 하는지
 	 * 해당 페이지 번호를 구하는 동작
-	 */
+	 */
+
 }
 
 /* 게시글 상세 조회

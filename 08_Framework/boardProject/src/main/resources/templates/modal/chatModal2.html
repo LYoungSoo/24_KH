@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>modalChatting Test</title>
+
+  <style>
+    .flex {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+
+    /* 모달 열기 버튼 */
+    #chatModalBtn {
+      width: 100px;
+      height: 50px;
+      border-radius: 20%;
+      background-color: burlywood;
+
+      position: fixed;
+
+      bottom: 40px;
+      right: 40px;
+    }
+
+    #chatModalBtn > div {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      text-align: center;
+      text-decoration:none; /* 밑줄 삭제 */
+      color: black;
+      font-weight: bold;
+      line-height: 38px;    /* 장평 */
+      user-select: none;    /* 블럭 금지 */
+      border-radius: 20%;
+    }
+
+    /* 열린 모달 창 */
+    #chatList {
+      width : 300px;
+      height : 600px;
+      background-color: wheat;
+      border-radius: 20px;
+
+      position: fixed;
+
+      bottom: 30px;
+      right: 30px;
+    }
+
+    .modal-content {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      text-decoration:none; /* 밑줄 삭제 */
+      color: black;
+      font-weight: bold;
+      line-height: 38px;    /* 장평 */
+      user-select: none;    /* 블럭 금지 */
+      border-radius: 50%;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 모달 열기 버튼 -->
+  <button id="chatModalBtn">
+    <div>
+      채팅 메신저 모양의<br>버튼을 만들것임
+    </div>
+  </button>
+
+
+  <!-- 채팅방 리스트 -->
+  <div id="chatList" class="flex-col" style="display:none;">
+
+    <!-- 맨 위 -->
+    <div id="list-top" class="flex-row">
+      <div>
+        <a href="">프로필이미지</a>
+      </div>
+      <span th:text="${loginMember.getMemberNick}">접속자 닉네임</span>
+      <span id="closeModalBtn">&times;</span>
+    </div>
+
+    <!-- 간이 설정 -->
+    <div class="flex-row">
+      <div>채팅 알림 On/Off</div>
+      <div>토글버튼</div>
+      <div>읽지 않은 메시지만 보기</div>
+      <div>체크박스</div>
+    </div>
+
+    <!-- 채팅창 한 줄 -->
+    <ul class="chatting-list">
+
+      <th:block th:each="room : ${roomList}">
+
+        <!-- th:chat-no : li 태그에 임의의 속성 chat-no를 추가하는데
+          타임리프를 이용해 출력된 값을 chat-no 속성 값으로 대입 -->
+        <li class="chatting-item" th:chat-no="${room.chattingRoomNo}" th:target-no="${room.targetNo}">
+          <div class="item-header">
+
+            <img th:if="${room.targetProfile}" class="list-profile" th:src="${room.targetProfile}">
+
+            <img th:unless="${room.targetProfile}" class="list-profile" th:src="#{user.default.image}">
+
+          </div>
+          <div class="item-body">
+            <p>
+              <span class="target-name" th:text="${room.targetNickname}">상대방 이름</span>
+              <span class="recent-send-time" th:text="${room.sendTime}">메세지 보낸 시간</span>
+            </p>
+            <div>
+              <p class="recent-message" th:text="${room.lastMessage}">메세지 내용</p>
+
+              <p th:if="${room.notReadCount > 0}" class="not-read-count" th:text="${room.notReadCount}"></p>
+            </div>
+          </div>
+        </li>
+
+      </th:block>
+
+    </ul>
+
+
+
+
+  </div>
+
+
+  <!-- 메시지 -->
+
+
+  <script>
+
+    // 모달 열기/닫기 버튼 기능
+    document.getElementById('chatModalBtn').addEventListener('click', () => {
+      document.getElementById('chatList').style.display = 'block';
+      sessionStorage.setItem('modalOpenFl', 'true');
+   });
+  
+    document.getElementById('closeModalBtn').addEventListener('click', () => {
+      document.getElementById('chatList').style.display = 'none';
+      sessionStorage.setItem('modalOpenFl', 'false');
+    });
+
+    
+  </script>
+</body>
+</html>

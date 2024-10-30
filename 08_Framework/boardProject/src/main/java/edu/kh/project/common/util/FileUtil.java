@@ -41,4 +41,16 @@ public class FileUtil {
 		// 20240927094732_00001.jpg
 		return time + "_" + number + ext;
 	}
+	
+	public static String rename(String originalFileName, int boardNo, int order) {
+		int index = originalFileName.lastIndexOf(".");
+		
+		String ext = originalFileName.substring(index);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String time = sdf.format(new java.util.Date());
+		
+		return time + "_" + boardNo + "_" + order + ext;
+	}
 }

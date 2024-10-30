@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>채팅방</title>
+
+	<th:block th:replace="~{common/common}"></th:block>
+
+	<link rel="stylesheet" href="/css/board/boardDetail-style.css">
+	<link rel="stylesheet" href="/css/chatting/chatting-style.css">
+
+	<!-- <link rel="stylesheet" href="../../static/css/board/boardDetail-style.css"> -->
+	<!-- <link rel="stylesheet" href="../../static/css/board/chatting-style.css"> -->
+
+      <style>
+    /* 채팅방 생성 버튼 */
+    #openChatRoom {
+      width: 120px;
+    }
+
+    /*  채팅방 생성 모달*/
+    #chat-modal {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-body {
+      text-align: center;
+      background-color: white;
+      padding: 50px;
+      border-radius: 20px;
+    }
+
+    #chatRoomTitle {
+      width: 250px;
+    }
+
+    /* 추가 버튼 */
+    #addTarget{
+        margin: 30px 0 0 70px;
+        width: 100px;
+        height: 30px;
+        background-color: #455BA7;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+    }
+
+
+    /* 팝업레이어 */
+    #addTargetPopupLayer{
+        position: fixed;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1200;
+        background-color: #f5f5f5;
+        border: 5px inset #455ba8;
+        width: 450px;
+        height: 600px;
+
+    }
+
+    .popup-layer-close{ display: none;  }
+
+    #closeBtn{
+        position: absolute;
+      top: -15px;
+        right: -30px;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+
+
+
+    .target-input-area{
+      width: 100%;
+      height: 40px;
+      border-bottom: 2px solid black;
+    }
+
+
+
+    #targetInput{
+      width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        padding: 3px 10px;
+        font-size: 20px;
+    }
+
+    #resultArea{list-style: none;}
+
+    .result-row{
+      width: 100%;
+      height: 50px;
+      padding: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .result-row:hover{	background-color: #dadada;}
+
+    .result-row > *{ 
+      margin-right: 10px;
+      user-select: none;
+    }
+
+
+    .result-row-img{ width: 40px;}
+
+
+    /* 채팅창 영역 */
+    .chatting-area {
+      margin: auto;
+      height: 650px;
+      width: 1000px;
+      margin-top: 20px;
+      margin-bottom: 50px;
+      display: flex;
+    }
+
+    /*  채팅 목록 */
+    .chatting-list{
+      width: 30%;
+      border : 1px solid black;
+      list-style: none;
+      overflow: auto; /* scroll */
+    }
+
+    .chatting-item{
+      height: 12%;
+      display: flex;
+      padding: 5px 0;
+      border-bottom: 1px solid black;
+      cursor: pointer;
+    }
+
+    .chatting-item * {
+      pointer-events: none;
+    }
+
+    .chatting-item > div{ height: 100%; text-align: center;}
+    .item-header{ width : 25%; }	/* 채팅 상대방 썸네일 */
+    .item-body{ 
+      width : 75%; 
+      padding : 2px 0;
+    }
+    .item-body> p{ 
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chatting-item.select{
+      background-color: #ddd;
+    }
+
+
+    .list-profile{ 
+      max-width: 65px;
+        max-height: 65px;
+    }
+
+    .target-name{
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .recent-send-time{
+      margin-right: 5px;
+    }
+
+
+    .item-body > div{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .recent-message{
+      width: 180px;
+
+      /* 여러 줄 말줄임 처리 */
+      white-space: normal;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+
+      /*  줄바꿈 처리 */
+      word-break: break-all;
+    }
+
+    .not-read-count{
+      width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        margin: 10px 10px 0 0;
+    }
+
+
+    /* 채팅 내용 */
+    .chatting-content{
+      width: 70%;
+    }
+
+    .display-chatting {
+      width: 100%;
+      height: 570px;
+      border: 1px solid black;
+      overflow: auto;
+      list-style: none;
+      padding: 10px 10px;
+    }
+
+    .display-chatting > li{
+      margin: 10px 0;
+    }
+
+    .target-chat{
+      display: flex;
+      align-items: flex-start;
+    }
+    .target-chat > img{
+      width: 50px;
+      margin-right: 5px;
+    }
+
+    .chat {	/* 채팅창 출력 */
+      display: inline-block;
+      border-radius: 10px;
+      padding: 5px;
+      background-color: #eee;
+      text-align: left;
+      max-width: 500px;
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+
+
+    .input-area {
+      height: 80px;
+      width: 100%;
+      display: flex;
+    }
+
+    #inputChatting {
+      padding: 3px;
+      font-size: 1.3em;
+      width: 80%;
+      resize: none;
+    }
+
+    #send {
+      width: 20%;
+    }
+
+    .my-chat {
+      text-align: right;
+    }
+
+    .my-chat>p {
+      background-color: yellow;
+    }
+
+    .chatDate {
+      font-size: 9px;
+    }
+
+    #exit-area {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+
+
+    .exit {
+      text-align: center;
+    }
+
+    .exit>p {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+
+    .chat-exit {
+      width: 100%;
+      text-align: center;
+      background-color: black;
+      color: white;
+    }
+
+  </style>
+
+</head>
+
+<body>
+	<main>
+
+    <!-- 채팅방은 물품에서 채팅 버튼을 눌렀을 경우에만 활성화 -->
+
+    <!-- 채팅창 전체 큰 네모 ==> css 뜯어내야함 --> 
+		<div class="chatting-area">
+
+
+			<ul class="chatting-list">
+
+				<th:block th:each="room : ${roomList}">
+
+					<!-- th:chat-no : li 태그에 임의의 속성 chat-no를 추가하는데
+						타임리프를 이용해 출력된 값을 chat-no 속성 값으로 대입 -->
+					<li class="chatting-item" th:chat-no="${room.chattingRoomNo}" th:target-no="${room.targetNo}">
+						<div class="item-header">
+
+							<img th:if="${room.targetProfile}" class="list-profile" th:src="${room.targetProfile}">
+
+							<img th:unless="${room.targetProfile}" class="list-profile" th:src="#{user.default.image}">
+
+						</div>
+						<div class="item-body">
+							<p>
+								<span class="target-name" th:text="${room.targetNickname}">상대방 이름</span>
+								<span class="recent-send-time" th:text="${room.sendTime}">메세지 보낸 시간</span>
+							</p>
+							<div>
+								<p class="recent-message" th:text="${room.lastMessage}">메세지 내용</p>
+
+								<p th:if="${room.notReadCount > 0}" class="not-read-count" th:text="${room.notReadCount}"></p>
+							</div>
+						</div>
+					</li>
+
+				</th:block>
+
+			</ul>
+
+      <!-- 채팅 내용 -->
+			<div class="chatting-content">
+				<ul class="display-chatting">
+					<!-- <li class="my-chat">
+						<span class="chatDate">14:01</span>
+						<p class="chat">가나다라마바사</p>
+					</li>
+
+					<li class="target-chat">
+						<img src="/images/user.png">
+
+						<div>
+							<b>이번유저</b>	<br>
+							<p class="chat">
+								안녕하세요?? 반갑습니다.<br>
+								ㅎㅎㅎㅎㅎ
+							</p>
+							<span class="chatDate">14:05</span>
+						</div>
+					</li> -->
+				</ul>
+
+				<div class="input-area">
+					<textarea id="inputChatting" rows="3"></textarea>
+					<button id="send">보내기</button>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+
+
+
+
+
+
+
+
+
+	
+	<th:block th:replace="~{common/footer}"></th:block>
+
+
+	<!-- --------------------sockjs를 이용한 WebSocket 구현을 위해 라이브러리 추가 -------------------->
+
+	<!-- https://github.com/sockjs/sockjs-client -->
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script th:inline="javascript">
+		const userDefaultImage = /*[[#{user.default.image}]]*/ '기본 이미지';
+
+    const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ '로그인 회원 번호';
+	</script>
+
+	<script src="/js/chatting/chatting.js"></script>
+</body>
+
+</html>
