@@ -374,6 +374,7 @@ public class BoardController {
 			
 			url += "&key=" + paramMap.get("key") + "&query=" + query;
 		}
+		http://localhost/board/1/2035/goToList?limit=10
 		return url;
 	}
 	
