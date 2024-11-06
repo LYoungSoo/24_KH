@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+### `yarn install`
+clone/pull 받은 React Project 폴더로 이동해서
+yarn install 명령어를 입력하면 자동으로 node_modules 가 다운로드 되면서 실행 가능한 상태가 됩니다
+
 In the project directory, you can run:
 
 ### `yarn start`
