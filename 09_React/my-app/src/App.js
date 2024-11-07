@@ -15,6 +15,14 @@ import State1 from './components/R06_State1';
 import State2 from './components/R07_State2';
 import State3 from './components/R08_State3';
 
+import StateReview1 from './review/State_review1';
+import StateReview2 from './review/State_review2';
+
+import Context1 from './components/R09_Context1';
+import Context2 from './components/R10_Context2';
+
+import Context3 from './R11_Context3/Parent';
+
 // 기본적으로 //, /* */ 주석 사용 가능(JS니까!!)
 // 단, HTML 코드가 작성되는 영역에서는 {/*  */} 주석 사용
 
@@ -61,6 +69,27 @@ function App() {
       <br/>
 
       <State3/>
+
+      {/* =============================== */}
+      <br/><hr/><hr/><br/>
+
+      <StateReview1/>
+
+      <hr/>
+
+      <StateReview2/>
+
+      <hr/>
+
+      <Context1/>
+
+      <hr/>
+
+      <Context2/>
+
+      <hr/>
+      
+      <Context3/>
 
     </>
   );

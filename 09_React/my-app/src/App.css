@@ -40,3 +40,9 @@
   width: 80px;
   height: 40px;
 }
+
+/*  */
+
+.completed {
+  text-decoration: line-through;  /* 글자 가운데 삭제선 */
+}
