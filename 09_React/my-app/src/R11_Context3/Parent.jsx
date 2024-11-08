@@ -31,6 +31,10 @@ const Parent = () => {
         <tbody>
           {userList.map((user, index) => {
             return(
+              /*
+                React 에서는 key가 return 값의 최 상단 부분에 위치하도록 해야함
+                배열 내부를 볼 수 없는 성격
+               */
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{user.name}</td>
