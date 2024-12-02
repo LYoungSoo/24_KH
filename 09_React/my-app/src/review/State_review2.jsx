@@ -78,7 +78,7 @@ const StateReview2 = () => {
               <input type="checkbox"
                      onChange={() => {todoChange(index)}}
               />
-              {/* completed 값에 따라 클래스 추가/제거 */}
+              {/* completed 값에 따라 클래스 추가/제거 (취소선) */}
               <span className={item.completed ? `completed` : ''}>{item.text}</span>
             </li>
           );

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공공데이터-미세먼지 정보 조회</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <h1>JS(AJAX) 를 이용한 공공데이터 - 미세먼지 조회</h1>
+  
+
+  <section>
+    <div>
+      시도 이름 : 
+      <select id="cityName">
+        <option>서울</option>
+        <option>부산</option>
+        <option>대구</option>
+        <option>인천</option>
+        <option>광주</option>
+        <option>대전</option>
+        <option>울산</option>
+        <option>경기</option>
+        <option>강원</option>
+        <option>충북</option>
+        <option>충남</option>
+        <option>전북</option>
+        <option>전남</option>
+        <option>경북</option>
+        <option>경남</option>
+        <option>제주</option>
+        <option>세종</option>
+      </select>
+      <button id="selectBtn">조회</button>
+    </div>
+    
+    <div class="result-container">
+      <!-- 미세먼지 -->
+      <div class="result-row">
+        <div id="pm10Grade"></div>
+        <div id="pm10GradeText"></div>
+        <div id="pm10Value"></div>
+      </div>
+  
+      <!-- 초미세먼지 -->
+      <div class="result-row">
+        <div id="pm25Grade"></div>
+        <div id="pm25GradeText"></div>
+        <div id="pm25Value"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr><hr>
+
+  <h1>Java를 이용한 공공데이터 - 미세먼지 조회</h1>
+
+  <section>
+    <div>
+      시도 이름 : 
+      <select id="cityName2">
+        <option>서울</option>
+        <option>부산</option>
+        <option>대구</option>
+        <option>인천</option>
+        <option>광주</option>
+        <option>대전</option>
+        <option>울산</option>
+        <option>경기</option>
+        <option>강원</option>
+        <option>충북</option>
+        <option>충남</option>
+        <option>전북</option>
+        <option>전남</option>
+        <option>경북</option>
+        <option>경남</option>
+        <option>제주</option>
+        <option>세종</option>
+      </select>
+      <button id="selectBtn2">조회</button>
+    </div>
+    
+    <div class="result-container">
+      <!-- 미세먼지 -->
+      <div class="result-row">
+        <div th:text="${pm10Grade}">미세먼지 등급</div>
+        <div th:text="${pm10GradeText}">좋음/나쁨</div>
+        <div th:text="${pm10Value}">미세먼지 농도</div>
+      </div>
+  
+      <!-- 초미세먼지 -->
+      <div class="result-row">
+        <div th:text="${pm25Grade}">초미세먼지 등급</div>
+        <div th:text="${pm25GradeText}">좋음/나쁨</div>
+        <div th:text="${pm25Value}">초미세먼지 농도</div>
+      </div>
+    </div>
+  </section>
+
+  
+  
+  <script src="/js/main.js"></script>
+</body>
+</html>

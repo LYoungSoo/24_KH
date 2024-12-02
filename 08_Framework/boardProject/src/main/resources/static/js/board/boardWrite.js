@@ -70,6 +70,7 @@ for(let i = 0; i < inputImageList.length; i++) {
   inputImageList[i].addEventListener("change", e => {
     
     const file = e.target.files[0];
+    console.log(file)
 
     if(file === undefined) {    // 선택 취소 시
       // 이전에 선택한 파일이 없는 경우
