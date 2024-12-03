@@ -24,5 +24,10 @@ public interface CommentMapper {
 	int commentDelete(
 		@Param("commentNo") int commentNo,
 		@Param("memberNo") int memberNo);
-
+	
+	/** 댓글 수정
+	 * @param comment
+	 * @return result
+	 */
+	int commentUpdate(Comment comment);
 }

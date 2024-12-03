@@ -38,6 +38,7 @@ const updatePreview = (file, order) => {  // 이미지 순서까지 얻어와야
     // 이전 선택된 파일이 있을 때
     const dataTransfer = new DataTransfer();
     dataTransfer.items.add(lastValidFiles[order]);
+
     inputImageList[order].files = dataTransfer.files;
 
     return;

@@ -47,5 +47,16 @@
 		AND		MEMBER_NO = #{memberNo}
 	</update>
 
+	<!-- 댓글 수정 -->
+	<update id="commentUpdate">
+		UPDATE "COMMENT"
+		SET
+			COMMENT_CONTENT = #{commentContent}
+		WHERE
+			COMMENT_NO = #{commentNo}
+		  AND
+			MEMBER_NO  = #{memberNo}
+	</update>
+
 
 </mapper>

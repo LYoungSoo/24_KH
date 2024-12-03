@@ -49,8 +49,13 @@ public class CommentController {
 	 */
 //	@ResponseBody
 	@PutMapping("comment")		// PUT == UPDATE 의미
-	public int commentUpdate() {
-		return 0;
+	public int commentUpdate(
+			@RequestBody Comment comment,
+			@SessionAttribute("loginMember") Member loginMember) {
+		
+		comment.setMemberNo(loginMember.getMemberNo());
+		
+		return service.commentUpdate(comment);
 	}
 	
 	/**

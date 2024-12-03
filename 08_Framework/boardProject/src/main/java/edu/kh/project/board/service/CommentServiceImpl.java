@@ -31,5 +31,11 @@ public class CommentServiceImpl implements CommentService {
 	public int commentDelete(int commentNo, int memberNo) {
 		return mapper.commentDelete(commentNo, memberNo);
 	}
+	
+	// 댓글 수정
+	@Override
+	public int commentUpdate(Comment comment) {
+		return mapper.commentUpdate(comment);
+	}
 
 }
